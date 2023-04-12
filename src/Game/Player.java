@@ -1,11 +1,6 @@
 package Game;
 
-import GUI.*;
-import MiniGames.Charms;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Player implements Serializable {
     String login;

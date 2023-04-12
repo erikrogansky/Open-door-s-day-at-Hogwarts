@@ -1,10 +1,8 @@
 package Game;
 
-import MiniGames.*;
+import Stories.*;
 
-import javax.swing.*;
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Plan implements Serializable {
     MiniGame minigame1;

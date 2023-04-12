@@ -1,7 +1,7 @@
 package GUI;
 
 import Game.*;
-import MiniGames.*;
+import Stories.*;
 
 import javax.swing.*;
 import java.awt.*;

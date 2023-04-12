@@ -1,4 +1,4 @@
-package MiniGames;
+package Stories;
 
 public class Quidditch extends MiniGame{
 }

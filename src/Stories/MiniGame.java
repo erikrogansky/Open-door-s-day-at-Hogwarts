@@ -1,4 +1,4 @@
-package MiniGames;
+package Stories;
 
 import Game.Player;
 import Game.Waiter;

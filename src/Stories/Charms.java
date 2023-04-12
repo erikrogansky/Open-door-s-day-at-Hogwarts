@@ -1,7 +1,6 @@
-package MiniGames;
+package Stories;
 
 import GUI.CharmsGUI;
-import GUI.Welcome;
 import Game.Player;
 
 public class Charms extends MiniGame {
