@@ -159,7 +159,7 @@ public class PlayerSetup extends JFrame {
 
         everythingPanel.add(spacerPanel4);
 
-        JLabel interestTitle = new JLabel("Pick your interest:");
+        JLabel interestTitle = new JLabel("Pick your interests (7):");
         interestTitle.setFont(sub_title);
         interestTitle.setForeground(houseColor[i[0]]);
         JLabel interestTitle2 = new JLabel("");
@@ -185,12 +185,11 @@ public class PlayerSetup extends JFrame {
                 checkbox6, checkbox7, checkbox8, checkbox9, checkbox10,
                 checkbox11, checkbox12, checkbox13, checkbox14};
 
-        CheckboxGroupListener listener = new CheckboxGroupListener(checkboxes, 7); // this listener will limit the number of checkboxes that can be selected to 7
+        // this listener will limit the number of checkboxes that can be selected to 7
         for (JCheckBox checkbox : checkboxes) {
             checkbox.setFont(font1);
             checkbox.setForeground(houseColor[i[0]]);
             checkbox.setOpaque(false);
-            checkbox.addActionListener(listener); // add the listener to each checkbox
         }
         JPanel interestPanel = new JPanel(new GridLayout(0, 2, 10, 10));
         interestPanel.setOpaque(false);
@@ -371,14 +370,115 @@ public class PlayerSetup extends JFrame {
         JRadioButton[] houseOptions = {option4, option5, option6, option7};
         final int[] houseIndex = {0};
         housePanel.setFocusable(true);
+        JCheckBox[] interestOptions = {checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14};
+        final int[] interestIndex = {0};
+        final int[] max = {0};
+        for (JCheckBox checkbox : interestOptions) {
+            checkbox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    genderOptions[genderIndex[0]].setOpaque(false);
+                    genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                    genderOptions[genderIndex[0]].repaint();
+                    houseOptions[houseIndex[0]].setOpaque(false);
+                    houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                    houseOptions[houseIndex[0]].repaint();
+                    nameField.setFocusable(false);
+                    interestOptions[interestIndex[0]].setOpaque(false);
+                    interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                    interestOptions[interestIndex[0]].repaint();
+                    interestPanel.requestFocus();
+                    for (int i = 0; i<13; i++) {
+                        if (checkbox == interestOptions[i]) {
+                            interestIndex[0] = i;
+                            break;
+                        }
+                    }
+                    interestOptions[interestIndex[0]].setOpaque(true);
+                    interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                    interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                    interestOptions[interestIndex[0]].repaint();
+                    if (checkbox.isSelected()) {
+                        max[0]++;
+                        if (max[0] > 7){
+                            checkbox.setSelected(false);
+                            max[0]--;
+                        }
+                    } else
+                        max[0]--;
+                }
+            });
+        }
+        for (JRadioButton btn: houseOptions) {
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    genderOptions[genderIndex[0]].setOpaque(false);
+                    genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                    genderOptions[genderIndex[0]].repaint();
+                    houseOptions[houseIndex[0]].setOpaque(false);
+                    houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                    houseOptions[houseIndex[0]].repaint();
+                    nameField.setFocusable(false);
+                    interestOptions[interestIndex[0]].setOpaque(false);
+                    interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                    interestOptions[interestIndex[0]].repaint();
+                    housePanel.requestFocus();
+                    for (int i = 0; i<13; i++) {
+                        if (btn == houseOptions[i]) {
+                            houseIndex[0] = i;
+                            break;
+                        }
+                    }
+                    houseOptions[houseIndex[0]].setOpaque(true);
+                    houseOptions[houseIndex[0]].setForeground(bcgColor[i[0]]);
+                    houseOptions[houseIndex[0]].setBackground(houseColor[i[0]]);
+                    houseOptions[houseIndex[0]].repaint();
+                }
+            });
+        }
+        for (JRadioButton btn: genderOptions) {
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    genderOptions[genderIndex[0]].setOpaque(false);
+                    genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                    genderOptions[genderIndex[0]].repaint();
+                    houseOptions[houseIndex[0]].setOpaque(false);
+                    houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                    houseOptions[houseIndex[0]].repaint();
+                    nameField.setFocusable(false);
+                    interestOptions[interestIndex[0]].setOpaque(false);
+                    interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                    interestOptions[interestIndex[0]].repaint();
+                    genderPanel.requestFocus();
+                    for (int i = 0; i<13; i++) {
+                        if (btn == genderOptions[i]) {
+                            genderIndex[0] = i;
+                            break;
+                        }
+                    }
+                    genderOptions[genderIndex[0]].setOpaque(true);
+                    genderOptions[genderIndex[0]].setForeground(bcgColor[i[0]]);
+                    genderOptions[genderIndex[0]].setBackground(houseColor[i[0]]);
+                    genderOptions[genderIndex[0]].repaint();
+                }
+            });
+        }
+        interestPanel.setFocusable(true);
+        buttonPanel.setFocusable(true);
         nameField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                for (JRadioButton but : genderOptions) {
-                    but.setOpaque(false);
-                    but.setForeground(houseColor[i[0]]);
-                    but.repaint();
-                }
+                genderOptions[genderIndex[0]].setOpaque(false);
+                genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                genderOptions[genderIndex[0]].repaint();
+                houseOptions[houseIndex[0]].setOpaque(false);
+                houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                houseOptions[houseIndex[0]].repaint();
+                interestOptions[interestIndex[0]].setOpaque(false);
+                interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                interestOptions[interestIndex[0]].repaint();
                 nameField.setFocusable(true);
                 nameField.requestFocus();
             }
@@ -393,7 +493,11 @@ public class PlayerSetup extends JFrame {
                     genderOptions[genderIndex[0]].setBackground(houseColor[i[0]]);
                     genderOptions[genderIndex[0]].setForeground(bcgColor[i[0]]);
                 }
-
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    nameField.setFocusable(false);
+                    buttonPanel.requestFocus();
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                }
             }
         });
         genderPanel.addKeyListener(new KeyAdapter() {
@@ -505,15 +609,139 @@ public class PlayerSetup extends JFrame {
                         but.setForeground(houseColor[i[0]]);
                         but.repaint();
                     }
+                    if (interestIndex[0] % 2 == 0) {
+                        interestIndex[0] = 0;
+                    } else {
+                        interestIndex[0] = 1;
+                    }
                     interestPanel.requestFocus();
+                    interestOptions[interestIndex[0]].setOpaque(true);
+                    interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                    interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
                 }
             }
         });
 
+        interestPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (interestOptions[interestIndex[0]].isSelected()) {
+                        interestOptions[interestIndex[0]].setSelected(false);
+                        max[0]--;
+                    }
+                    else {
+                        interestOptions[interestIndex[0]].setSelected(true);
+                        max[0]++;
+                        if (max[0] > 7) {
+                            interestOptions[interestIndex[0]].setSelected(false);
+                            max[0]--;
+                        }
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+                    if (interestIndex[0] % 2 == 0) {
+                        interestIndex[0] = (interestIndex[0] + 1) % interestOptions.length;
+                        interestOptions[interestIndex[0]].setOpaque(true);
+                        interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        interestOptions[(interestIndex[0] - 1) % interestOptions.length].setOpaque(false);
+                        interestOptions[(interestIndex[0] - 1) % interestOptions.length].setForeground(houseColor[i[0]]);
+                        interestOptions[(interestIndex[0] - 1) % interestOptions.length].repaint();
+                    } else {
+                        interestIndex[0] = (interestIndex[0] - 1 + interestOptions.length) % interestOptions.length;
+                        interestOptions[interestIndex[0]].setOpaque(true);
+                        interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        interestOptions[(interestIndex[0] + 1) % interestOptions.length].setOpaque(false);
+                        interestOptions[(interestIndex[0] + 1) % interestOptions.length].setForeground(houseColor[i[0]]);
+                        interestOptions[(interestIndex[0] + 1) % interestOptions.length].repaint();
+                    }
+                if (e.getKeyCode() == KeyEvent.VK_LEFT)
+                    if (interestIndex[0] % 2 != 0) {
+                        interestIndex[0] = (interestIndex[0] - 1 + interestOptions.length) % interestOptions.length;
+                        interestOptions[interestIndex[0]].setOpaque(true);
+                        interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        interestOptions[(interestIndex[0] + 1) % interestOptions.length].setOpaque(false);
+                        interestOptions[(interestIndex[0] + 1) % interestOptions.length].setForeground(houseColor[i[0]]);
+                        interestOptions[(interestIndex[0] + 1) % interestOptions.length].repaint();
+                    } else {
+                        interestIndex[0] = (interestIndex[0] + 1) % interestOptions.length;
+                        interestOptions[interestIndex[0]].setOpaque(true);
+                        interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        interestOptions[(interestIndex[0] - 1) % interestOptions.length].setOpaque(false);
+                        interestOptions[(interestIndex[0] - 1) % interestOptions.length].setForeground(houseColor[i[0]]);
+                        interestOptions[(interestIndex[0] - 1) % interestOptions.length].repaint();
+                    }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    if (interestIndex[0] == 12 || interestIndex[0] == 13) {
+                        interestOptions[interestIndex[0]].setOpaque(false);
+                        interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                        buttonPanel.requestFocus();
+                    } else {
+                        interestIndex[0] = (interestIndex[0] + 2);
+                        interestOptions[interestIndex[0]].setOpaque(true);
+                        interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        interestOptions[(interestIndex[0] - 2) % interestOptions.length].setOpaque(false);
+                        interestOptions[(interestIndex[0] - 2) % interestOptions.length].setForeground(houseColor[i[0]]);
+                        interestOptions[(interestIndex[0] - 2) % interestOptions.length].repaint();
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    if (interestIndex[0] == 0 || interestIndex[0] == 1) {
+                        interestOptions[interestIndex[0]].setOpaque(false);
+                        interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        houseOptions[houseIndex[0]].setOpaque(true);
+                        houseOptions[houseIndex[0]].setBackground(houseColor[i[0]]);
+                        houseOptions[houseIndex[0]].setForeground(bcgColor[i[0]]);
+                        houseOptions[houseIndex[0]].repaint();
+                        housePanel.requestFocus();
+                    } else {
+                        interestIndex[0] = (interestIndex[0] - 2);
+                        interestOptions[interestIndex[0]].setOpaque(true);
+                        interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        interestOptions[interestIndex[0] + 2].setOpaque(false);
+                        interestOptions[interestIndex[0] + 2].setForeground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0] + 2].repaint();
+                    }
+                }
+            }
+        });
 
-
-
-
+        buttonPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    button.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP){
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
+                    interestPanel.requestFocus();
+                    interestOptions[interestIndex[0]].setOpaque(true);
+                    interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                    interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                    interestOptions[interestIndex[0]].repaint();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
+                    nameField.setFocusable(true);
+                    nameField.requestFocus();
+                }
+            }
+        });
 
 
 
