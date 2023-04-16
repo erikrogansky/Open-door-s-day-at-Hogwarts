@@ -33,6 +33,7 @@ public class Game implements Serializable {
         save();
         play();
     }
+    
 
     public void play() throws IOException, ClassNotFoundException {
         if (this.player.personal_plan.getCurrent() == 0){
