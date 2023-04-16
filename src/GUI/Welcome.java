@@ -18,17 +18,11 @@ public class Welcome extends JFrame {
     public Welcome(Player player) {
         super("Welcome to Hogwarts");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setSize(1000, 700); //750x525
 
         this.player = player;
 
-        JDialog pauseDialog = new JDialog(this, "Paused", true);
-        pauseDialog.setUndecorated(true);
-        pauseDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        pauseDialog.setSize(0, 0);
-        pauseDialog.setLocationRelativeTo(null);
-
-        final String[] bcg_dir = {"img/charmsG.jpg", "img/charmsR.jpg", "img/charmsH.jpg", "img/charmsS.jpg", "img/charms.jpg"};
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), Color.BLACK};

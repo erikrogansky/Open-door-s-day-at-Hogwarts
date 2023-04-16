@@ -15,17 +15,11 @@ public class TransfigurationGUI extends JFrame{
     public TransfigurationGUI(Player player) {
         super("Welcome to the Transfiguration Classroom");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setSize(1000, 700); //750x525
 
         this.player = player;
 
-        JDialog pauseDialog = new JDialog(this, "Paused", true);
-        pauseDialog.setUndecorated(true);
-        pauseDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        pauseDialog.setSize(0, 0);
-        pauseDialog.setLocationRelativeTo(null);
-
-        final String[] bcg_dir = {"img/charmsG.jpg", "img/charmsR.jpg", "img/charmsH.jpg", "img/charmsS.jpg", "img/charms.jpg"};
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), Color.BLACK};
@@ -42,7 +36,7 @@ public class TransfigurationGUI extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon("img/welcome.jpg");
+                ImageIcon image = new ImageIcon("img/transfiguration.png");
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -83,7 +77,7 @@ public class TransfigurationGUI extends JFrame{
         everythingPanel.add(spacerPanel1);
 
         JPanel spacerPanel2 = new JPanel();
-        spacerPanel2.setPreferredSize(new Dimension(0, 12));
+        spacerPanel2.setPreferredSize(new Dimension(0, 5));
         spacerPanel2.setOpaque(false);
 
         JPanel spacerPanel3 = new JPanel();
@@ -98,8 +92,8 @@ public class TransfigurationGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Welcome to the Charms Classroom!");
-        title.setPreferredSize(new Dimension(700, 55));
+        JLabel title = new JLabel("Welcome to the Transfiguration Classroom!");
+        title.setPreferredSize(new Dimension(850, 55));
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
@@ -123,7 +117,7 @@ public class TransfigurationGUI extends JFrame{
         story.setForeground(houseColor[i[0]]);
         story.setBackground(bcgColor[i[0]]);
         JPanel storyPanel = new JPanel();
-        storyPanel.setPreferredSize(new Dimension(0, 450));
+        storyPanel.setPreferredSize(new Dimension(0, 490));
         storyPanel.setOpaque(false);
         storyPanel.add(story);
         everythingPanel.add(storyPanel);
@@ -131,15 +125,19 @@ public class TransfigurationGUI extends JFrame{
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String storyStr = "<html><div style='text-align:center'>Greetings to all our guests and visitors on this special occasion of Open Door's Day at Hogwarts <br> School of Witchcraft and Wizardry. I am Albus Dumbledore, the headmaster of this venerable institution, <br> and I am delighted to have you here today.<br>" +
+                String storyStr = "<html><div style='text-align:center'>Welcome to the Transfiguration classroom, " + player.getGender('s') + ". I am Professor McGonagall, <br> and I am the head of the Transfiguration department at Hogwarts.<br>" +
                         "<br>" +
-                        "Hogwarts is more than just a school. It is a home, a family, a community of magical beings <br> who share a common passion for learning and discovery. Here, you will find not only classrooms and teachers,<br> but also friends and mentors challenges and adventures, secrets and mysteries.<br>" +
+                        "Transfiguration is a complex branch of magic that involves transforming one object into another. It requires precision, <br> skill, and a deep understanding of the laws of magic. And let me tell you, it is not a subject for the faint-hearted.<br>" +
                         "<br>" +
-                        "You are invited to explore our magnificent castle and grounds, <br> to witness the wonders of magic in action, to meet our talented and diverse students and staff, <br> and to experience the rich history and culture of our school. You will also have the opportunity <br> to learn more about our four houses: Gryffindor, Hufflepuff, Ravenclaw and Slytherin. <br> Each house has its own values, traditions and spirit that shape the character and destiny of its members.<br>" +
+                        "Here in my classroom, we focus on developing your abilities to transform objects into <br> animals or even completely different objects. You will learn how to transfigure a teapot into a tortoise <br> or a rat into a snuffbox. But beware, this is not a subject for those who lack discipline or patience.<br>" +
                         "<br>" +
-                        "Whether you are a prospective student or parent, a curious muggle or a fellow wizard or witch, <br> we hope that you will enjoy your visit to Hogwarts and that you will leave with a sense of awe <br> and admiration for our magical world. We also hope that you will feel inspired by our motto:<br> \"Draco dormiens nunquam titillandus\", which means \"Never tickle a sleeping dragon\".<br>" +
+                        "Transfiguration requires hours of practice and rigorous attention to detail. Every movement of your wand and every <br> incantation you utter must be precise. One wrong word, one flick of the wrist, and the consequences could be disastrous.<br>" +
                         "<br>" +
-                        "Thank you for your attention and have a wonderful day!</div></html>";
+                        "But don't let that intimidate you. With hard work and dedication, you too can master <br> the art of Transfiguration. And once you do, the possibilities are endless. You can turn a rock into a bird, <br> a table into a human, and even make objects disappear altogether.<br>" +
+                        "<br>" +
+                        "TBut remember, with great power comes great responsibility. Transfiguration is not to be taken <br> lightly. It is a powerful branch of magic that must be used wisely and with caution.<br>" +
+                        "<br>" +
+                        "So, if you're up for the challenge and are willing to put in the effort, then welcome to my classroom. But be warned, <br> I have high expectations for my students. I expect nothing less than the best from each and every one of you.</div></html>";
                 String builder = "";
                 for (char character : storyStr.toCharArray()){
                     builder += character;

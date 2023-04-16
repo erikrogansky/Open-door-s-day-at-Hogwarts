@@ -21,7 +21,7 @@ public class Player implements Serializable {
         if (gender.equals("female"))
             this.gender = "Witch";
         if (gender.equals("other"))
-            this.gender = "Non-specified magician";
+            this.gender = "Magician";
     }
     public void setPreferred_house(String house){
         this.preferred_house = house;
@@ -56,5 +56,17 @@ public class Player implements Serializable {
     }
     public String[] getInterests(){
         return interests;
+    }
+    public String getGender(char c){
+        if (c == 's'){
+            if (gender.equals("Wizard"))
+                return "wizard";
+            else if (gender.equals("Witch"))
+                return "witch";
+            else
+                return "magician";
+        }
+        else
+            return gender;
     }
 }
