@@ -51,6 +51,31 @@ public class Game implements Serializable {
             this.player.personal_plan.setCurrent(3);
             save();
         }
+        if (this.player.personal_plan.getCurrent() == 3){
+            this.player.personal_plan.minigame3.startGame(this.player);
+            this.player.personal_plan.setCurrent(4);
+            save();
+        }
+        if (this.player.personal_plan.getCurrent() == 4){
+            this.player.personal_plan.minigame4.startGame(this.player);
+            this.player.personal_plan.setCurrent(5);
+            save();
+        }
+        if (this.player.personal_plan.getCurrent() == 5){
+            this.player.personal_plan.minigame5.startGame(this.player);
+            this.player.personal_plan.setCurrent(6);
+            save();
+        }
+        if (this.player.personal_plan.getCurrent() == 6){
+            this.player.personal_plan.minigame6.startGame(this.player);
+            this.player.personal_plan.setCurrent(7);
+            save();
+        }
+        if (this.player.personal_plan.getCurrent() == 7){
+            this.player.personal_plan.minigame7.startGame(this.player);
+            this.player.personal_plan.setCurrent(8);
+            save();
+        }
     }
 
     public void save() throws ClassNotFoundException, IOException {

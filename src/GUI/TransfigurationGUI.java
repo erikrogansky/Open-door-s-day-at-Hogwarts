@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TransfigurationGUI extends JFrame{
     private Player player;
@@ -125,7 +127,7 @@ public class TransfigurationGUI extends JFrame{
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String storyStr = "<html><div style='text-align:center'>Welcome to the Transfiguration classroom, " + player.getGender('s') + ". I am Professor McGonagall, <br> and I am the head of the Transfiguration department at Hogwarts.<br>" +
+                String storyStr = "<html><div style='text-align:center'>Welcome to the Transfiguration classroom, young " + player.getGender('s') + ". I am Professor McGonagall, <br> and I am the head of the Transfiguration department at Hogwarts.<br>" +
                         "<br>" +
                         "Transfiguration is a complex branch of magic that involves transforming one object into another. It requires precision, <br> skill, and a deep understanding of the laws of magic. And let me tell you, it is not a subject for the faint-hearted.<br>" +
                         "<br>" +
@@ -175,8 +177,21 @@ public class TransfigurationGUI extends JFrame{
         buttonPanel.add(button);
         everythingPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        panel.add(everythingPanel, BorderLayout.NORTH);
+        everythingPanel.setFocusable(true);
+        everythingPanel.requestFocus();
+        everythingPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    menuButton.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    button.doClick();
+                }
+            }
+        });
 
+        panel.add(everythingPanel, BorderLayout.NORTH);
 
         getContentPane().add(panel);
 

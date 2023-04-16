@@ -10,12 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class CharmsGUI extends JFrame{
+public class QuidditchGUI extends JFrame{
     private Player player;
     private Boolean done;
     private Boolean readTheWholeStory = false;
-    public CharmsGUI(Player player) {
-        super("Welcome to the Charms Classroom");
+    public QuidditchGUI(Player player) {
+        super("Welcome to the Quidditch Stadium");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(1000, 700); //750x525
@@ -38,7 +38,7 @@ public class CharmsGUI extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon("img/charms.jpg");
+                ImageIcon image = new ImageIcon("img/quidditch.png");
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -69,7 +69,7 @@ public class CharmsGUI extends JFrame{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player, CharmsGUI.this);
+                Menu menu = new Menu(player, QuidditchGUI.this);
                 if (menu.getExit() == true)
                     dispose();
             }
@@ -95,8 +95,8 @@ public class CharmsGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Welcome to the Charms Classroom!");
-        title.setPreferredSize(new Dimension(700, 55));
+        JLabel title = new JLabel("Welcome to the Quidditch Stadium!");
+        title.setPreferredSize(new Dimension(850, 55));
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
@@ -128,19 +128,19 @@ public class CharmsGUI extends JFrame{
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String storyStr = "<html><div style='text-align:center'>Welcome to Hogwarts, young " + player.getGender('s') + "! I am Professor Flitwick, and I teach Charms at this prestigious school <br> of magic. Today is Open Door's day, and I am excited to show you the wonders of the Charms Classroom.<br>" +
+                String storyStr = "<html><div style='text-align:center'>Welcome to the Quidditch stadium, young athlete! I am Professor Sprout, <br> and I am in charge of the Quidditch team at Hogwarts.<br>" +
                         "<br>" +
-                        "Charms is one of the most important subjects taught at Hogwarts because it helps students <br> to develop their magical abilities. Charms allow us to perform spells that can do anything from <br> cleaning up a room to levitating objects to even protecting us from danger.<br>" +
+                        "Transfiguration is a complex branch of magic that involves transforming one object into another. It requires precision, <br> skill, and a deep understanding of the laws of magic. And let me tell you, it is not a subject for the faint-hearted.<br>" +
                         "<br>" +
-                        "Now, let me show you some of the basic spells that we teach here at Hogwarts. One of the first spells you will learn <br> is the Wingardium Leviosa. This spell allows you to levitate an object and move it around at your will. It requires a lot of <br> concentration and precise wand movements, but with practice, you'll be able to move even the heaviest objects with ease.<br>" +
+                        "Here in my classroom, we focus on developing your abilities to transform objects into <br> animals or even completely different objects. You will learn how to transfigure a teapot into a tortoise <br> or a rat into a snuffbox. But beware, this is not a subject for those who lack discipline or patience.<br>" +
                         "<br>" +
-                        "Another spell that we teach is the Lumos. This spell creates a beam of light at the tip <br> of your wand, which can be useful for exploring dark areas or reading books at night. This spell is also handy <br> if you want to impress your friends with some cool wand tricks.<br>" +
+                        "Transfiguration requires hours of practice and rigorous attention to detail. Every movement of your wand and every <br> incantation you utter must be precise. One wrong word, one flick of the wrist, and the consequences could be disastrous.<br>" +
                         "<br>" +
-                        "We also teach spells that can protect you from danger. The Protego charm creates a magical shield <br> that can block spells and curses. It's a vital spell for defending yourself in battle.<br>" +
+                        "But don't let that intimidate you. With hard work and dedication, you too can master <br> the art of Transfiguration. And once you do, the possibilities are endless. You can turn a rock into a bird, <br> a table into a human, and even make objects disappear altogether.<br>" +
                         "<br>" +
-                        "Charms classes at Hogwarts are always exciting because we're always learning new spells and discovering new ways to <br> use them. The possibilities are endless, and it's up to you to decide how to use your magical abilities for good.<br>" +
+                        "TBut remember, with great power comes great responsibility. Transfiguration is not to be taken <br> lightly. It is a powerful branch of magic that must be used wisely and with caution.<br>" +
                         "<br>" +
-                        "I hope you enjoyed this short introduction to Charms, " + player.getGender('s') + ". I look forward to seeing you in my classroom next year!</div></html>";
+                        "So, if you're up for the challenge and are willing to put in the effort, then welcome to my classroom. But be warned, <br> I have high expectations for my students. I expect nothing less than the best from each and every one of you.</div></html>";
                 String builder = "";
                 for (char character : storyStr.toCharArray()){
                     builder += character;
@@ -193,6 +193,8 @@ public class CharmsGUI extends JFrame{
         });
 
         panel.add(everythingPanel, BorderLayout.NORTH);
+
+        everythingPanel.requestFocus();
 
         getContentPane().add(panel);
 

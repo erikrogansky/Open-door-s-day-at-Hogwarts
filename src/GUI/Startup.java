@@ -91,6 +91,7 @@ public class Startup extends JFrame {
         button.setPreferredSize(new Dimension(buttonIcon.getIconWidth(), buttonIcon.getIconHeight()));
         button.setHorizontalAlignment(JButton.CENTER);
         button.setVerticalAlignment(JButton.CENTER);
+        button.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,7 +122,6 @@ public class Startup extends JFrame {
         panel.add(everythingPanel, BorderLayout.NORTH);
 
 
-        //When enter is pressed, press login button
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -139,10 +139,14 @@ public class Startup extends JFrame {
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     button.setSelected(true);
+                    button.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
                     button2.setSelected(false);
+                    button2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 0));
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     button.setSelected(false);
+                    button.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 0));
                     button2.setSelected(true);
+                    button2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
                 }
             }
         });

@@ -6,8 +6,7 @@ import Game.Waiter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.IOException;
 
 public class Menu extends JDialog {
@@ -56,6 +55,7 @@ public class Menu extends JDialog {
 
         JPanel everythingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, panel.getWidth() + 10, 100 + panel.getHeight()));
         everythingPanel.setOpaque(false);
+        everythingPanel.setFocusable(true);
 
         everythingPanel.setLayout(new BoxLayout(everythingPanel, BoxLayout.Y_AXIS));
 
@@ -104,6 +104,7 @@ public class Menu extends JDialog {
         resume.setVerticalAlignment(JButton.CENTER);
         resume.setBackground(bcgColor[i[0]]);
         resume.setForeground(houseColor[i[0]]);
+        resume.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 2));
         resume.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -243,8 +244,33 @@ public class Menu extends JDialog {
         exitPanel.add(exit);
         everythingPanel.add(exitPanel, BorderLayout.SOUTH);
 
-        panel.add(everythingPanel, BorderLayout.NORTH);
+        JButton[] allButtons = new JButton[]{resume, newGame, changePlayer, changePlan, exit};
+        final int[] currentButtonIndex = {0};
+        everythingPanel.requestFocus();
+        everythingPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    currentButtonIndex[0] = (currentButtonIndex[0] - 1 + allButtons.length) % allButtons.length;
+                    allButtons[currentButtonIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 2));
+                    allButtons[(currentButtonIndex[0] + 1) % allButtons.length].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    currentButtonIndex[0] = (currentButtonIndex[0] + 1) % allButtons.length;
+                    allButtons[currentButtonIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 2));
+                    if(currentButtonIndex[0] == 0)
+                        allButtons[allButtons.length - 1].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                    else
+                        allButtons[(currentButtonIndex[0] - 1) % allButtons.length].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    allButtons[currentButtonIndex[0]].doClick();
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    resume.doClick();
+                }
+            }
+        });
 
+        panel.add(everythingPanel, BorderLayout.NORTH);
 
         getContentPane().add(panel);
 
