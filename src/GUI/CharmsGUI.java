@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class CharmsGUI extends JFrame{
     private Player player;
@@ -75,7 +73,7 @@ public class CharmsGUI extends JFrame{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player,CharmsGUI.this);
+                Menu menu = new Menu(player, CharmsGUI.this);
                 if (menu.getExit() == true)
                     dispose();
             }

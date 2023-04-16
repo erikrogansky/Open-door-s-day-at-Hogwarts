@@ -37,6 +37,7 @@ public class PlayerSetup extends JFrame {
         panel.setLayout(new BorderLayout());
         Font sub_title = new Font("Arial", Font.BOLD, 20); // set the font size to 20
 
+
         JPanel everythingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, panel.getWidth() + 10, 100 + panel.getHeight()));
         everythingPanel.setOpaque(false);
 

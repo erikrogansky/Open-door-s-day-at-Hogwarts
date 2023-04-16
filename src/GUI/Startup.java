@@ -26,6 +26,7 @@ public class Startup extends JFrame {
         };
         panel.setLayout(new BorderLayout());
 
+
         JPanel everythingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, panel.getWidth() + 10, 100 + panel.getHeight()));
         everythingPanel.setOpaque(false);
 

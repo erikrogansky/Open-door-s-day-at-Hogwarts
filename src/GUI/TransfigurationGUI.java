@@ -11,8 +11,9 @@ import java.awt.event.ActionListener;
 public class TransfigurationGUI extends JFrame{
     private Player player;
     private Boolean done;
+    private Boolean readTheWholeStory = false;
     public TransfigurationGUI(Player player) {
-        super("Welcome to the Charms Classroom");
+        super("Welcome to the Transfiguration Classroom");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700); //750x525
 
@@ -149,6 +150,7 @@ public class TransfigurationGUI extends JFrame{
                         e.printStackTrace();
                     }
                 }
+                readTheWholeStory = true;
             }
         });
         // Start the thread
@@ -188,5 +190,8 @@ public class TransfigurationGUI extends JFrame{
     public Boolean ifDone() {
         new Waiter().wait(() -> done);
         return done;
+    }
+    public Boolean getRead() {
+        return readTheWholeStory;
     }
 }
