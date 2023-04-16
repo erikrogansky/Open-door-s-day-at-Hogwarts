@@ -222,7 +222,7 @@ public class CreatePlan extends JFrame {
                 plan = player.changePlan();
                 int currentMinigame = plan.getCurrent();
                 int i = 0;
-                MiniGame[] array = new MiniGame[7];
+                Story[] array = new Story[7];
                 String[] array2 = new String[7];
                 for (JComboBox combobox : comboboxes){
                     int index = combobox.getSelectedIndex();

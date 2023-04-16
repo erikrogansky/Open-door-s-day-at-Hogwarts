@@ -1,6 +1,6 @@
 package Stories;
 
-public class Alchemy extends MiniGame {
+public class Alchemy extends Story {
 
     boolean alreadyPlayed;
 }

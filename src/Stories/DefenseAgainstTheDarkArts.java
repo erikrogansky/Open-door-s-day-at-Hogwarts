@@ -1,4 +1,4 @@
 package Stories;
 
-public class DefenseAgainstTheDarkArts extends MiniGame{
+public class DefenseAgainstTheDarkArts extends Story {
 }

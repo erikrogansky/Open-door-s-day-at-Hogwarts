@@ -1,4 +1,4 @@
 package Stories;
 
-public class Divination extends MiniGame{
+public class Divination extends Story {
 }

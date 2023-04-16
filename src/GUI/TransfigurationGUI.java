@@ -7,14 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-public class CharmsGUI extends JFrame{
+public class TransfigurationGUI extends JFrame{
     private Player player;
     private Boolean done;
-    private Boolean readTheWholeStory = false;
-    public CharmsGUI(Player player) {
+    public TransfigurationGUI(Player player) {
         super("Welcome to the Charms Classroom");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700); //750x525
@@ -75,7 +72,7 @@ public class CharmsGUI extends JFrame{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player,CharmsGUI.this);
+                Menu menu = new Menu(player, TransfigurationGUI.this);
                 if (menu.getExit() == true)
                     dispose();
             }
@@ -152,7 +149,6 @@ public class CharmsGUI extends JFrame{
                         e.printStackTrace();
                     }
                 }
-                readTheWholeStory = true;
             }
         });
         // Start the thread
@@ -192,8 +188,5 @@ public class CharmsGUI extends JFrame{
     public Boolean ifDone() {
         new Waiter().wait(() -> done);
         return done;
-    }
-    public Boolean getRead() {
-        return readTheWholeStory;
     }
 }

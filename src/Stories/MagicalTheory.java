@@ -1,5 +1,5 @@
 package Stories;
 
-public class MagicalTheory extends MiniGame{
+public class MagicalTheory extends Story {
 
 }

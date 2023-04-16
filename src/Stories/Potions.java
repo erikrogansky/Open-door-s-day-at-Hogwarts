@@ -1,4 +1,4 @@
 package Stories;
 
-public class Potions extends MiniGame{
+public class Potions extends Story {
 }

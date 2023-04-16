@@ -1,4 +1,4 @@
 package Stories;
 
-public class Herbology extends MiniGame{
+public class Herbology extends Story {
 }

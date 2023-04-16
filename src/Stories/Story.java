@@ -5,7 +5,7 @@ import Game.Waiter;
 
 import java.io.Serializable;
 
-public class MiniGame implements Serializable {
+public class Story implements Serializable {
     Player player;
     Boolean done;
     public void startGame(Player player){

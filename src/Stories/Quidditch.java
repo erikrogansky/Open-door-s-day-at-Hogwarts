@@ -1,4 +1,4 @@
 package Stories;
 
-public class Quidditch extends MiniGame{
+public class Quidditch extends Story {
 }

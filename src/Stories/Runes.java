@@ -1,4 +1,4 @@
 package Stories;
 
-public class Runes extends MiniGame{
+public class Runes extends Story {
 }

@@ -1,4 +1,4 @@
 package Stories;
 
-public class Creatures extends MiniGame{
+public class Creatures extends Story {
 }

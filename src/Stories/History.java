@@ -1,4 +1,4 @@
 package Stories;
 
-public class History extends MiniGame{
+public class History extends Story {
 }

@@ -1,4 +1,4 @@
 package Stories;
 
-public class MuggleStudies extends MiniGame{
+public class MuggleStudies extends Story {
 }
