@@ -730,6 +730,10 @@ public class PlayerSetup extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_UP){
                     button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
                     interestPanel.requestFocus();
+                    if (interestIndex[0] % 2 == 0)
+                        interestIndex[0] = 12;
+                    else
+                        interestIndex[0] = 13;
                     interestOptions[interestIndex[0]].setOpaque(true);
                     interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
                     interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);

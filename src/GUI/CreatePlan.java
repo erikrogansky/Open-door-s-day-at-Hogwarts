@@ -4,9 +4,10 @@ import Game.*;
 import Stories.*;
 
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Arrays;
 
 public class CreatePlan extends JFrame {
@@ -22,23 +23,23 @@ public class CreatePlan extends JFrame {
         this.player = player;
 
         final String[] bcg_dir = {"img/setupG.jpg", "img/setupR.jpg", "img/setupH.jpg", "img/setupS.jpg", "img/setup.jpg"};
-        final int[] i = {4};
+        final int[][] i = {{4}};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), Color.BLACK};
 
         switch (player.getHouse()) {
-            case "Gryffindor" -> i[0] = 0;
-            case "Ravenclaw" -> i[0] = 1;
-            case "Hufflepuff" -> i[0] = 2;
-            case "Slytherin" -> i[0] = 3;
-            default -> i[0] = 4;
+            case "Gryffindor" -> i[0][0] = 0;
+            case "Ravenclaw" -> i[0][0] = 1;
+            case "Hufflepuff" -> i[0][0] = 2;
+            case "Slytherin" -> i[0][0] = 3;
+            default -> i[0][0] = 4;
         }
 
         JPanel panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon(bcg_dir[i[0]]);
+                ImageIcon image = new ImageIcon(bcg_dir[i[0][0]]);
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -57,32 +58,26 @@ public class CreatePlan extends JFrame {
         spacerPanel1.setOpaque(false);
         everythingPanel.add(spacerPanel1);
 
-        JPanel spacerPanel2 = new JPanel();
-        spacerPanel2.setPreferredSize(new Dimension(0, 10));
-        spacerPanel2.setOpaque(false);
-
         JPanel spacerPanel5 = new JPanel();
-        spacerPanel5.setPreferredSize(new Dimension(0, 23));
+        spacerPanel5.setPreferredSize(new Dimension(0, 17));
         spacerPanel5.setOpaque(false);
 
         JLabel title = new JLabel("Customize your plan:");
-        title.setFont(new Font("Arial", Font.BOLD, 45));
-        title.setForeground(houseColor[i[0]]);
+        title.setFont(new Font("Arial", Font.BOLD, 40));
+        title.setForeground(houseColor[i[0][0]]);
         JPanel titlePanel = new JPanel();
         titlePanel.setPreferredSize(new Dimension(0, 60));
         titlePanel.setOpaque(false);
         titlePanel.add(title);
         everythingPanel.add(titlePanel);
 
-        Font font1 = new Font("Arial", Font.BOLD, 16);
+        Font font1 = new Font("Arial", Font.BOLD, 15);
 
-
-        everythingPanel.add(spacerPanel2);
 
 
         JLabel interestTitle = new JLabel("Pick your interest:");
         interestTitle.setFont(sub_title);
-        interestTitle.setForeground(houseColor[i[0]]);
+        interestTitle.setForeground(houseColor[i[0][0]]);
 
         String[] allInterests = {"Quidditch", "Transfiguration", "Charms", "Herbology", "Potions", "Defense Against the Dark Arts", "Divination", "Muggle Studies", "Care of Magical Creatures", "History of Magic", "Ancient Runes", "Apparition", "Alchemy", "Magical Theory"};
         String[] miniGames = {"Quidditch stadium - Rolanda Hooch","Transfiguration Classroom - Minerva McGonagall","Charms Classroom - Filius Flitwick","Hogwarts' Greenhouses - Pomona Sprout","Potions Classroom - Severus Snape","The Dark Forest - Remus Lupin","The Divination Classroom - Sybill Trelawney","Muggle Storage - Alecto Carrow","The Magical Creatures Forest - Rubeus Hagrid","The History Classroom - Cuthbert Binns", "Archaic Library - Bathsheda Babbling", "The Ghostly Hallways - Nearly Headless Nick", "The Alchemy Classroom - Albus Dumbledore", "The Library - Eleazar Fig"};
@@ -91,25 +86,25 @@ public class CreatePlan extends JFrame {
 
         JLabel combo1 = new JLabel("First stop:");
         combo1.setFont(font1);
-        combo1.setForeground(houseColor[i[0]]);
+        combo1.setForeground(houseColor[i[0][0]]);
         JLabel combo2 = new JLabel("Second stop:");
         combo2.setFont(font1);
-        combo2.setForeground(houseColor[i[0]]);
+        combo2.setForeground(houseColor[i[0][0]]);
         JLabel combo3 = new JLabel("Third stop:");
         combo3.setFont(font1);
-        combo3.setForeground(houseColor[i[0]]);
+        combo3.setForeground(houseColor[i[0][0]]);
         JLabel combo4 = new JLabel("Fourth stop:");
         combo4.setFont(font1);
-        combo4.setForeground(houseColor[i[0]]);
+        combo4.setForeground(houseColor[i[0][0]]);
         JLabel combo5 = new JLabel("Fifth stop:");
         combo5.setFont(font1);
-        combo5.setForeground(houseColor[i[0]]);
+        combo5.setForeground(houseColor[i[0][0]]);
         JLabel combo6 = new JLabel("Sixth stop:");
         combo6.setFont(font1);
-        combo6.setForeground(houseColor[i[0]]);
+        combo6.setForeground(houseColor[i[0][0]]);
         JLabel combo7 = new JLabel("Seventh stop:");
         combo7.setFont(font1);
-        combo7.setForeground(houseColor[i[0]]);
+        combo7.setForeground(houseColor[i[0][0]]);
         JComboBox<String> combobox1 = new JComboBox<>(miniGames);
         JComboBox<String> combobox2 = new JComboBox<>(miniGames);
         JComboBox<String> combobox3 = new JComboBox<>(miniGames);
@@ -192,12 +187,12 @@ public class CreatePlan extends JFrame {
 
         for (JComboBox combobox : comboboxes) {
             combobox.setFont(font1);
-            combobox.setForeground(bcgColor[i[0]]);
-            combobox.setBackground(houseColor[i[0]]);
+            combobox.setForeground(bcgColor[i[0][0]]);
+            combobox.setBackground(houseColor[i[0][0]]);
             combobox.setOpaque(false);
         }
 
-        JPanel interestPanel = new JPanel(new GridLayout(0, 1, 15, 5));
+        JPanel interestPanel = new JPanel(new GridLayout(0, 1, 15, 1));
         interestPanel.setOpaque(false);
         interestPanel.setBorder(BorderFactory.createEmptyBorder(0, 210, 0, 210));
 
@@ -214,8 +209,8 @@ public class CreatePlan extends JFrame {
         button.setPreferredSize(new Dimension(110, 40));
         button.setHorizontalAlignment(JButton.CENTER);
         button.setVerticalAlignment(JButton.CENTER);
-        button.setForeground(bcgColor[i[0]]);
-        button.setBackground(houseColor[i[0]]);
+        button.setForeground(bcgColor[i[0][0]]);
+        button.setBackground(houseColor[i[0][0]]);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -282,6 +277,98 @@ public class CreatePlan extends JFrame {
         buttonPanel.setOpaque(false);
         buttonPanel.add(button);
         everythingPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        buttonPanel.setFocusable(true);
+        interestPanel.setFocusable(true);
+        interestPanel.requestFocus();
+        combobox1.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+        final int[] comboboxIndex = {0};
+        for (JComboBox combobox : comboboxes){
+           combobox.addPopupMenuListener(new PopupMenuListener() {
+                @Override
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    for (int j = 0; j < 7 ; j++) {
+                        if (combobox == comboboxes[j]) {
+                            comboboxIndex[0] = j;
+                            combobox.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                            break;
+                        }
+                    }
+                }
+
+                @Override
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                    interestPanel.requestFocus();
+                }
+
+                @Override
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                }
+            });
+            combobox.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        comboboxes[comboboxIndex[0]].hidePopup();
+                        interestPanel.requestFocus();
+                    }
+                }
+            });
+        }
+
+        interestPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    comboboxes[comboboxIndex[0]].showPopup();
+                    comboboxes[comboboxIndex[0]].requestFocus();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    comboboxIndex[0]++;
+                    if (comboboxIndex[0] == comboboxes.length) {
+                        comboboxIndex[0]--;
+                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                        buttonPanel.requestFocus();
+                    } else
+                        comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    comboboxIndex[0]--;
+                    if (comboboxIndex[0] == -1) {
+                        comboboxIndex[0]++;
+                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                        buttonPanel.requestFocus();
+                    } else
+                        comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                }
+            }
+        });
+
+        buttonPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    button.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    comboboxIndex[0] = 0;
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0][0]], 3));
+                    interestPanel.requestFocus();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    comboboxIndex[0] = comboboxes.length - 1;
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0][0]], 3));
+                    interestPanel.requestFocus();
+                }
+            }
+        });
+
 
         panel.add(everythingPanel, BorderLayout.NORTH);
 
