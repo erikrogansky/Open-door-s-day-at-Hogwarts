@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class Welcome extends JFrame {
@@ -172,6 +174,20 @@ public class Welcome extends JFrame {
         buttonPanel.setOpaque(false);
         buttonPanel.add(button);
         everythingPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        everythingPanel.setFocusable(true);
+        everythingPanel.requestFocus();
+        everythingPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    menuButton.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    button.doClick();
+                }
+            }
+        });
 
         panel.add(everythingPanel, BorderLayout.NORTH);
 

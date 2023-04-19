@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class PlayerSetup extends JFrame {
     private Player player;
@@ -243,8 +244,36 @@ public class PlayerSetup extends JFrame {
                 dispose();
             }
         });
-        JPanel buttonPanel = new JPanel();
+
+        JButton back = new JButton("Back");
+        back.setPreferredSize(new Dimension(90, 35));
+        back.setHorizontalAlignment(JButton.CENTER);
+        back.setVerticalAlignment(JButton.CENTER);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                Thread newGameThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Startup start = new Startup();
+                        try {
+                            Game game = new Game(start.getLogin(), start.getBool());
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+                // Start the thread
+                newGameThread.start();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
         buttonPanel.setOpaque(false);
+        buttonPanel.add(back);
         buttonPanel.add(button);
         everythingPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -272,6 +301,8 @@ public class PlayerSetup extends JFrame {
                     option7.setForeground(houseColor[i[0]]);
                     button.setForeground(bcgColor[i[0]]);
                     button.setBackground(houseColor[i[0]]);
+                    back.setForeground(bcgColor[i[0]]);
+                    back.setBackground(houseColor[i[0]]);
                     nameField.setForeground(bcgColor[i[0]]);
                     nameField.setBackground(houseColor[i[0]]);
                     repaint();
@@ -300,6 +331,8 @@ public class PlayerSetup extends JFrame {
                     option7.setForeground(houseColor[i[0]]);
                     button.setForeground(bcgColor[i[0]]);
                     button.setBackground(houseColor[i[0]]);
+                    back.setForeground(bcgColor[i[0]]);
+                    back.setBackground(houseColor[i[0]]);
                     nameField.setForeground(bcgColor[i[0]]);
                     nameField.setBackground(houseColor[i[0]]);
                     repaint();
@@ -328,6 +361,8 @@ public class PlayerSetup extends JFrame {
                     option7.setForeground(houseColor[i[0]]);
                     button.setForeground(bcgColor[i[0]]);
                     button.setBackground(houseColor[i[0]]);
+                    back.setForeground(bcgColor[i[0]]);
+                    back.setBackground(houseColor[i[0]]);
                     nameField.setForeground(bcgColor[i[0]]);
                     nameField.setBackground(houseColor[i[0]]);
                     repaint();
@@ -356,6 +391,8 @@ public class PlayerSetup extends JFrame {
                     option7.setForeground(houseColor[i[0]]);
                     button.setForeground(bcgColor[i[0]]);
                     button.setBackground(houseColor[i[0]]);
+                    back.setForeground(bcgColor[i[0]]);
+                    back.setBackground(houseColor[i[0]]);
                     nameField.setForeground(bcgColor[i[0]]);
                     nameField.setBackground(houseColor[i[0]]);
                     repaint();
@@ -496,7 +533,8 @@ public class PlayerSetup extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     nameField.setFocusable(false);
                     buttonPanel.requestFocus();
-                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                    back.setSelected(true);
                 }
             }
         });
@@ -680,11 +718,19 @@ public class PlayerSetup extends JFrame {
                         interestOptions[(interestIndex[0] - 1) % interestOptions.length].repaint();
                     }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    if (interestIndex[0] == 12 || interestIndex[0] == 13) {
+                    if (interestIndex[0] == 13) {
                         interestOptions[interestIndex[0]].setOpaque(false);
                         interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
                         interestOptions[interestIndex[0]].repaint();
                         button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                        button.setSelected(true);
+                        buttonPanel.requestFocus();
+                    } else if (interestIndex[0] == 12) {
+                        interestOptions[interestIndex[0]].setOpaque(false);
+                        interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                        interestOptions[interestIndex[0]].repaint();
+                        back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                        back.setSelected(true);
                         buttonPanel.requestFocus();
                     } else {
                         interestIndex[0] = (interestIndex[0] + 2);
@@ -725,15 +771,21 @@ public class PlayerSetup extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    button.doClick();
+                    if (button.isSelected()) {
+                        button.doClick();
+                    } else if (back.isSelected()) {
+                        back.doClick();
+                    }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP){
                     button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
-                    interestPanel.requestFocus();
-                    if (interestIndex[0] % 2 == 0)
-                        interestIndex[0] = 12;
-                    else
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
+                    if (button.isSelected())
                         interestIndex[0] = 13;
+
+                    else
+                        interestIndex[0] = 12;
+                    interestPanel.requestFocus();
                     interestOptions[interestIndex[0]].setOpaque(true);
                     interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
                     interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
@@ -741,8 +793,19 @@ public class PlayerSetup extends JFrame {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
                     nameField.setFocusable(true);
                     nameField.requestFocus();
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    button.setSelected(true);
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
+                    back.setSelected(false);
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    button.setSelected(false);
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 0));
+                    back.setSelected(true);
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0]], 4));
                 }
             }
         });

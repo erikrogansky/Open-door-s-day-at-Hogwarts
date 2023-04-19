@@ -8,6 +8,7 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class CreatePlan extends JFrame {
@@ -273,8 +274,37 @@ public class CreatePlan extends JFrame {
                 dispose();
             }
         });
-        JPanel buttonPanel = new JPanel();
+
+        JButton back = new JButton("Start Game");
+        back.setPreferredSize(new Dimension(110, 40));
+        back.setHorizontalAlignment(JButton.CENTER);
+        back.setVerticalAlignment(JButton.CENTER);
+        back.setForeground(bcgColor[i[0][0]]);
+        back.setBackground(houseColor[i[0][0]]);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                Thread changePlayerThreat = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Game game = new Game(player.getLogin(), true);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+                // Start the thread
+                changePlayerThreat.start();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
         buttonPanel.setOpaque(false);
+        buttonPanel.add(back);
         buttonPanel.add(button);
         everythingPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -352,19 +382,36 @@ public class CreatePlan extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    button.doClick();
+                    if (button.isSelected())
+                        button.doClick();
+                    else
+                        back.doClick();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     comboboxIndex[0] = 0;
                     button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
-                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0][0]], 3));
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
                     interestPanel.requestFocus();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     comboboxIndex[0] = comboboxes.length - 1;
                     button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
-                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0][0]], 3));
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
                     interestPanel.requestFocus();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 4));
+                    button.setSelected(true);
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    back.setSelected(false);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
+                    button.setSelected(false);
+                    back.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 4));
+                    back.setSelected(true);
                 }
             }
         });
