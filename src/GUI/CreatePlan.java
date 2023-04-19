@@ -360,7 +360,7 @@ public class CreatePlan extends JFrame {
                     comboboxIndex[0]++;
                     if (comboboxIndex[0] == comboboxes.length) {
                         comboboxIndex[0]--;
-                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 4));
                         button.setSelected(true);
                         buttonPanel.requestFocus();
                     } else
@@ -371,7 +371,7 @@ public class CreatePlan extends JFrame {
                     comboboxIndex[0]--;
                     if (comboboxIndex[0] == -1) {
                         comboboxIndex[0]++;
-                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                        button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 4));
                         button.setSelected(true);
                         buttonPanel.requestFocus();
                     } else

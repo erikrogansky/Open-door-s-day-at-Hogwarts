@@ -11,7 +11,7 @@ public class Game implements Serializable {
     public Game(String login, Boolean newGame) throws IOException, ClassNotFoundException {
         this.login = login;
         try{
-            if (newGame == false)
+            if (!newGame)
                 load();
             else
                 throw new FileNotFoundException();
@@ -34,7 +34,7 @@ public class Game implements Serializable {
         play();
     }
 
-    public void play() throws IOException, ClassNotFoundException {
+    public void play() throws IOException {
         if (this.player.personal_plan.getCurrent() == 0){
             new Welcome(this.player).ifDone();
             this.player.personal_plan.setCurrent(1);
@@ -78,7 +78,7 @@ public class Game implements Serializable {
         }
     }
 
-    public void save() throws ClassNotFoundException, IOException {
+    public void save() throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("logins/" + login + ".out"));
         out.writeObject(this);
         out.close();
