@@ -275,7 +275,7 @@ public class CreatePlan extends JFrame {
             }
         });
 
-        JButton back = new JButton("Start Game");
+        JButton back = new JButton("Back");
         back.setPreferredSize(new Dimension(110, 40));
         back.setHorizontalAlignment(JButton.CENTER);
         back.setVerticalAlignment(JButton.CENTER);
@@ -361,6 +361,7 @@ public class CreatePlan extends JFrame {
                     if (comboboxIndex[0] == comboboxes.length) {
                         comboboxIndex[0]--;
                         button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                        button.setSelected(true);
                         buttonPanel.requestFocus();
                     } else
                         comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
@@ -371,6 +372,7 @@ public class CreatePlan extends JFrame {
                     if (comboboxIndex[0] == -1) {
                         comboboxIndex[0]++;
                         button.setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));
+                        button.setSelected(true);
                         buttonPanel.requestFocus();
                     } else
                         comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 3));

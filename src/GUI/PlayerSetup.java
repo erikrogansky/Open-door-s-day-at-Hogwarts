@@ -20,6 +20,7 @@ public class PlayerSetup extends JFrame {
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), new Color(118,125,154)};
+        final int[] max = {0};
 
         JPanel panel = new JPanel() {
             @Override
@@ -160,7 +161,7 @@ public class PlayerSetup extends JFrame {
 
         everythingPanel.add(spacerPanel4);
 
-        JLabel interestTitle = new JLabel("Pick your interests (7):");
+        JLabel interestTitle = new JLabel("Pick your interests "+ max[0] + "/7:");
         interestTitle.setFont(sub_title);
         interestTitle.setForeground(houseColor[i[0]]);
         JLabel interestTitle2 = new JLabel("");
@@ -409,7 +410,6 @@ public class PlayerSetup extends JFrame {
         housePanel.setFocusable(true);
         JCheckBox[] interestOptions = {checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14};
         final int[] interestIndex = {0};
-        final int[] max = {0};
         for (JCheckBox checkbox : interestOptions) {
             checkbox.addActionListener(new ActionListener() {
                 @Override
@@ -443,6 +443,7 @@ public class PlayerSetup extends JFrame {
                         }
                     } else
                         max[0]--;
+                    interestTitle.setText("Pick your interests " + max[0] +"/7:");
                 }
             });
         }
@@ -676,6 +677,7 @@ public class PlayerSetup extends JFrame {
                             max[0]--;
                         }
                     }
+                    interestTitle.setText("Pick your interests " + max[0] +"/7:");
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT)
                     if (interestIndex[0] % 2 == 0) {
