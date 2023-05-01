@@ -3,15 +3,18 @@ package Game;
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    String login;
-    String name;
-    String gender;
-    String preferred_house;
-    String[] interests;
-    Plan personal_plan;
-    int points = 0;
-    String[] rewards;
+    private String login;
+    private String name;
+    private String gender;
+    private String preferred_house;
+    private String[] interests;
+    private Plan personal_plan;
+    private int points = 0;
+    private String[] rewards;
 
+    public void setLogin(String login){
+        this.login = login;
+    }
     public void setName(String name){
         this.name = name;
     }
@@ -30,6 +33,9 @@ public class Player implements Serializable {
         if (this.personal_plan == null)
             this.personal_plan = new Plan();
         return personal_plan;
+    }
+    public Plan getPlan(){
+        return this.personal_plan;
     }
     public void changePlan(Plan plan){
         this.personal_plan = plan;
