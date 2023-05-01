@@ -10,15 +10,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class QuidditchGUI extends JFrame{
+public class Stories extends JFrame{
     private Player player;
     private Boolean done;
     private Boolean readTheWholeStory = false;
-    public QuidditchGUI(Player player) {
-        super("Welcome to the Quidditch Stadium");
+    private JLabel story = new JLabel();
+    public Stories(Player player, String super_title, String imagePath, int title_length) {
+        super(super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setSize(1000, 700); //750x525
+        setSize(1000, 700);
 
         this.player = player;
 
@@ -38,7 +39,7 @@ public class QuidditchGUI extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon("img/quidditch.png");
+                ImageIcon image = new ImageIcon(imagePath);
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -69,7 +70,7 @@ public class QuidditchGUI extends JFrame{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player, QuidditchGUI.this);
+                Menu menu = new Menu(player, Stories.this);
                 if (menu.getExit() == true)
                     dispose();
             }
@@ -95,8 +96,8 @@ public class QuidditchGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Welcome to the Quidditch Stadium!");
-        title.setPreferredSize(new Dimension(850, 55));
+        JLabel title = new JLabel(super_title+"!");
+        title.setPreferredSize(new Dimension(title_length, 55));
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
@@ -113,7 +114,6 @@ public class QuidditchGUI extends JFrame{
 
 
 
-        JLabel story = new JLabel();
         story.setHorizontalAlignment(JLabel.CENTER);
         story.setFont(new Font("Arial", Font.PLAIN, 18));
         story.setOpaque(true);
@@ -125,37 +125,7 @@ public class QuidditchGUI extends JFrame{
         storyPanel.add(story);
         everythingPanel.add(storyPanel);
 
-        Thread storyThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String storyStr = "<html><div style='text-align:center'>Welcome to the Quidditch stadium, young athlete! I am Professor Sprout, <br> and I am in charge of the Quidditch team at Hogwarts.<br>" +
-                        "<br>" +
-                        "Quidditch is not just a game. It's a way of life. It's about strength, agility, and teamwork. It's about pushing your limits <br> and reaching for the stars. And here at Hogwarts, we take Quidditch very seriously.<br>" +
-                        "<br>" +
-                        "In my Quidditch practices, we work hard, we sweat, and we strive to be the best. I demand nothing <br> but the best from my players. I expect discipline, commitment, and a hunger for victory. <br> If you're not willing to give it your all, then you're not cut out for the team.<br>" +
-                        "<br>" +
-                        "But don't let my strict demeanor fool you. I am full of energy, and I always bring my A-game to every practice. <br> I will push you to your limits, but I will also be your biggest cheerleader when you need it most. I will be there to <br> celebrate your victories and to pick you up when you fall.<br>" +
-                        "<br>" +
-                        "In my Quidditch practices, we focus on all aspects of the game. We work on improving your flying skills, your accuracy, <br> and your teamwork. We also practice various strategies and techniques to give you an edge on the field.<br>" +
-                        "<br>" +
-                        "But most importantly, we learn to trust each other. Quidditch is not a game that can be won alone. It takes a team effort <br> to come out on top. We learn to communicate, to rely on each other's strengths, and to cover each other's weaknesses.<br>" +
-                        "<br>" +
-                        "So, if you're ready to push yourself to your limits and to be part of an incredible team, then welcome to my Quidditch <br> stadium. I promise you that you will leave here not just as a better athlete, but as a better person too.</div></html>";
-                String builder = "";
-                for (char character : storyStr.toCharArray()){
-                    builder += character;
-                    story.setText(builder);
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                readTheWholeStory = true;
-            }
-        });
-        // Start the thread
-        storyThread.start();
+
 
 
         everythingPanel.add(spacerPanel3);
@@ -209,5 +179,13 @@ public class QuidditchGUI extends JFrame{
     }
     public Boolean getRead() {
         return readTheWholeStory;
+    }
+
+    public void setReadWhole(){
+        readTheWholeStory = true;
+    }
+    public void printStory(String builder) {
+        story.setText(builder);
+        story.repaint();
     }
 }
