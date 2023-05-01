@@ -97,7 +97,6 @@ public class Stories extends JFrame{
         spacerPanel5.setOpaque(false);
 
         JLabel title = new JLabel(super_title+"!");
-
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);

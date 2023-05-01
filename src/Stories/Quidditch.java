@@ -11,7 +11,7 @@ public class Quidditch extends Story {
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                story = "<html><div style='text-align:center'>Welcome to the Quidditch stadium, young athlete! I am Professor Sprout, <br> and I am in charge of the Quidditch team at Hogwarts.<br>" +
+                story = "<html><div style='text-align:center'>Welcome to the Quidditch stadium, young athlete! I am Professor Rolanda Hooch, <br> and I am in charge of the Quidditch team at Hogwarts.<br>" +
                         "<br>" +
                         "Quidditch is not just a game. It's a way of life. It's about strength, agility, and teamwork. It's about pushing your limits <br> and reaching for the stars. And here at Hogwarts, we take Quidditch very seriously.<br>" +
                         "<br>" +
