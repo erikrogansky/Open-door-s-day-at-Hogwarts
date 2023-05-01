@@ -95,6 +95,6 @@ public class Game implements Serializable {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Startup start = new Startup();
-        Game game = new Game(start.getLogin(), start.getBool());
+        new Game(start.getLogin(), start.getBool());
     }
 }

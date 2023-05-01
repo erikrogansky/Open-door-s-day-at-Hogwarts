@@ -169,7 +169,7 @@ public class Menu extends JDialog {
                     @Override
                     public void run() {
                         try {
-                            Game game = new Game(player.getLogin(), true);
+                            new Game(player.getLogin(), true);
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
@@ -206,7 +206,7 @@ public class Menu extends JDialog {
                         new Waiter().wait(() -> plan.ifChanged());
                         setPlayer(plan.getPlayer());
                         try {
-                            Game game = new Game(getPlayer());
+                            new Game(getPlayer());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
