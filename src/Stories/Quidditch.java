@@ -5,9 +5,9 @@ import Game.Player;
 
 public class Quidditch extends Story {
     @Override
-    public void startGame(Player player){
+    public void playStory(Player player){
         this.player = player;
-        GUI = new Stories(this.player, "Welcome to the Quidditch Stadium", "img/quidditch.png", 850);
+        GUI = new Stories(this.player, "Welcome to the Quidditch Stadium", "img/quidditch.png");
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

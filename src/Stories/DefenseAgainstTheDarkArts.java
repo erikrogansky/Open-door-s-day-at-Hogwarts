@@ -5,9 +5,9 @@ import Game.Player;
 
 public class DefenseAgainstTheDarkArts extends Story {
     @Override
-    public void startGame(Player player){
+    public void playStory(Player player){
         this.player = player;
-        GUI = new Stories(this.player, "Welcome to the Dark Forest", "img/forest.jpeg", 550);
+        GUI = new Stories(this.player, "Welcome to the Dark Forest", "img/forest.jpeg");
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

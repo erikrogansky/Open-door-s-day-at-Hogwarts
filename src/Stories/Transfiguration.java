@@ -5,9 +5,9 @@ import Game.*;
 
 public class Transfiguration extends Story {
     @Override
-    public void startGame(Player player){
+    public void playStory(Player player){
         this.player = player;
-        GUI = new Stories(this.player, "Welcome to the Transfiguration Classroom", "img/transfiguration.png", 850);
+        GUI = new Stories(this.player, "Welcome to the Transfiguration Classroom", "img/transfiguration.png");
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

@@ -21,7 +21,7 @@ public class Game implements Serializable {
             this.player.login = login;
             CreatePlan plan = new CreatePlan(player);
             this.player = plan.getPlayer();
-            new Waiter().wait(() -> player.personal_plan.minigame1);
+            new Waiter().wait(() -> player.personal_plan.story1);
             save();
         }
         play();
@@ -41,38 +41,38 @@ public class Game implements Serializable {
             save();
         }
         if (this.player.personal_plan.getCurrent() == 1){
-            this.player.personal_plan.minigame1.startGame(this.player);
-            this.player.personal_plan.minigame1.ifDone();
+            this.player.personal_plan.story1.playStory(this.player);
+            this.player.personal_plan.story1.ifDone();
             this.player.personal_plan.setCurrent(2);
             save();
         }
         if (this.player.personal_plan.getCurrent() == 2){
-            this.player.personal_plan.minigame2.startGame(this.player);
+            this.player.personal_plan.story2.playStory(this.player);
             this.player.personal_plan.setCurrent(3);
             save();
         }
         if (this.player.personal_plan.getCurrent() == 3){
-            this.player.personal_plan.minigame3.startGame(this.player);
+            this.player.personal_plan.story3.playStory(this.player);
             this.player.personal_plan.setCurrent(4);
             save();
         }
         if (this.player.personal_plan.getCurrent() == 4){
-            this.player.personal_plan.minigame4.startGame(this.player);
+            this.player.personal_plan.story4.playStory(this.player);
             this.player.personal_plan.setCurrent(5);
             save();
         }
         if (this.player.personal_plan.getCurrent() == 5){
-            this.player.personal_plan.minigame5.startGame(this.player);
+            this.player.personal_plan.story5.playStory(this.player);
             this.player.personal_plan.setCurrent(6);
             save();
         }
         if (this.player.personal_plan.getCurrent() == 6){
-            this.player.personal_plan.minigame6.startGame(this.player);
+            this.player.personal_plan.story6.playStory(this.player);
             this.player.personal_plan.setCurrent(7);
             save();
         }
         if (this.player.personal_plan.getCurrent() == 7){
-            this.player.personal_plan.minigame7.startGame(this.player);
+            this.player.personal_plan.story7.playStory(this.player);
             this.player.personal_plan.setCurrent(8);
             save();
         }

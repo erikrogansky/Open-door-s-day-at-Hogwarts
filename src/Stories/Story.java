@@ -11,7 +11,7 @@ public class Story implements Serializable {
     String story;
     String builder = "";
     Stories GUI;
-    public void startGame(Player player){
+    public void playStory(Player player){
         this.player = player;
     }
     public Boolean ifDone() {

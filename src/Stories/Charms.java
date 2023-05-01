@@ -5,9 +5,9 @@ import Game.Player;
 
 public class Charms extends Story {
     @Override
-    public void startGame(Player player){
+    public void playStory(Player player){
         this.player = player;
-        GUI = new Stories(this.player, "Welcome to the Charms Classroom", "img/charms.jpg", 700);
+        GUI = new Stories(this.player, "Welcome to the Charms Classroom", "img/charms.jpg");
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

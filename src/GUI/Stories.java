@@ -15,7 +15,7 @@ public class Stories extends JFrame{
     private Boolean done;
     private Boolean readTheWholeStory = false;
     private JLabel story = new JLabel();
-    public Stories(Player player, String super_title, String imagePath, int title_length) {
+    public Stories(Player player, String super_title, String imagePath) {
         super(super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -97,7 +97,7 @@ public class Stories extends JFrame{
         spacerPanel5.setOpaque(false);
 
         JLabel title = new JLabel(super_title+"!");
-        title.setPreferredSize(new Dimension(title_length, 55));
+
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);

@@ -5,24 +5,24 @@ import Stories.*;
 import java.io.Serializable;
 
 public class Plan implements Serializable {
-    Story minigame1;
-    Story minigame2;
-    Story minigame3;
-    Story minigame4;
-    Story minigame5;
-    Story minigame6;
-    Story minigame7;
+    Story story1;
+    Story story2;
+    Story story3;
+    Story story4;
+    Story story5;
+    Story story6;
+    Story story7;
     String[] array;
     int currentMinigame = 0;
     public void createPlan(Story[] array, String[] array2){
         this.array = array2;
-        this.minigame1 = array[0];
-        this.minigame2 = array[1];
-        this.minigame3 = array[2];
-        this.minigame4 = array[3];
-        this.minigame5 = array[4];
-        this.minigame6 = array[5];
-        this.minigame7 = array[6];
+        this.story1 = array[0];
+        this.story2 = array[1];
+        this.story3 = array[2];
+        this.story4 = array[3];
+        this.story5 = array[4];
+        this.story6 = array[5];
+        this.story7 = array[6];
     }
 
     public String[] getPlanArray(){
