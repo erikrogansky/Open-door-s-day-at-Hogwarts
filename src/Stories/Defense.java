@@ -3,7 +3,7 @@ package Stories;
 import GUI.Stories;
 import Game.Player;
 
-public class DefenseAgainstTheDarkArts extends Story {
+public class Defense extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;

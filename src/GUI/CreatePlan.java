@@ -238,7 +238,7 @@ public class CreatePlan extends JFrame {
                         array[i] = new Potions();
                         array2[i] = miniGames[4];
                     } else if (index == 5) {
-                        array[i] = new DefenseAgainstTheDarkArts();
+                        array[i] = new Defense();
                         array2[i] = miniGames[5];
                     } else if (index == 6) {
                         array[i] = new Divination();
