@@ -21,7 +21,7 @@ public class Game implements Serializable {
             this.player.setLogin(login);
             CreatePlan plan = new CreatePlan(player);
             this.player = plan.getPlayer();
-            new Waiter().wait(() -> player.getPlan().getStory(1));
+            new Waiter().wait(() -> player.changePlan().getStory(1));
             save();
         }
         play();
@@ -35,16 +35,15 @@ public class Game implements Serializable {
     }
 
     public void play() throws IOException {
-        if (this.player.getPlan().getCurrent() == 0){
+        if (this.player.changePlan().getCurrent() == 0){
             new Welcome(this.player).ifDone();
-            this.player.getPlan().incCurrent();
+            this.player.changePlan().incCurrent();
             save();
         }
-
-        while (this.player.getPlan().getCurrent() != 8){
-            this.player.getPlan().getStory(this.player.getPlan().getCurrent()).playStory(this.player);
-            this.player.getPlan().getStory(this.player.getPlan().getCurrent()).ifDone();
-            this.player.getPlan().incCurrent();
+        while (this.player.changePlan().getCurrent() != 8){
+            this.player.changePlan().getStory(this.player.changePlan().getCurrent()).playStory(this.player);
+            this.player.changePlan().getStory(this.player.changePlan().getCurrent()).ifDone();
+            this.player.changePlan().incCurrent();
             save();
         }
     }

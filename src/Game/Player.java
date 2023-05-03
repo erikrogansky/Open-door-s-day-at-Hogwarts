@@ -34,9 +34,6 @@ public class Player implements Serializable {
             this.personal_plan = new Plan();
         return personal_plan;
     }
-    public Plan getPlan(){
-        return this.personal_plan;
-    }
     public void changePlan(Plan plan){
         this.personal_plan = plan;
     }
