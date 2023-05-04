@@ -5,6 +5,7 @@ import Stories.*;
 import java.io.Serializable;
 
 public class Plan implements Serializable {
+    private Story welcome = new Welcome();
     private Story story1;
     private Story story2;
     private Story story3;
@@ -25,6 +26,8 @@ public class Plan implements Serializable {
         this.story7 = array[6];
     }
     public Story getStory(int i){
+        if (i==0)
+            return welcome;
         if (i==1)
             return story1;
         if (i==2)

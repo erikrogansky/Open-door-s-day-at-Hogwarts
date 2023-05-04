@@ -1,6 +1,7 @@
 package Game;
 
 import GUI.*;
+import Stories.*;
 
 import java.io.*;
 
@@ -35,11 +36,6 @@ public class Game implements Serializable {
     }
 
     public void play() throws IOException {
-        if (this.player.changePlan().getCurrent() == 0){
-            new Welcome(this.player).ifDone();
-            this.player.changePlan().incCurrent();
-            save();
-        }
         while (this.player.changePlan().getCurrent() != 8){
             this.player.changePlan().getStory(this.player.changePlan().getCurrent()).playStory(this.player);
             this.player.changePlan().getStory(this.player.changePlan().getCurrent()).ifDone();
