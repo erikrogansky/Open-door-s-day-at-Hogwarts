@@ -1,7 +1,6 @@
 package Game;
 
 import GUI.*;
-import Stories.*;
 
 import java.io.*;
 
@@ -36,21 +35,27 @@ public class Game implements Serializable {
     }
 
     public void play() throws IOException {
-        while (this.player.changePlan().getCurrent() < 8){
-            this.player.changePlan().getStory(this.player.changePlan().getCurrent()).playStory(this.player);
-            this.player.changePlan().getStory(this.player.changePlan().getCurrent()).ifDone();
-            this.player.changePlan().incCurrent();
-            save();
-        }
-        if (this.player.changePlan().getCurrent() == 8) {
-            Questions quiz = new Questions(this.player);
-            quiz.ifDone();
-            this.player.changePlan().incCurrent();
-            save();
-        }
-        if (this.player.changePlan().getCurrent() == 9) {
+        while (this.player.changePlan().getCurrent() < 11){
+            if (this.player.changePlan().getCurrent() < 8) {
+                this.player.changePlan().getStory(this.player.changePlan().getCurrent()).playStory(this.player);
+                this.player.changePlan().getStory(this.player.changePlan().getCurrent()).ifDone();
+                this.player.changePlan().incCurrent();
+                save();
+            } else if (this.player.changePlan().getCurrent() == 8) {
+                Questions quiz = new Questions(this.player);
+                quiz.ifDone();
+                this.player.changePlan().incCurrent();
 
-            save();
+            } else if (this.player.changePlan().getCurrent() == 9) {
+                Stats stats = new Stats(this.player);
+                this.player.changePlan().incCurrent();
+                stats.ifDone();
+                save();
+            } else if (this.player.changePlan().getCurrent() == 10) {
+                TheEnd end = new TheEnd(this.player);
+                end.ifDone();
+                save();
+            }
         }
     }
 

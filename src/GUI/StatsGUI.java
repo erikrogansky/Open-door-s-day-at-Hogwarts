@@ -10,15 +10,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class QuestionsGUI extends JFrame{
+public class StatsGUI extends JFrame{
     private Player player;
     private Boolean done;
     private String[] myAnswers = new String[8];
-    public QuestionsGUI(Player player, String[] myQuestions, String[][] myOptions) {
+    public StatsGUI(Player player, String[][] information) {
         super("Quiz");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setSize(1000, 700);
+        setSize(500, 400);
 
         this.player = player;
 
@@ -69,7 +69,7 @@ public class QuestionsGUI extends JFrame{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player, QuestionsGUI.this);
+                Menu menu = new Menu(player, StatsGUI.this);
                 if (menu.getExit() == true)
                     dispose();
             }
@@ -84,7 +84,7 @@ public class QuestionsGUI extends JFrame{
         spacerPanel2.setOpaque(false);
 
         JPanel spacerPanel3 = new JPanel();
-        spacerPanel3.setPreferredSize(new Dimension(0, 35));
+        spacerPanel3.setPreferredSize(new Dimension(0, 25));
         spacerPanel3.setOpaque(false);
 
         JPanel spacerPanel4 = new JPanel();
@@ -95,7 +95,7 @@ public class QuestionsGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Question time!");
+        JLabel title = new JLabel("Your statistics: ");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
@@ -110,87 +110,116 @@ public class QuestionsGUI extends JFrame{
 
         everythingPanel.add(spacerPanel2);
 
-        JPanel questionsPanel = new JPanel(new GridLayout(0, 2, 40, 10));
-        questionsPanel.setOpaque(false);
-        questionsPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
+        JPanel statsPanel = new JPanel(new GridLayout(0, 2, 40, 10));
+        statsPanel.setOpaque(false);
+        statsPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
 
-        JPanel questionsPanel1 = new JPanel(new GridLayout(0, 1, 10, 10));
-        questionsPanel1.setOpaque(false);
-        questionsPanel1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        JLabel label = new JLabel("Name:");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
-        JPanel questionsPanel2 = new JPanel(new GridLayout(0, 1, 10, 10));
-        questionsPanel2.setOpaque(false);
-        questionsPanel2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        label = new JLabel(information[0][0]);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
-        questionsPanel.add(questionsPanel1);
-        questionsPanel.add(questionsPanel2);
+        label = new JLabel("Gender:");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
-        ButtonGroup[] groups = new ButtonGroup[8];
+        label = new JLabel(information[1][0]);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
-        for (int j = 0; j < myQuestions.length; j++) {
-            JLabel question = new JLabel(myQuestions[j]);
-            question.setFont(new Font("Arial", Font.PLAIN, 17));
-            question.setHorizontalAlignment(JLabel.CENTER);
-            question.setOpaque(true);
-            question.setBackground(bcgColor[i[0]]);
-            question.setForeground(houseColor[i[0]]);
-            if (j < 4)
-                questionsPanel1.add(question);
-            else
-                questionsPanel2.add(question);
+        label = new JLabel("House:");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
+        label = new JLabel(information[2][0]);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
-            JPanel answersPanel = new JPanel(new GridLayout(1, 3, 10, 10));
-            answersPanel.setOpaque(false);
-            answersPanel.setBorder(BorderFactory.createEmptyBorder(0, 1, 0, 1));
-            ButtonGroup group = new ButtonGroup();
-            JRadioButton answer = new JRadioButton(myOptions[j][0]);
-            answer.setActionCommand(myOptions[j][0]);
-            answer.setFont(new Font("Arial", Font.PLAIN, 17));
-            answer.setHorizontalAlignment(JLabel.CENTER);
-            answer.setOpaque(true);
-            answer.setBackground(bcgColor[i[0]]);
-            answer.setForeground(houseColor[i[0]]);
-            group.add(answer);
-            answersPanel.add(answer);
-            answer = new JRadioButton(myOptions[j][1]);
-            answer.setActionCommand(myOptions[j][1]);
-            answer.setFont(new Font("Arial", Font.PLAIN, 17));
-            answer.setHorizontalAlignment(JLabel.CENTER);
-            answer.setOpaque(true);
-            answer.setBackground(bcgColor[i[0]]);
-            answer.setForeground(houseColor[i[0]]);
-            group.add(answer);
-            answersPanel.add(answer);
-            answer = new JRadioButton(myOptions[j][2]);
-            answer.setActionCommand(myOptions[j][2]);
-            answer.setFont(new Font("Arial", Font.PLAIN, 17));
-            answer.setHorizontalAlignment(JLabel.CENTER);
-            answer.setOpaque(true);
-            answer.setBackground(bcgColor[i[0]]);
-            answer.setForeground(houseColor[i[0]]);
-            group.add(answer);
-            answersPanel.add(answer);
+        label = new JLabel("Interests:");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
 
-            groups[j] = group;
+        JLabel interestLabel = new JLabel(information[3][0]);
+        interestLabel.setHorizontalAlignment(JLabel.CENTER);
+        interestLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        interestLabel.setOpaque(true);
+        interestLabel.setForeground(houseColor[i[0]]);
+        interestLabel.setBackground(bcgColor[i[0]]);
+        statsPanel.add(interestLabel);
 
-            if (j < 4) {
-                questionsPanel1.add(answersPanel);
-                if (j < 3)
-                    questionsPanel1.add(new JLabel());
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int j = 1;
+                while (true) {
+                    try {
+                        Thread.sleep(750);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    interestLabel.setText(information[3][j]);
+                    interestLabel.repaint();
+                    if (j == information[3].length - 1)
+                        j = 0;
+                    else
+                        j++;
+                }
             }
-            else {
-                questionsPanel2.add(answersPanel);
-                if (j < 7)
-                    questionsPanel2.add(new JLabel());
-            }
-        }
+        });
+        thread.start();
 
-        everythingPanel.add(questionsPanel);
+        label = new JLabel("Points earned:");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel(information[4][0] + "/48");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        everythingPanel.add(statsPanel);
 
         everythingPanel.add(spacerPanel3);
 
-        JButton button = new JButton("Confirm");
+        JButton button = new JButton("Finish");
         button.setPreferredSize(new Dimension(90, 35));
         button.setHorizontalAlignment(JButton.CENTER);
         button.setVerticalAlignment(JButton.CENTER);
@@ -200,13 +229,6 @@ public class QuestionsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                for (int j = 0; j < myQuestions.length; j++) {
-                    try {
-                        myAnswers[j] = groups[j].getSelection().getActionCommand();
-                    } catch (NullPointerException ex) {
-                        myAnswers[j] = "$EMPTY$";
-                    }
-                }
                 done = true;
             }
         });

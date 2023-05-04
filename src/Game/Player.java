@@ -40,6 +40,9 @@ public class Player implements Serializable {
     public String getLogin(){
         return login;
     }
+    public String getName(){
+        return name;
+    }
     public void addInterests(String[] array){
         interests = array;
     }
@@ -61,15 +64,14 @@ public class Player implements Serializable {
         return interests;
     }
     public String getGender(char c){
-        if (c == 's'){
-            if (gender.equals("Wizard"))
-                return "wizard";
-            else if (gender.equals("Witch"))
-                return "witch";
-            else
-                return "magician";
-        }
+        if (gender.equals("Wizard"))
+            return "wizard";
+        else if (gender.equals("Witch"))
+            return "witch";
         else
-            return gender;
+            return "magician";
+    }
+    public String getGender(){
+        return gender;
     }
 }
