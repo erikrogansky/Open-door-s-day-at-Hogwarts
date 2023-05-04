@@ -81,7 +81,7 @@ public class CreatePlan extends JFrame {
         interestTitle.setForeground(houseColor[i[0][0]]);
 
         String[] allInterests = {"Quidditch", "Transfiguration", "Charms", "Herbology", "Potions", "Defense Against the Dark Arts", "Divination", "Muggle Studies", "Care of Magical Creatures", "History of Magic", "Ancient Runes", "Apparition", "Alchemy", "Magical Theory"};
-        String[] miniGames = {"Quidditch stadium - Rolanda Hooch","Transfiguration Classroom - Minerva McGonagall","Charms Classroom - Filius Flitwick","Hogwarts' Greenhouses - Pomona Sprout","Potions Classroom - Severus Snape","The Dark Forest - Remus Lupin","The Divination Classroom - Sybill Trelawney","Muggle Storage - Alecto Carrow","The Magical Creatures Forest - Rubeus Hagrid","The History Classroom - Cuthbert Binns", "Archaic Library - Bathsheda Babbling", "The Ghostly Hallways - Nearly Headless Nick", "The Alchemy Classroom - Albus Dumbledore", "The Library - Eleazar Fig"};
+        String[] stories = {"Quidditch stadium - Rolanda Hooch","Transfiguration Classroom - Minerva McGonagall","Charms Classroom - Filius Flitwick","Hogwarts' Greenhouses - Pomona Sprout","Potions Classroom - Severus Snape","The Dark Forest - Remus Lupin","The Divination Classroom - Sybill Trelawney","Muggle Storage - Alecto Carrow","The Magical Creatures Forest - Rubeus Hagrid","The History Classroom - Cuthbert Binns", "Archaic Library - Bathsheda Babbling", "The Ghostly Hallways - Nearly Headless Nick", "The Alchemy Classroom - Albus Dumbledore", "The Library - Eleazar Fig"};
         String[] playersInterests = player.getInterests();
 
 
@@ -106,19 +106,19 @@ public class CreatePlan extends JFrame {
         JLabel combo7 = new JLabel("Seventh stop:");
         combo7.setFont(font1);
         combo7.setForeground(houseColor[i[0][0]]);
-        JComboBox<String> combobox1 = new JComboBox<>(miniGames);
-        JComboBox<String> combobox2 = new JComboBox<>(miniGames);
-        JComboBox<String> combobox3 = new JComboBox<>(miniGames);
-        JComboBox<String> combobox4 = new JComboBox<>(miniGames);
-        JComboBox<String> combobox5 = new JComboBox<>(miniGames);
-        JComboBox<String> combobox6 = new JComboBox<>(miniGames);
-        JComboBox<String> combobox7 = new JComboBox<>(miniGames);
+        JComboBox<String> combobox1 = new JComboBox<>(stories);
+        JComboBox<String> combobox2 = new JComboBox<>(stories);
+        JComboBox<String> combobox3 = new JComboBox<>(stories);
+        JComboBox<String> combobox4 = new JComboBox<>(stories);
+        JComboBox<String> combobox5 = new JComboBox<>(stories);
+        JComboBox<String> combobox6 = new JComboBox<>(stories);
+        JComboBox<String> combobox7 = new JComboBox<>(stories);
 
         String[] array = player.changePlan().getPlanArray();
 
         try {
             if(array != null) {
-                combobox1.setSelectedIndex(Arrays.asList(miniGames).indexOf(array[0]));
+                combobox1.setSelectedIndex(Arrays.asList(stories).indexOf(array[0]));
             }
             else
                 combobox1.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[0]));
@@ -127,57 +127,57 @@ public class CreatePlan extends JFrame {
         }
         try {
             if(array != null) {
-                combobox2.setSelectedIndex(Arrays.asList(miniGames).indexOf(player.changePlan().getPlanArray()[1]));
+                combobox2.setSelectedIndex(Arrays.asList(stories).indexOf(player.changePlan().getPlanArray()[1]));
             }
             else
                 combobox2.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[1]));
         } catch (IndexOutOfBoundsException e){
-            combobox2.setSelectedIndex(0);
+            combobox2.setSelectedIndex(1);
         }
         try {
             if(array != null) {
-                combobox3.setSelectedIndex(Arrays.asList(miniGames).indexOf(player.changePlan().getPlanArray()[2]));
+                combobox3.setSelectedIndex(Arrays.asList(stories).indexOf(player.changePlan().getPlanArray()[2]));
             }
             else
                 combobox3.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[2]));
         } catch (IndexOutOfBoundsException e){
-            combobox3.setSelectedIndex(0);
+            combobox3.setSelectedIndex(2);
         }
         try {
             if(array != null) {
-                combobox4.setSelectedIndex(Arrays.asList(miniGames).indexOf(player.changePlan().getPlanArray()[3]));
+                combobox4.setSelectedIndex(Arrays.asList(stories).indexOf(player.changePlan().getPlanArray()[3]));
             }
             else
                 combobox4.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[3]));
         } catch (IndexOutOfBoundsException e){
-            combobox4.setSelectedIndex(0);
+            combobox4.setSelectedIndex(3);
         }
         try {
             if(array != null) {
-                combobox5.setSelectedIndex(Arrays.asList(miniGames).indexOf(player.changePlan().getPlanArray()[4]));
+                combobox5.setSelectedIndex(Arrays.asList(stories).indexOf(player.changePlan().getPlanArray()[4]));
             }
             else
                 combobox5.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[4]));
         } catch (IndexOutOfBoundsException e){
-            combobox5.setSelectedIndex(0);
+            combobox5.setSelectedIndex(4);
         }
         try {
             if(array != null) {
-                combobox6.setSelectedIndex(Arrays.asList(miniGames).indexOf(player.changePlan().getPlanArray()[5]));
+                combobox6.setSelectedIndex(Arrays.asList(stories).indexOf(player.changePlan().getPlanArray()[5]));
             }
             else
                 combobox6.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[5]));
         } catch (IndexOutOfBoundsException e){
-            combobox6.setSelectedIndex(0);
+            combobox6.setSelectedIndex(5);
         }
         try {
             if(array != null) {
-                combobox7.setSelectedIndex(Arrays.asList(miniGames).indexOf(player.changePlan().getPlanArray()[6]));
+                combobox7.setSelectedIndex(Arrays.asList(stories).indexOf(player.changePlan().getPlanArray()[6]));
             }
             else
                 combobox7.setSelectedIndex(Arrays.asList(allInterests).indexOf(playersInterests[6]));
         } catch (IndexOutOfBoundsException e){
-            combobox7.setSelectedIndex(0);
+            combobox7.setSelectedIndex(6);
         }
 
 
@@ -224,46 +224,46 @@ public class CreatePlan extends JFrame {
                     int index = combobox.getSelectedIndex();
                     if (index == 0) {
                         array[i] = new Quidditch();
-                        array2[i] = miniGames[0];
+                        array2[i] = stories[0];
                     } else if (index == 1) {
                         array[i] = new Transfiguration();
-                        array2[i] = miniGames[1];
+                        array2[i] = stories[1];
                     } else if (index == 2) {
                         array[i] = new Charms();
-                        array2[i] = miniGames[2];
+                        array2[i] = stories[2];
                     } else if (index == 3) {
                         array[i] = new Herbology();
-                        array2[i] = miniGames[3];
+                        array2[i] = stories[3];
                     } else if (index == 4) {
                         array[i] = new Potions();
-                        array2[i] = miniGames[4];
+                        array2[i] = stories[4];
                     } else if (index == 5) {
                         array[i] = new Defense();
-                        array2[i] = miniGames[5];
+                        array2[i] = stories[5];
                     } else if (index == 6) {
                         array[i] = new Divination();
-                        array2[i] = miniGames[6];
+                        array2[i] = stories[6];
                     } else if (index == 7) {
                         array[i] = new MuggleStudies();
-                        array2[i] = miniGames[7];
+                        array2[i] = stories[7];
                     } else if (index == 8) {
                         array[i] = new Creatures();
-                        array2[i] = miniGames[8];
+                        array2[i] = stories[8];
                     } else if (index == 9) {
                         array[i] = new History();
-                        array2[i] = miniGames[9];
+                        array2[i] = stories[9];
                     } else if (index == 10) {
                         array[i] = new Runes();
-                        array2[i] = miniGames[10];
+                        array2[i] = stories[10];
                     } else if (index == 11) {
                         array[i] = new Apparition();
-                        array2[i] = miniGames[11];
+                        array2[i] = stories[11];
                     } else if (index == 12) {
                         array[i] = new Alchemy();
-                        array2[i] = miniGames[12];
+                        array2[i] = stories[12];
                     } else if (index == 13) {
                         array[i] = new MagicalTheory();
-                        array2[i] = miniGames[13];
+                        array2[i] = stories[13];
                     }
                     i++;
                 }
@@ -352,8 +352,10 @@ public class CreatePlan extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    comboboxes[comboboxIndex[0]].showPopup();
-                    comboboxes[comboboxIndex[0]].requestFocus();
+                    if (comboboxes[comboboxIndex[0]].isEnabled()){
+                        comboboxes[comboboxIndex[0]].showPopup();
+                        comboboxes[comboboxIndex[0]].requestFocus();
+                    }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     comboboxes[comboboxIndex[0]].setBorder(BorderFactory.createLineBorder(bcgColor[i[0][0]], 0));
@@ -418,6 +420,9 @@ public class CreatePlan extends JFrame {
             }
         });
 
+        for (int j = 0; j < this.player.changePlan().getCurrent(); j++) {
+            comboboxes[j].setEnabled(false);
+        }
 
         panel.add(everythingPanel, BorderLayout.NORTH);
 

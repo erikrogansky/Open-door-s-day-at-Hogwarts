@@ -36,10 +36,20 @@ public class Game implements Serializable {
     }
 
     public void play() throws IOException {
-        while (this.player.changePlan().getCurrent() != 8){
+        while (this.player.changePlan().getCurrent() < 8){
             this.player.changePlan().getStory(this.player.changePlan().getCurrent()).playStory(this.player);
             this.player.changePlan().getStory(this.player.changePlan().getCurrent()).ifDone();
             this.player.changePlan().incCurrent();
+            save();
+        }
+        if (this.player.changePlan().getCurrent() == 8) {
+            Questions quiz = new Questions(this.player);
+            quiz.ifDone();
+            this.player.changePlan().incCurrent();
+            save();
+        }
+        if (this.player.changePlan().getCurrent() == 9) {
+
             save();
         }
     }

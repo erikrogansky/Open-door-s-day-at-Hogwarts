@@ -5,7 +5,7 @@ import GUI.*;
 
 import java.io.Serializable;
 
-public class Story implements Serializable {
+public abstract class Story implements Serializable {
     Player player;
     Boolean done;
     String story;

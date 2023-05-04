@@ -46,14 +46,12 @@ public class Plan implements Serializable {
     public String[] getPlanArray(){
         return array;
     }
-
     public void incCurrent(){
         this.currentMinigame++;
     }
     public void setCurrent(int index){
         this.currentMinigame = index;
     }
-
     public int getCurrent(){
         return currentMinigame;
     }
