@@ -18,7 +18,7 @@ public class StatsGUI extends JFrame{
         super("Quiz");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setSize(500, 400);
+        setSize(500, 550);
 
         this.player = player;
 
@@ -210,6 +210,83 @@ public class StatsGUI extends JFrame{
         label = new JLabel(information[4][0] + "/48");
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel("Rewards:");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel();
+        statsPanel.add(label);
+
+        label = new JLabel("A house scarf");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        if (information[5][0].equals("A house scarf"))
+            label.setFont(new Font("Arial", Font.BOLD, 20));
+        else
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel("A goblet");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        if (information[5][1].equals("A goblet"))
+            label.setFont(new Font("Arial", Font.BOLD, 20));
+        else
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel("An owl");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        if (information[5][2].equals("An owl"))
+            label.setFont(new Font("Arial", Font.BOLD, 20));
+        else
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel("Felix Felicis");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        if (information[5][3].equals("Felix Felicis"))
+            label.setFont(new Font("Arial", Font.BOLD, 20));
+        else
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel("A wand");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        if (information[5][4].equals("A wand"))
+            label.setFont(new Font("Arial", Font.BOLD, 20));
+        else
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+        label.setOpaque(true);
+        label.setForeground(houseColor[i[0]]);
+        label.setBackground(bcgColor[i[0]]);
+        statsPanel.add(label);
+
+        label = new JLabel("Firebolt");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        if (information[5][5].equals("Firebolt"))
+            label.setFont(new Font("Arial", Font.BOLD, 20));
+        else
+            label.setFont(new Font("Arial", Font.PLAIN, 15));;
         label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
         label.setBackground(bcgColor[i[0]]);

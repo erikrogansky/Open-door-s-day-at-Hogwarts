@@ -9,6 +9,7 @@ public class Stats {
     Boolean done;
     public Stats(Player player) {
         this.player = player;
+        this.player.evaluateRewards();
         information[0][0] = player.getName();
         information[1][0] = player.getGender();
         information[2][0] = player.getHouse();

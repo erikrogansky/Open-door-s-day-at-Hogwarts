@@ -10,7 +10,7 @@ public class Player implements Serializable {
     private String[] interests;
     private Plan personal_plan;
     private int points = 0;
-    private String[] rewards;
+    private String[] rewards = null;
 
     public void setLogin(String login){
         this.login = login;
@@ -53,8 +53,27 @@ public class Player implements Serializable {
         points += add;
     }
     public int getPoints(){ return points; }
-    public void addReward(String[] reward){
-        rewards = reward;
+    public void evaluateRewards(){
+        if (rewards == null)
+            rewards = new String[]{"", "", "", "", "", ""};
+        if (this.points == 48){
+            rewards[5] = "Firebolt";
+        }
+        if (this.points >= 40){
+            rewards[4] = "A wand";
+        }
+        if (this.points >= 32){
+            rewards[3] = "Felix Felicis";
+        }
+        if (this.points >= 24){
+            rewards[2] = "An owl";
+        }
+        if (this.points >= 16){
+            rewards[1] = "A goblet";
+        }
+        if (this.points >= 8){
+            rewards[0] = "A house scarf";
+        }
     }
     public String[] getRewards(){ return rewards; }
     public String getHouse(){
