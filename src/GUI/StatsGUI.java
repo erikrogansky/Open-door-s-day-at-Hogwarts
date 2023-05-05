@@ -23,6 +23,7 @@ public class StatsGUI extends JFrame{
         this.player = player;
 
         final int[] i = {4};
+        final String[] bcg_dir = {"img/statsG.jpg", "img/statsR.jpg", "img/statsH.jpg", "img/statsS.jpg", "img/stats.jpg"};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), Color.BLACK};
 
@@ -38,7 +39,7 @@ public class StatsGUI extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon("img/welcome.jpg");
+                ImageIcon image = new ImageIcon(bcg_dir[i[0]]);
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -95,12 +96,10 @@ public class StatsGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Your statistics: ");
+        JLabel title = new JLabel("Your statistics:");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
-        title.setOpaque(true);
         title.setForeground(houseColor[i[0]]);
-        title.setBackground(bcgColor[i[0]]);
         JPanel titlePanel = new JPanel();
         titlePanel.setPreferredSize(new Dimension(0, 85));
         titlePanel.setOpaque(false);
@@ -110,72 +109,56 @@ public class StatsGUI extends JFrame{
 
         everythingPanel.add(spacerPanel2);
 
-        JPanel statsPanel = new JPanel(new GridLayout(0, 2, 40, 10));
+        JPanel statsPanel = new JPanel(new GridLayout(0, 2, 0, 10));
         statsPanel.setOpaque(false);
-        statsPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
+        statsPanel.setBorder(BorderFactory.createEmptyBorder(0, 60, 0, 60));
 
         JLabel label = new JLabel("Name:");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel(information[0][0]);
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel("Gender:");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel(information[1][0]);
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel("House:");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel(information[2][0]);
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel("Interests:");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         JLabel interestLabel = new JLabel(information[3][0]);
-        interestLabel.setHorizontalAlignment(JLabel.CENTER);
+        interestLabel.setHorizontalAlignment(JLabel.LEFT);
         interestLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        interestLabel.setOpaque(true);
         interestLabel.setForeground(houseColor[i[0]]);
-        interestLabel.setBackground(bcgColor[i[0]]);
         statsPanel.add(interestLabel);
 
         Thread thread = new Thread(new Runnable() {
@@ -200,96 +183,96 @@ public class StatsGUI extends JFrame{
         thread.start();
 
         label = new JLabel("Points earned:");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel(information[4][0] + "/48");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel("Rewards:");
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
         label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
         statsPanel.add(label);
 
         label = new JLabel();
         statsPanel.add(label);
 
-        label = new JLabel("A house scarf");
-        label.setHorizontalAlignment(JLabel.CENTER);
-        if (information[5][0].equals("A house scarf"))
-            label.setFont(new Font("Arial", Font.BOLD, 20));
-        else
-            label.setFont(new Font("Arial", Font.PLAIN, 15));
-        label.setOpaque(true);
-        label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
+        if (information[5][0].equals("A house scarf")) {
+            label = new JLabel("A house scarf");
+            label.setForeground(houseColor[i[0]]);
+        }
+        else {
+            label = new JLabel("<html><strike>A house scarf</strike><html>");
+            label.setForeground(Color.RED);
+        }
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        label = new JLabel("A goblet");
-        label.setHorizontalAlignment(JLabel.CENTER);
-        if (information[5][1].equals("A goblet"))
-            label.setFont(new Font("Arial", Font.BOLD, 20));
-        else
-            label.setFont(new Font("Arial", Font.PLAIN, 15));
-        label.setOpaque(true);
-        label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
+        if (information[5][1].equals("A goblet")) {
+            label = new JLabel("A goblet");
+            label.setForeground(houseColor[i[0]]);
+        }
+        else {
+            label = new JLabel("<html><strike>A goblet</strike><html>");
+            label.setForeground(Color.RED);
+        }
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        label = new JLabel("An owl");
-        label.setHorizontalAlignment(JLabel.CENTER);
-        if (information[5][2].equals("An owl"))
-            label.setFont(new Font("Arial", Font.BOLD, 20));
-        else
-            label.setFont(new Font("Arial", Font.PLAIN, 15));
-        label.setOpaque(true);
-        label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
+        if (information[5][2].equals("An owl")) {
+            label = new JLabel("An owl");
+            label.setForeground(houseColor[i[0]]);
+        }
+        else {
+            label = new JLabel("<html><strike>An owl</strike><html>");
+            label.setForeground(Color.RED);
+        }
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        label = new JLabel("Felix Felicis");
-        label.setHorizontalAlignment(JLabel.CENTER);
-        if (information[5][3].equals("Felix Felicis"))
-            label.setFont(new Font("Arial", Font.BOLD, 20));
-        else
-            label.setFont(new Font("Arial", Font.PLAIN, 15));
-        label.setOpaque(true);
-        label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
+        if (information[5][3].equals("Felix Felicis")) {
+            label = new JLabel("Felix Felicis");
+            label.setForeground(houseColor[i[0]]);
+        }
+        else {
+            label = new JLabel("<html><strike>Felix Felicis</strike><html>");
+            label.setForeground(Color.RED);
+        }
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        label = new JLabel("A wand");
-        label.setHorizontalAlignment(JLabel.CENTER);
-        if (information[5][4].equals("A wand"))
-            label.setFont(new Font("Arial", Font.BOLD, 20));
-        else
-            label.setFont(new Font("Arial", Font.PLAIN, 15));
-        label.setOpaque(true);
-        label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
+        if (information[5][4].equals("A wand")) {
+            label = new JLabel("A wand");
+            label.setForeground(houseColor[i[0]]);
+        }
+        else {
+            label = new JLabel("<html><strike>A wand</strike><html>");
+            label.setForeground(Color.RED);
+        }
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        label = new JLabel("Firebolt");
-        label.setHorizontalAlignment(JLabel.CENTER);
-        if (information[5][5].equals("Firebolt"))
-            label.setFont(new Font("Arial", Font.BOLD, 20));
-        else
-            label.setFont(new Font("Arial", Font.PLAIN, 15));;
-        label.setOpaque(true);
-        label.setForeground(houseColor[i[0]]);
-        label.setBackground(bcgColor[i[0]]);
+        if (information[5][5].equals("Firebolt")) {
+            label = new JLabel("Firebolt");
+            label.setForeground(houseColor[i[0]]);
+        }
+        else {
+            label = new JLabel("<html><strike>Firebolt</strike><html>");
+            label.setForeground(Color.RED);
+        }
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
         everythingPanel.add(statsPanel);
@@ -300,8 +283,8 @@ public class StatsGUI extends JFrame{
         button.setPreferredSize(new Dimension(90, 35));
         button.setHorizontalAlignment(JButton.CENTER);
         button.setVerticalAlignment(JButton.CENTER);
-        button.setForeground(houseColor[i[0]]);
-        button.setBackground(bcgColor[i[0]]);
+        button.setForeground(bcgColor[i[0]]);
+        button.setBackground(houseColor[i[0]]);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -342,9 +325,5 @@ public class StatsGUI extends JFrame{
     public Boolean ifDone() {
         new Waiter().wait(() -> done);
         return done;
-    }
-
-    public String[] getAnswers() {
-        return myAnswers;
     }
 }

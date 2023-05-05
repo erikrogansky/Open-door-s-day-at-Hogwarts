@@ -52,30 +52,9 @@ public class TheEndGUI extends JFrame{
         everythingPanel.setLayout(new BoxLayout(everythingPanel, BoxLayout.Y_AXIS));
 
         JPanel spacerPanel1 = new JPanel();
-        spacerPanel1.setPreferredSize(new Dimension(0, 45));
+        spacerPanel1.setPreferredSize(new Dimension(0, 40));
         spacerPanel1.setOpaque(false);
         spacerPanel1.setLayout(new FlowLayout(FlowLayout.LEFT));
-        ImageIcon menu = new ImageIcon("img/menu1.png");
-        JButton menuButton = new JButton(menu);
-        menuButton.setVerticalTextPosition(JButton.CENTER);
-        menuButton.setHorizontalTextPosition(JButton.LEFT);
-        menuButton.setContentAreaFilled(false);
-        menuButton.setBorderPainted(false);
-        menuButton.setForeground(bcgColor[i[0]]);
-        menuButton.setBackground(houseColor[i[0]]);
-        menuButton.setPreferredSize(new Dimension(40, 40));
-        menuButton.setHorizontalAlignment(JButton.CENTER);
-        menuButton.setVerticalAlignment(JButton.CENTER);
-        menuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player, TheEndGUI.this);
-                if (menu.getExit() == true)
-                    dispose();
-            }
-        });
-
-        spacerPanel1.add(menuButton);
 
         everythingPanel.add(spacerPanel1);
 
@@ -145,9 +124,6 @@ public class TheEndGUI extends JFrame{
         everythingPanel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    menuButton.doClick();
-                }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     endButton.doClick();
                 }
