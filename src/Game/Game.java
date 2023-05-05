@@ -45,16 +45,23 @@ public class Game implements Serializable {
                 Questions quiz = new Questions(this.player);
                 quiz.ifDone();
                 this.player.changePlan().incCurrent();
-
+                save();
             } else if (this.player.changePlan().getCurrent() == 9) {
                 Stats stats = new Stats(this.player);
-                this.player.changePlan().incCurrent();
                 stats.ifDone();
+                this.player.changePlan().incCurrent();
                 save();
             } else if (this.player.changePlan().getCurrent() == 10) {
                 TheEnd end = new TheEnd(this.player);
                 end.ifDone();
-                save();
+                if (end.ifBack()) {
+                    this.player.changePlan().decCurrent();
+                    save();
+                }
+                else{
+                    save();
+                    System.exit(0);
+                }
             }
         }
     }

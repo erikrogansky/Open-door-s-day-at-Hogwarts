@@ -49,6 +49,9 @@ public class Plan implements Serializable {
     public void incCurrent(){
         this.currentMinigame++;
     }
+    public void decCurrent(){
+        this.currentMinigame--;
+    }
     public void setCurrent(int index){
         this.currentMinigame = index;
     }
