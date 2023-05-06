@@ -29,8 +29,8 @@ public class Questions {
                 myCorrectAnswers[i] = allCorrectAnswers[index];
             } else {
                 myQuestions[7] = "Who is the headmaster of Hogwarts?";
-                myOptions[7] = new String[]{"Prof. Snape", "Prof. Dumbledore", "Prof. Mc.Gonagall"};
-                myCorrectAnswers[7] = "Prof. Dumbledore";
+                myOptions[7] = new String[]{"Snape", "Dumbledore", "McGonagall"};
+                myCorrectAnswers[7] = "Dumbledore";
             }
         }
         QuestionsGUI GUI = new QuestionsGUI(this.player, myQuestions, myOptions);

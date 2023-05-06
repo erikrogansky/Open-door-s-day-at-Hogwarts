@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.*;
+import java.util.List;
 
 public class QuestionsGUI extends JFrame{
     private Player player;
@@ -139,6 +141,9 @@ public class QuestionsGUI extends JFrame{
             else
                 questionsPanel2.add(question);
 
+            List<String> opt = Arrays.asList(myOptions[j]);
+            Collections.shuffle(opt);
+            opt.toArray(myOptions[j]);
 
             JPanel answersPanel = new JPanel(new GridLayout(1, 3, 10, 10));
             answersPanel.setOpaque(false);

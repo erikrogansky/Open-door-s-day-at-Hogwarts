@@ -421,7 +421,8 @@ public class CreatePlan extends JFrame {
         });
 
         for (int j = 0; j < this.player.changePlan().getCurrent(); j++) {
-            comboboxes[j].setEnabled(false);
+            if (j < 7)
+                comboboxes[j].setEnabled(false);
         }
 
         panel.add(everythingPanel, BorderLayout.NORTH);

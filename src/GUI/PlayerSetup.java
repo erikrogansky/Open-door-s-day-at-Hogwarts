@@ -7,10 +7,17 @@ import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayerSetup extends JFrame {
     private Player player;
-
+    private JTextField nameField;
+    private JRadioButton option1, option2, option3, option4, option5, option6, option7;
+    private JCheckBox checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14;
+    private JCheckBox[] checkboxes;
+    JLabel interestTitle;
+    private final int[] max = {0};
     public PlayerSetup() {
         super("Welcome to Hogwarts");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,7 +27,7 @@ public class PlayerSetup extends JFrame {
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), new Color(118,125,154)};
-        final int[] max = {0};
+
 
         JPanel panel = new JPanel() {
             @Override
@@ -75,7 +82,7 @@ public class PlayerSetup extends JFrame {
         JLabel nameTitle = new JLabel("Enter your name:");
         nameTitle.setFont(sub_title);
         nameTitle.setForeground(houseColor[i[0]]);
-        JTextField nameField = new JTextField(20);
+        nameField = new JTextField(20);
         nameField.setPreferredSize(new Dimension(150, 30));
         Font font = new Font("Arial", Font.PLAIN, 16); // set the font size to 20
         Font font1 = new Font("Arial", Font.BOLD, 16); // set the font size to 20
@@ -91,15 +98,15 @@ public class PlayerSetup extends JFrame {
         JLabel genderTitle = new JLabel("Choose your gender:");
         genderTitle.setFont(sub_title);
         genderTitle.setForeground(houseColor[i[0]]);
-        JRadioButton option1 = new JRadioButton("Male");
+        option1 = new JRadioButton("Male");
         option1.setFont(font1);
         option1.setOpaque(false);
         option1.setForeground(houseColor[i[0]]);
-        JRadioButton option2 = new JRadioButton("Female");
+        option2 = new JRadioButton("Female");
         option2.setFont(font1);
         option2.setOpaque(false);
         option2.setForeground(houseColor[i[0]]);
-        JRadioButton option3 = new JRadioButton("Other");
+        option3 = new JRadioButton("Other");
         option3.setFont(font1);
         option3.setOpaque(false);
         option3.setForeground(houseColor[i[0]]);
@@ -123,22 +130,22 @@ public class PlayerSetup extends JFrame {
         JLabel houseTitle = new JLabel("Pick your house:");
         houseTitle.setFont(sub_title);
         houseTitle.setForeground(houseColor[i[0]]);
-        JRadioButton option4 = new JRadioButton("Gryffindor");
+        option4 = new JRadioButton("Gryffindor");
         option4.setFont(font1);
         option4.setOpaque(false);
         option4.setForeground(houseColor[i[0]]);
 
-        JRadioButton option5 = new JRadioButton("Ravenclaw");
+        option5 = new JRadioButton("Ravenclaw");
         option5.setFont(font1);
         option5.setOpaque(false);
         option5.setForeground(houseColor[i[0]]);
 
-        JRadioButton option6 = new JRadioButton("Hufflepuff");
+        option6 = new JRadioButton("Hufflepuff");
         option6.setFont(font1);
         option6.setOpaque(false);
         option6.setForeground(houseColor[i[0]]);
 
-        JRadioButton option7 = new JRadioButton("Slytherin");
+        option7 = new JRadioButton("Slytherin");
         option7.setFont(font1);
         option7.setOpaque(false);
         option7.setForeground(houseColor[i[0]]);
@@ -161,31 +168,29 @@ public class PlayerSetup extends JFrame {
 
         everythingPanel.add(spacerPanel4);
 
-        JLabel interestTitle = new JLabel("Pick your interests "+ max[0] + "/7:");
+        interestTitle = new JLabel("Pick your interests "+ max[0] + "/7:");
         interestTitle.setFont(sub_title);
         interestTitle.setForeground(houseColor[i[0]]);
         JLabel interestTitle2 = new JLabel("");
         interestTitle.setFont(sub_title);
         interestTitle2.setOpaque(false);
 
-        JCheckBox checkbox1 = new JCheckBox("Quidditch");
-        JCheckBox checkbox2 = new JCheckBox("Transfiguration");
-        JCheckBox checkbox3 = new JCheckBox("Charms");
-        JCheckBox checkbox4 = new JCheckBox("Herbology");
-        JCheckBox checkbox5 = new JCheckBox("Potions");
-        JCheckBox checkbox6 = new JCheckBox("Defense Against the Dark Arts");
-        JCheckBox checkbox7 = new JCheckBox("Divination");
-        JCheckBox checkbox8 = new JCheckBox("Muggle Studies");
-        JCheckBox checkbox9 = new JCheckBox("Care of Magical Creatures");
-        JCheckBox checkbox10 = new JCheckBox("History of Magic");
-        JCheckBox checkbox11 = new JCheckBox("Ancient Runes");
-        JCheckBox checkbox12 = new JCheckBox("Apparition");
-        JCheckBox checkbox13 = new JCheckBox("Alchemy");
-        JCheckBox checkbox14 = new JCheckBox("Magical Theory");
+        checkbox1 = new JCheckBox("Quidditch");
+        checkbox2 = new JCheckBox("Transfiguration");
+        checkbox3 = new JCheckBox("Charms");
+        checkbox4 = new JCheckBox("Herbology");
+        checkbox5 = new JCheckBox("Potions");
+        checkbox6 = new JCheckBox("Defense Against the Dark Arts");
+        checkbox7 = new JCheckBox("Divination");
+        checkbox8 = new JCheckBox("Muggle Studies");
+        checkbox9 = new JCheckBox("Care of Magical Creatures");
+        checkbox10 = new JCheckBox("History of Magic");
+        checkbox11 = new JCheckBox("Ancient Runes");
+        checkbox12 = new JCheckBox("Apparition");
+        checkbox13 = new JCheckBox("Alchemy");
+        checkbox14 = new JCheckBox("Magical Theory");
 
-        JCheckBox[] checkboxes = {checkbox1, checkbox2, checkbox3, checkbox4, checkbox5,
-                checkbox6, checkbox7, checkbox8, checkbox9, checkbox10,
-                checkbox11, checkbox12, checkbox13, checkbox14};
+        checkboxes = new JCheckBox[]{checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14};
 
         // this listener will limit the number of checkboxes that can be selected to 7
         for (JCheckBox checkbox : checkboxes) {
@@ -259,7 +264,7 @@ public class PlayerSetup extends JFrame {
                     public void run() {
                         Startup start = new Startup();
                         try {
-                            Game game = new Game(start.getLogin(), start.getBool());
+                            new Game(start.getLogin(), start.getBool());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
@@ -824,9 +829,39 @@ public class PlayerSetup extends JFrame {
         setResizable(false);
 
     }
-
     public Player getPlayer() {
         new Waiter().wait(() -> player);
         return player;
+    }
+
+    public void set(String name, String gender, String house, String[] interests) {
+        this.nameField.setText(name);
+        if (gender.equals("Wizard")) {
+            option1.setSelected(true);
+        } else if (gender.equals("Witch")) {
+            option2.setSelected(true);
+        } else {
+            option3.setSelected(true);
+        }
+        if (house.equals("Gryffindor")) {
+            option4.setSelected(true);
+        } else if (house.equals("Ravenclaw")) {
+            option5.setSelected(true);
+        } else if (house.equals("Hufflepuff")) {
+            option6.setSelected(true);
+        } else {
+            option7.setSelected(true);
+        }
+
+        for (JCheckBox checkbox : checkboxes) {
+            for (String interest : interests) {
+                if (interest.equals(checkbox.getText())) {
+                    checkbox.setSelected(true);
+                    max[0]++;
+                }
+            }
+        }
+        interestTitle.setText("Pick your interests "+ max[0] + "/7:");
+        interestTitle.repaint();
     }
 }

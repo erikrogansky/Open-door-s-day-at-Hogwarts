@@ -1,8 +1,6 @@
 package GUI;
 
-import Game.Game;
-import Game.Player;
-import Game.Waiter;
+import Game.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,13 +10,11 @@ import java.io.IOException;
 public class Menu extends JDialog {
     private Player player;
     private Boolean exit;
-    private Boolean pause;
 
     public Menu(Player player, JFrame parent) {
         super(parent, "Menu", true);
         this.player = player;
         this.exit = false;
-        this.pause = false;
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setSize(300, 500); // 750x525
@@ -135,7 +131,7 @@ public class Menu extends JDialog {
                     public void run() {
                         Startup start = new Startup();
                         try {
-                            Game game = new Game(start.getLogin(), start.getBool());
+                            new Game(start.getLogin(), start.getBool());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
@@ -168,8 +164,19 @@ public class Menu extends JDialog {
                 Thread changePlayerThreat = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        try {
+                        /*try {
                             new Game(player.getLogin(), true);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        }*/
+                        PlayerSetup playerSetup = new PlayerSetup();
+                        playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
+                        Player player = playerSetup.getPlayer();
+                        setPlayer(player, getPlayer().getLogin(), getPlayer().changePlan(), getPlayer().getPoints());
+                        try {
+                            new Game(getPlayer());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
@@ -288,6 +295,12 @@ public class Menu extends JDialog {
     }
     public void setPlayer(Player player) {
         this.player = player;
+    }
+    public void setPlayer(Player player, String login, Plan plan, int points) {
+        this.player = player;
+        this.player.addPoints(points);
+        this.player.changePlan(plan);
+        this.player.setLogin(login);
     }
     public Player getPlayer() {
         new Waiter().wait(() -> this.player);
