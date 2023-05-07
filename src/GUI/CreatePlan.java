@@ -288,8 +288,15 @@ public class CreatePlan extends JFrame {
                 Thread changePlayerThreat = new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        PlayerSetup playerSetup = new PlayerSetup();
+                        playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
+                        Player player = playerSetup.getPlayer();
+                        setPlayer(player, getPlayer().getLogin());
+                        CreatePlan plan = new CreatePlan(player);
+                        setPlayer(plan.getPlayer());
+                        new Waiter().wait(() -> player.changePlan().getStory(1));
                         try {
-                            Game game = new Game(player.getLogin(), true);
+                            new Game(getPlayer());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
@@ -440,7 +447,13 @@ public class CreatePlan extends JFrame {
         new Waiter().wait(() -> player);
         return player;
     }
-
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+    public void setPlayer(Player player, String login){
+        this.player.setLogin(login);
+        this.player = player;
+    }
     public Boolean ifChanged(){
         new Waiter().wait(() -> changed);
         changed = null;

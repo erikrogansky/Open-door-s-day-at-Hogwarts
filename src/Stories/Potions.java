@@ -7,6 +7,7 @@ public class Potions extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
+        builder = "";
         GUI = new Stories(this.player, "Welcome to the Potions Classroom", "img/potions.jpg");
         Thread storyThread = new Thread(new Runnable() {
             @Override

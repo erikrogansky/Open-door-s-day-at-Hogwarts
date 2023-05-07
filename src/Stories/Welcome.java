@@ -7,6 +7,7 @@ public class Welcome extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
+        builder = "";
         GUI = new Stories(this.player, "Welcome to Hogwarts", "img/welcome.jpg");
         Thread storyThread = new Thread(new Runnable() {
             @Override

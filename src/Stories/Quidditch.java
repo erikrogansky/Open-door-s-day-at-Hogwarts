@@ -7,6 +7,7 @@ public class Quidditch extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
+        builder = "";
         GUI = new Stories(this.player, "Welcome to the Quidditch Stadium", "img/quidditch.png");
         Thread storyThread = new Thread(new Runnable() {
             @Override

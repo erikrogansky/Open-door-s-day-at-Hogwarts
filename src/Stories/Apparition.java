@@ -7,6 +7,7 @@ public class Apparition extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
+        builder = "";
         GUI = new Stories(this.player, "Welcome to the Ghostly Hallways", "img/ghostly.jpg");
         Thread storyThread = new Thread(new Runnable() {
             @Override

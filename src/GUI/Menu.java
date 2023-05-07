@@ -164,13 +164,6 @@ public class Menu extends JDialog {
                 Thread changePlayerThreat = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        /*try {
-                            new Game(player.getLogin(), true);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (ClassNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        }*/
                         PlayerSetup playerSetup = new PlayerSetup();
                         playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
                         Player player = playerSetup.getPlayer();
