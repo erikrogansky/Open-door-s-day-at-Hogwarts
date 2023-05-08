@@ -25,9 +25,13 @@ public class Alchemy extends Story {
                         "<br>" +
                         "<br>" +
                         "</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

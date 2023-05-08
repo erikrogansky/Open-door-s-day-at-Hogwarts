@@ -25,9 +25,13 @@ public class Creatures extends Story {
                         "But don't worry, I'll be there with ya every step of the way. I have a deep love and respect for these creatures, <br> and I want to share that with ya all. And I promise you that if you show them the same love and respect <br> that I do, you'll be rewarded with a lifelong appreciation for the natural world.<br>" +
                         "<br>" +
                         "So, if you're ready to embark on an adventure through the Magical Creatures Forest, then welcome <br> to my class. I promise you that you'll leave here not just with a better understanding of magical creatures, <br> but with a deeper appreciation for the beauty and wonder of the natural world.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

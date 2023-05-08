@@ -25,9 +25,13 @@ public class Defense extends Story {
                         "Defence Against the Dark Arts is not just about casting spells. It's about developing your mind and your <br> instincts. It's about learning to trust yourself and your abilities. It's about facing your fears and overcoming them.<br>" +
                         "<br>" +
                         "So, if you're ready to take on the challenges that lie ahead and to learn how to defend yourself against the dark forces, <br> then welcome to my class. I promise you that you will leave here not just as a better "+ player.getGender('s') +", but as a better person too.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

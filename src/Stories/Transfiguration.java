@@ -25,9 +25,13 @@ public class Transfiguration extends Story {
                         "But remember, with great power comes great responsibility. Transfiguration is not to be taken <br> lightly. It is a powerful branch of magic that must be used wisely and with caution.<br>" +
                         "<br>" +
                         "So, if you're up for the challenge and are willing to put in the effort, then welcome to my classroom. But be warned, <br> I have high expectations for my students. I expect nothing less than the best from each and every one of you.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

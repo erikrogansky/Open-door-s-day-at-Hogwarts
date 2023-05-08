@@ -21,9 +21,13 @@ public class Welcome extends Story {
                         "Whether you are a prospective student or parent, a curious muggle or a fellow wizard or witch, <br> we hope that you will enjoy your visit to Hogwarts and that you will leave with a sense of awe <br> and admiration for our magical world. We also hope that you will feel inspired by our motto:<br> \"Draco dormiens nunquam titillandus\", which means \"Never tickle a sleeping dragon\".<br>" +
                         "<br>" +
                         "Thank you for your attention and have a wonderful day!</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

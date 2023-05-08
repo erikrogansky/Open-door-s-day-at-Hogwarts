@@ -15,6 +15,7 @@ public class Stories extends JFrame{
     private Boolean done;
     private Boolean readTheWholeStory = false;
     private JLabel story = new JLabel();
+    private boolean pause = false;
     public Stories(Player player, String super_title, String imagePath) {
         super(super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,9 +71,12 @@ public class Stories extends JFrame{
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pause = true;
                 Menu menu = new Menu(player, Stories.this);
                 if (menu.getExit() == true)
                     dispose();
+                else
+                    pause = false;
             }
         });
 
@@ -186,5 +190,8 @@ public class Stories extends JFrame{
     public void printStory(String builder) {
         story.setText(builder);
         story.repaint();
+    }
+    public Boolean getPause() {
+        return pause;
     }
 }

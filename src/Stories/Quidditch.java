@@ -25,9 +25,13 @@ public class Quidditch extends Story {
                         "But most importantly, we learn to trust each other. Quidditch is not a game that can be won alone. It takes a team effort <br> to come out on top. We learn to communicate, to rely on each other's strengths, and to cover each other's weaknesses.<br>" +
                         "<br>" +
                         "So, if you're ready to push yourself to your limits and to be part of an incredible team, then welcome to my Quidditch <br> stadium. I promise you that you will leave here not just as a better athlete, but as a better person too.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

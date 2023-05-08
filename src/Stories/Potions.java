@@ -25,9 +25,13 @@ public class Potions extends Story {
                         "And don't think that just because you are in my class that you are entitled to special <br> treatment. You will earn your grades, and you will earn them through hard work and dedication.<br>" +
                         "<br>" +
                         "So, if you are ready to put in the hard work and dedication required to succeed in my class, then welcome to Hogwarts <br> Potions. I promise you that if you survive my class, you will not just be a better potion maker, but you will also have <br> gained invaluable skills in discipline, attention to detail, and determination. Now, get to your cauldrons and start brewing.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

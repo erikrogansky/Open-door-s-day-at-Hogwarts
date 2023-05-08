@@ -25,9 +25,13 @@ public class Charms extends Story {
                         "Charms classes at Hogwarts are always exciting because we're always learning new spells and discovering new ways to <br> use them. The possibilities are endless, and it's up to you to decide how to use your magical abilities for good.<br>" +
                         "<br>" +
                         "I hope you enjoyed this short introduction to Charms, " + player.getGender('s') + ". I look forward to seeing you in my classroom next year!</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

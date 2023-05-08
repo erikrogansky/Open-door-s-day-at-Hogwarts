@@ -23,9 +23,13 @@ public class Runes extends Story {
                         "But the rewards of studying Ancient Runes are immeasurable. You'll gain a deep understanding of <br> the cultures and civilizations of the past, and you'll learn to appreciate <br> the beauty and complexity of language in all its forms.<br>" +
                         "<br>" +
                         "And if you're willing to put in the work, I promise you that the secrets of the ancient world will <br> be yours to uncover. So, if you're ready to embark on a journey of discovery through <br> the pages of history, then welcome to my class. Together, we'll unlock the <br> secrets of the past and gain a new appreciation for the power of language.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

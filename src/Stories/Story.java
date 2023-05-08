@@ -11,6 +11,7 @@ public abstract class Story implements Serializable {
     String story;
     String builder = "";
     Stories GUI;
+    int i = 0;
     public void playStory(Player player){
         this.player = player;
     }

@@ -23,9 +23,13 @@ public class Apparition extends Story {
                         "In my class, we'll be spending a lot of time wandering through these ghostly hallways, exploring the nooks and crannies <br> of Hogwarts that most students never even knew existed. You'll learn to navigate the twists and turns of these spectral <br> passages, and you'll gain a deeper understanding of the magic that permeates this ancient school.<br>" +
                         "<br>" +
                         "So, if you're ready to embark on a journey through the world of apparition <br> and ghosts, then welcome to my class. Together, we'll explore the mysteries of the spirit <br> world and gain a new appreciation for the magic that surrounds us all.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {

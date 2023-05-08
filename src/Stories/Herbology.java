@@ -25,9 +25,13 @@ public class Herbology extends Story {
                         "But don't worry; I will be there to guide you every step of the way. I am a firm believer in the power of positive reinforcement <br> and encouragement. I will celebrate your successes and help you learn from your mistakes.<br>" +
                         "<br>" +
                         "So, if you're ready to get your hands dirty and learn the secrets of the magical plant world, then welcome to my class. <br> I promise you that you will leave here not just as a better gardener, but as a better person too.</div></html>";
-                for (char character : story.toCharArray()){
-                    builder += character;
-                    GUI.printStory(builder);
+                while (i < story.length()) {
+                    char character = story.charAt(i);
+                    if (!GUI.getPause()) {
+                        builder += character;
+                        GUI.printStory(builder);
+                        i++;
+                    }
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {
