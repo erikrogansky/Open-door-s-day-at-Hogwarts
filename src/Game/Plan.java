@@ -58,4 +58,21 @@ public class Plan implements Serializable {
     public int getCurrent(){
         return currentMinigame;
     }
+    public void reload(int i, Story story){
+        if (i==1)
+            story1 = story;
+        if (i==2)
+            story2 = story;
+        if (i==3)
+            story3 = story;
+        if (i==4)
+            story4 = story;
+        if (i==5)
+            story5 = story;
+        if (i==6)
+            story6 = story;
+        else
+            story7 = story;
+    }
+
 }

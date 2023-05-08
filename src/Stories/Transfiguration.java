@@ -8,6 +8,7 @@ public class Transfiguration extends Story {
     public void playStory(Player player){
         this.player = player;
         builder = "";
+        i=0;
         GUI = new Stories(this.player, "Welcome to the Transfiguration Classroom", "img/transfiguration.png");
         Thread storyThread = new Thread(new Runnable() {
             @Override
@@ -25,7 +26,7 @@ public class Transfiguration extends Story {
                         "But remember, with great power comes great responsibility. Transfiguration is not to be taken <br> lightly. It is a powerful branch of magic that must be used wisely and with caution.<br>" +
                         "<br>" +
                         "So, if you're up for the challenge and are willing to put in the effort, then welcome to my classroom. But be warned, <br> I have high expectations for my students. I expect nothing less than the best from each and every one of you.</div></html>";
-                while (i < story.length()) {
+                while (i < story.length() && done == null) {
                     char character = story.charAt(i);
                     if (!GUI.getPause()) {
                         builder += character;

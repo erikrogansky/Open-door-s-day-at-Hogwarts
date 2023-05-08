@@ -19,4 +19,8 @@ public abstract class Story implements Serializable {
         new Waiter().wait(() -> done);
         return done;
     }
+    public Story reload() throws InstantiationException, IllegalAccessException {
+        Class<? extends Story> cl = this.getClass();
+        return cl.newInstance();
+    }
 }

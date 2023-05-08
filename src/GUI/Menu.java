@@ -169,6 +169,13 @@ public class Menu extends JDialog {
                         Player player = playerSetup.getPlayer();
                         setPlayer(player, getPlayer().getLogin(), getPlayer().changePlan(), getPlayer().getPoints());
                         try {
+                            player.changePlan().reload(player.changePlan().getCurrent(), player.changePlan().getStory(player.changePlan().getCurrent()).reload());
+                        } catch (InstantiationException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (IllegalAccessException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        try {
                             new Game(getPlayer());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
