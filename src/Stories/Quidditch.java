@@ -7,8 +7,13 @@ public class Quidditch extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
-        builder = "";
-        GUI = new Stories(this.player, "Welcome to the Quidditch Stadium", "img/quidditch.png");
+        string_builder = "";
+        i = 0;
+        Builder builder = new Builder();
+        builder.setPlayer(player);
+        builder.setSuper("Welcome to the Quidditch stadium");
+        builder.setImagePath("img/quidditch.png");
+        GUI = builder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -28,8 +33,8 @@ public class Quidditch extends Story {
                 while (i < story.length()) {
                     char character = story.charAt(i);
                     if (!GUI.getPause()) {
-                        builder += character;
-                        GUI.printStory(builder);
+                        string_builder += character;
+                        GUI.printStory(string_builder);
                         i++;
                     }
                     try {

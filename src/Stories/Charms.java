@@ -7,8 +7,13 @@ public class Charms extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
-        builder = "";
-        GUI = new Stories(this.player, "Welcome to the Charms Classroom", "img/charms.jpg");
+        string_builder = "";
+        i = 0;
+        Builder builder = new Builder();
+        builder.setPlayer(player);
+        builder.setSuper("Welcome to the Charms Classroom");
+        builder.setImagePath("img/charms.jpg");
+        GUI = builder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -28,8 +33,8 @@ public class Charms extends Story {
                 while (i < story.length()) {
                     char character = story.charAt(i);
                     if (!GUI.getPause()) {
-                        builder += character;
-                        GUI.printStory(builder);
+                        string_builder += character;
+                        GUI.printStory(string_builder);
                         i++;
                     }
                     try {

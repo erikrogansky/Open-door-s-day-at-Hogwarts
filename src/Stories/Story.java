@@ -9,7 +9,7 @@ public abstract class Story implements Serializable {
     Player player;
     Boolean done;
     String story;
-    String builder = "";
+    String string_builder = "";
     Stories GUI;
     int i = 0;
     public void playStory(Player player){

@@ -7,9 +7,13 @@ public class Transfiguration extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
-        builder = "";
+        string_builder = "";
         i=0;
-        GUI = new Stories(this.player, "Welcome to the Transfiguration Classroom", "img/transfiguration.png");
+        Builder builder = new Builder();
+        builder.setPlayer(player);
+        builder.setSuper("Welcome to the Transfiguration classroom");
+        builder.setImagePath("img/transfiguration.png");
+        GUI = builder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -29,8 +33,8 @@ public class Transfiguration extends Story {
                 while (i < story.length() && done == null) {
                     char character = story.charAt(i);
                     if (!GUI.getPause()) {
-                        builder += character;
-                        GUI.printStory(builder);
+                        string_builder += character;
+                        GUI.printStory(string_builder);
                         i++;
                     }
                     try {

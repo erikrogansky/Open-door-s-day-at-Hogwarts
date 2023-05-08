@@ -1,5 +1,6 @@
 package Stories;
 
+import GUI.Builder;
 import GUI.Stories;
 import Game.Player;
 
@@ -7,8 +8,12 @@ public class Runes extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
-        builder = "";
-        GUI = new Stories(this.player, "Welcome to the Archaic Library", "img/arlibrary.jpg");
+        string_builder = "";
+        Builder builder = new Builder();
+        builder.setPlayer(player);
+        builder.setSuper("Welcome to the Archaic Library");
+        builder.setImagePath("img/arlibrary.jpg");
+        GUI = builder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -26,8 +31,8 @@ public class Runes extends Story {
                 while (i < story.length()) {
                     char character = story.charAt(i);
                     if (!GUI.getPause()) {
-                        builder += character;
-                        GUI.printStory(builder);
+                        string_builder += character;
+                        GUI.printStory(string_builder);
                         i++;
                     }
                     try {

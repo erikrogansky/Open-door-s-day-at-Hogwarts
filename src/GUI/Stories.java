@@ -10,19 +10,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Stories extends JFrame{
+public final class Stories extends JFrame{
     private Player player;
     private Boolean done;
     private Boolean readTheWholeStory = false;
     private JLabel story = new JLabel();
     private boolean pause = false;
-    public Stories(Player player, String super_title, String imagePath) {
-        super(super_title);
+    public Stories(Builder builder) {
+        super(builder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(1000, 700);
 
-        this.player = player;
+        this.player = builder.player;
 
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
@@ -40,7 +40,7 @@ public class Stories extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon(imagePath);
+                ImageIcon image = new ImageIcon(builder.image_path);
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -100,7 +100,7 @@ public class Stories extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel(super_title+"!");
+        JLabel title = new JLabel(builder.super_title+"!");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
@@ -187,11 +187,14 @@ public class Stories extends JFrame{
     public void setReadWhole(){
         readTheWholeStory = true;
     }
-    public void printStory(String builder) {
-        story.setText(builder);
+    public void printStory(String str_builder) {
+        story.setText(str_builder);
         story.repaint();
     }
     public Boolean getPause() {
         return pause;
     }
 }
+
+
+

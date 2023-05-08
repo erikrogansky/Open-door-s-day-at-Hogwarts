@@ -1,14 +1,19 @@
 package Stories;
 
-import GUI.Stories;
+import GUI.*;
 import Game.Player;
 
 public class Divination extends Story {
     @Override
     public void playStory(Player player){
         this.player = player;
-        builder = "";
-        GUI = new Stories(this.player, "Welcome to the Magical Creature Forest", "img/magicalforest.jpg");
+        string_builder = "";
+        i = 0;
+        Builder builder = new Builder();
+        builder.setPlayer(player);
+        builder.setSuper("Welcome to the Divination Classroom");
+        builder.setImagePath("img/divination.jpg");
+        GUI = builder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -28,8 +33,8 @@ public class Divination extends Story {
                 while (i < story.length()) {
                     char character = story.charAt(i);
                     if (!GUI.getPause()) {
-                        builder += character;
-                        GUI.printStory(builder);
+                        string_builder += character;
+                        GUI.printStory(string_builder);
                         i++;
                     }
                     try {
