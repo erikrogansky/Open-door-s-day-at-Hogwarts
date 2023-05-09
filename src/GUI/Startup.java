@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * In this class a login GUI is created.
+ */
 public class Startup extends JFrame {
     private String login;
     private Boolean newGame;

@@ -9,6 +9,9 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * In this class where a quiz GUI is created.
+ */
 public class QuestionsGUI extends JFrame{
     Player player;
     Boolean done;

@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * In this class where a GUI with "the end" title is created.
+ */
 public class TheEndGUI extends JFrame{
     private Player player;
     private Boolean done;

@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * In this class where a GUI with a story is created.
+ */
 public final class Stories extends JFrame{
     private Player player;
     private Boolean done;

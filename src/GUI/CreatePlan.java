@@ -11,8 +11,10 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * In this class where a GUI is created where the user can create a plan for their trip around Hogwarts.
+ */
 public class CreatePlan extends JFrame {
-
     private Player player;
     private Plan plan;
     private Boolean changed;

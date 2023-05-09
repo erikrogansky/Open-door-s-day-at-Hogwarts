@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
+/**
+ * In this class representing a GUI of a menu.
+ */
 public class Menu extends JDialog {
     private Player player;
     private Boolean exit;

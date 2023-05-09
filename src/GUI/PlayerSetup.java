@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * In this class where a GUI is created where the user can customize their information.
+ */
 public class PlayerSetup extends JFrame {
     private Player player;
     private JTextField nameField;
