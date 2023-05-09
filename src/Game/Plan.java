@@ -117,9 +117,5 @@ public class Plan implements Serializable {
         else
             story7 = story;
     }
-    public void reload(int i){
-        if (i==0)
-            welcome = new Welcome();
-    }
 
 }

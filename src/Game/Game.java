@@ -42,7 +42,6 @@ public class Game implements Serializable {
         } catch (FileNotFoundException | InvalidClassException e){
             PlayerSetup setup = new PlayerSetup();
             this.player = setup.getPlayer();
-
             this.player.setLogin(login);
             CreatePlan plan = new CreatePlan(player);
             this.player = plan.getPlayer();

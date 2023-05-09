@@ -1,6 +1,7 @@
 package GUI;
 
 import Game.*;
+import Stories.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -218,7 +219,7 @@ public class Menu extends JDialog {
                             CreatePlan plan = new CreatePlan(player);
                             plan.ifChanged();
                             setPlayer(plan.getPlayer());
-                            getPlayer().changePlan().reload(0);
+                            getPlayer().changePlan().reload(0, null);
                         } catch (InterruptedException ex) {
                             throw new RuntimeException(ex);
                         }
