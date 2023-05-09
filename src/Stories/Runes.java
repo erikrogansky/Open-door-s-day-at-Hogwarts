@@ -24,11 +24,11 @@ public class Runes extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        StoryBuilder storyBuilder = new StoryBuilder();
-        storyBuilder.setPlayer(player);
-        storyBuilder.setSuper("Welcome to the Archaic Library");
-        storyBuilder.setImagePath("img/arlibrary.jpg");
-        GUI = storyBuilder.build();
+        GUI = new StoryBuilder()
+        .setPlayer(player)
+        .setSuper("Welcome to the Archaic Library")
+        .setImagePath("img/arlibrary.jpg")
+        .build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

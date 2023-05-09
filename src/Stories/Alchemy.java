@@ -24,11 +24,11 @@ public class Alchemy extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        StoryBuilder storyBuilder = new StoryBuilder()
+        GUI = new StoryBuilder()
         .setPlayer(player)
         .setSuper("Welcome to the Alchemy Classroom")
-        .setImagePath("img/alchemy.jpg");
-        GUI = storyBuilder.build();
+        .setImagePath("img/alchemy.jpg")
+        .build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

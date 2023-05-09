@@ -24,11 +24,11 @@ public class Herbology extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        StoryBuilder storyBuilder = new StoryBuilder();
-        storyBuilder.setPlayer(player);
-        storyBuilder.setSuper("Welcome to the Hogwarts' Greenhouses");
-        storyBuilder.setImagePath("img/greenhouse.jpg");
-        GUI = storyBuilder.build();
+        GUI = new StoryBuilder()
+        .setPlayer(player)
+        .setSuper("Welcome to the Hogwarts' Greenhouses")
+        .setImagePath("img/greenhouse.jpg")
+        .build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

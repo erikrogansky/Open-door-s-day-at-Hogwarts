@@ -66,6 +66,8 @@ public class Game implements Serializable {
      * If the {@link Plan#getCurrent()} is equal to 8, it creates {@link Questions} class which creates the quiz.
      * If the {@link Plan#getCurrent()} is equal to 9, it creates {@link Stats} class which displays the statistics.
      * If the {@link Plan#getCurrent()} is equal to 10, it creates {@link TheEnd} class which displays 'The End' title.
+     * @throws IOException is thrown if the file cannot be saved
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public void play() throws IOException, InterruptedException {
         while (this.player.changePlan().getCurrent() < 11){

@@ -159,9 +159,10 @@ public class Player implements Serializable {
     }
     /**
      * This method is to get the player's {@link #rewards}.
+     * @param c random object, which is not used, but is needed to differentiate between the {@link #getGender()} and {@link #getGender(Object)}.
      * @return the player's rewards array
      */
-    public String getGender(char c){
+    public String getGender(Object c){
         if (gender.equals("Wizard"))
             return "wizard";
         else if (gender.equals("Witch"))

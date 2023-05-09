@@ -24,11 +24,11 @@ public class Potions extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        StoryBuilder storyBuilder = new StoryBuilder();
-        storyBuilder.setPlayer(player);
-        storyBuilder.setSuper("Welcome to the Potions Classroom");
-        storyBuilder.setImagePath("img/potions.jpg");
-        GUI = storyBuilder.build();
+        GUI = new StoryBuilder()
+        .setPlayer(player)
+        .setSuper("Welcome to the Potions Classroom")
+        .setImagePath("img/potions.jpg")
+        .build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {
