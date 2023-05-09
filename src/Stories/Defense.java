@@ -9,11 +9,11 @@ public class Defense extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        Builder builder = new Builder();
-        builder.setPlayer(player);
-        builder.setSuper("Welcome to the Dark Forest");
-        builder.setImagePath("img/forest.jpeg");
-        GUI = builder.build();
+        StoryBuilder storyBuilder = new StoryBuilder();
+        storyBuilder.setPlayer(player);
+        storyBuilder.setSuper("Welcome to the Dark Forest");
+        storyBuilder.setImagePath("img/forest.jpeg");
+        GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

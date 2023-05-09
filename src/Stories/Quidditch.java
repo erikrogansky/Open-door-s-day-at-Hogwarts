@@ -9,11 +9,11 @@ public class Quidditch extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        Builder builder = new Builder();
-        builder.setPlayer(player);
-        builder.setSuper("Welcome to the Quidditch stadium");
-        builder.setImagePath("img/quidditch.png");
-        GUI = builder.build();
+        StoryBuilder storyBuilder = new StoryBuilder();
+        storyBuilder.setPlayer(player);
+        storyBuilder.setSuper("Welcome to the Quidditch stadium");
+        storyBuilder.setImagePath("img/quidditch.png");
+        GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

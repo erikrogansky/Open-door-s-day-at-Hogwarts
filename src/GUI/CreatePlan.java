@@ -218,10 +218,19 @@ public class CreatePlan extends JFrame {
                 plan = player.changePlan();
                 int currentMinigame = plan.getCurrent();
                 int i = 0;
+                int[] indexArray = new int[]{-1, -1, -1, -1, -1, -1, -1};
                 Story[] array = new Story[7];
                 String[] array2 = new String[7];
                 for (JComboBox combobox : comboboxes){
                     int index = combobox.getSelectedIndex();
+                    for (int number : indexArray) {
+                        if (number == index) {
+                            indexArray[i] = -1;
+                            JOptionPane.showMessageDialog(null, "An option was selected more than once!", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                    }
+                    indexArray[i] = index;
                     if (index == 0) {
                         array[i] = new Quidditch();
                         array2[i] = stories[0];

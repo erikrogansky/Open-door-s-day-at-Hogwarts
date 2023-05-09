@@ -5,10 +5,7 @@ import Game.Waiter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
@@ -16,13 +13,13 @@ public class QuestionsGUI extends JFrame{
     private Player player;
     private Boolean done;
     private String[] myAnswers = new String[8];
-    public QuestionsGUI(Player player, String[] myQuestions, String[][] myOptions) {
-        super("Quiz");
+    public QuestionsGUI(QuestionsBuilder builder) {
+        super(builder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(1000, 700);
 
-        this.player = player;
+        this.player = builder.player;
 
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
@@ -40,7 +37,7 @@ public class QuestionsGUI extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon("img/welcome.jpg");
+                ImageIcon image = new ImageIcon(builder.image_path);
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -97,7 +94,7 @@ public class QuestionsGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Question time!");
+        JLabel title = new JLabel(builder.super_title + "!");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
@@ -128,9 +125,10 @@ public class QuestionsGUI extends JFrame{
         questionsPanel.add(questionsPanel2);
 
         ButtonGroup[] groups = new ButtonGroup[8];
+        JRadioButton[][] allButtons = new JRadioButton[8][3];
 
-        for (int j = 0; j < myQuestions.length; j++) {
-            JLabel question = new JLabel(myQuestions[j]);
+        for (int j = 0; j < builder.myQuestions.length; j++) {
+            JLabel question = new JLabel(builder.myQuestions[j]);
             question.setFont(new Font("Arial", Font.PLAIN, 17));
             question.setHorizontalAlignment(JLabel.CENTER);
             question.setOpaque(true);
@@ -141,40 +139,43 @@ public class QuestionsGUI extends JFrame{
             else
                 questionsPanel2.add(question);
 
-            List<String> opt = Arrays.asList(myOptions[j]);
+            List<String> opt = Arrays.asList(builder.myOptions[j]);
             Collections.shuffle(opt);
-            opt.toArray(myOptions[j]);
+            opt.toArray(builder.myOptions[j]);
 
             JPanel answersPanel = new JPanel(new GridLayout(1, 3, 10, 10));
             answersPanel.setOpaque(false);
             answersPanel.setBorder(BorderFactory.createEmptyBorder(0, 1, 0, 1));
             ButtonGroup group = new ButtonGroup();
-            JRadioButton answer = new JRadioButton(myOptions[j][0]);
-            answer.setActionCommand(myOptions[j][0]);
+            JRadioButton answer = new JRadioButton(builder.myOptions[j][0]);
+            answer.setActionCommand(builder.myOptions[j][0]);
             answer.setFont(new Font("Arial", Font.PLAIN, 17));
             answer.setHorizontalAlignment(JLabel.CENTER);
             answer.setOpaque(true);
             answer.setBackground(bcgColor[i[0]]);
             answer.setForeground(houseColor[i[0]]);
             group.add(answer);
+            allButtons[j][0] = answer;
             answersPanel.add(answer);
-            answer = new JRadioButton(myOptions[j][1]);
-            answer.setActionCommand(myOptions[j][1]);
+            answer = new JRadioButton(builder.myOptions[j][1]);
+            answer.setActionCommand(builder.myOptions[j][1]);
             answer.setFont(new Font("Arial", Font.PLAIN, 17));
             answer.setHorizontalAlignment(JLabel.CENTER);
             answer.setOpaque(true);
             answer.setBackground(bcgColor[i[0]]);
             answer.setForeground(houseColor[i[0]]);
             group.add(answer);
+            allButtons[j][1] = answer;
             answersPanel.add(answer);
-            answer = new JRadioButton(myOptions[j][2]);
-            answer.setActionCommand(myOptions[j][2]);
+            answer = new JRadioButton(builder.myOptions[j][2]);
+            answer.setActionCommand(builder.myOptions[j][2]);
             answer.setFont(new Font("Arial", Font.PLAIN, 17));
             answer.setHorizontalAlignment(JLabel.CENTER);
             answer.setOpaque(true);
             answer.setBackground(bcgColor[i[0]]);
             answer.setForeground(houseColor[i[0]]);
             group.add(answer);
+            allButtons[j][2] = answer;
             answersPanel.add(answer);
 
             groups[j] = group;
@@ -205,7 +206,7 @@ public class QuestionsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                for (int j = 0; j < myQuestions.length; j++) {
+                for (int j = 0; j < builder.myQuestions.length; j++) {
                     try {
                         myAnswers[j] = groups[j].getSelection().getActionCommand();
                     } catch (NullPointerException ex) {
@@ -215,14 +216,151 @@ public class QuestionsGUI extends JFrame{
                 done = true;
             }
         });
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.add(button);
+
         everythingPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         everythingPanel.setFocusable(true);
+
+        panel.add(everythingPanel, BorderLayout.NORTH);
+
         everythingPanel.requestFocus();
+        buttonPanel.setFocusable(true);
+        final int[] buttonIndex = {0};
+        final int[] buttonGroupIndex = {0};
+        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setBackground(houseColor[i[0]]);
+                button.setForeground(bcgColor[i[0]]);
+                buttonPanel.requestFocus();
+                allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setBackground(bcgColor[i[0]]);
+                button.setForeground(houseColor[i[0]]);
+            }
+        });
+
+        for (int j = 0; j < allButtons.length; j++) {
+            for (int j1 = 0; j1 < allButtons[j].length; j1++) {
+                int finalJ = j1;
+                int finalJ1 = j;
+                allButtons[j][j1].addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                        button.setBackground(bcgColor[i[0]]);
+                        button.setForeground(houseColor[i[0]]);
+                        buttonGroupIndex[0] = finalJ1;
+                        buttonIndex[0] = finalJ;
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                        everythingPanel.requestFocus();
+                    }
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        button.setBackground(bcgColor[i[0]]);
+                        button.setForeground(houseColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                        buttonGroupIndex[0] = finalJ1;
+                        buttonIndex[0] = finalJ;
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        int temp1 = buttonGroupIndex[0];
+                        int temp2 = buttonIndex[0];
+                        buttonGroupIndex[0] = finalJ1;
+                        buttonIndex[0] = finalJ;
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                        buttonGroupIndex[0] = temp1;
+                        buttonIndex[0] = temp2;
+                    }
+                });
+            }
+        }
         everythingPanel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    menuButton.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                    buttonGroupIndex[0]++;
+                    if (buttonGroupIndex[0] == 4 || buttonGroupIndex[0] == 8) {
+                        buttonGroupIndex[0]--;
+                        buttonPanel.requestFocus();
+                        button.setBackground(houseColor[i[0]]);
+                        button.setForeground(bcgColor[i[0]]);
+                    } else {
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                    buttonGroupIndex[0]--;
+                    if (buttonGroupIndex[0] == -1 || buttonGroupIndex[0] == 3) {
+                        buttonGroupIndex[0]++;
+                        buttonPanel.requestFocus();
+                        button.setBackground(houseColor[i[0]]);
+                        button.setForeground(bcgColor[i[0]]);
+                        if (buttonGroupIndex[0] == 0)
+                            buttonGroupIndex[0] = 3;
+                        else
+                            buttonGroupIndex[0] = 7;
+                    } else {
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                        allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                    buttonIndex[0]++;
+                    if (buttonIndex[0] == 3) {
+                        buttonGroupIndex[0] += 4;
+                        buttonGroupIndex[0] %= 8;
+                        buttonIndex[0] = 0;
+                    }
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
+                    buttonIndex[0]--;
+                    if (buttonIndex[0] < 0) {
+                        buttonGroupIndex[0] += 4;
+                        buttonGroupIndex[0] %= 8;
+                        buttonIndex[0] = 2;
+                    }
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].doClick();
+                }
+            }
+        });
+        buttonPanel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -231,14 +369,32 @@ public class QuestionsGUI extends JFrame{
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     button.doClick();
                 }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    everythingPanel.requestFocus();
+                    button.setBackground(bcgColor[i[0]]);
+                    button.setForeground(houseColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    everythingPanel.requestFocus();
+                    button.setBackground(bcgColor[i[0]]);
+                    button.setForeground(houseColor[i[0]]);
+                    if (buttonGroupIndex[0] == 3)
+                        buttonGroupIndex[0] = 0;
+                    else
+                        buttonGroupIndex[0] = 4;
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(houseColor[i[0]]);
+                    allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
+                }
             }
         });
 
-        panel.add(everythingPanel, BorderLayout.NORTH);
-
-        everythingPanel.requestFocus();
 
         getContentPane().add(panel);
+
+
+
 
         setLocationRelativeTo(null);
         setVisible(true);

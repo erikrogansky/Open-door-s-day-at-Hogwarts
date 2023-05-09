@@ -8,5 +8,4 @@ public interface BuilderInterface extends Serializable {
     Builder setPlayer(Player player);
     Builder setSuper(String spr);;
     Builder setImagePath(String path);
-    Stories build();
 }

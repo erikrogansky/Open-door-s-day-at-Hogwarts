@@ -1,5 +1,8 @@
 package Game;
 
+import GUI.Builder;
+import GUI.StoryBuilder;
+import GUI.QuestionsBuilder;
 import GUI.QuestionsGUI;
 
 public class Questions {
@@ -33,7 +36,13 @@ public class Questions {
                 myCorrectAnswers[7] = "Dumbledore";
             }
         }
-        QuestionsGUI GUI = new QuestionsGUI(this.player, myQuestions, myOptions);
+        QuestionsBuilder builder = new QuestionsBuilder();
+        builder.setPlayer(player);
+        builder.setSuper("Question time");
+        builder.setImagePath("img/welcome.jpg");
+        builder.addQuestionList(myQuestions);
+        builder.addOptionList(myOptions);
+        QuestionsGUI GUI = builder.build();
         GUI.ifDone();
         String[] myAnswers = GUI.getAnswers();
         for (int i = 0; i < myAnswers.length; i++){

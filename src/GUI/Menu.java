@@ -98,9 +98,8 @@ public class Menu extends JDialog {
         resume.setPreferredSize(new Dimension(140, 50));
         resume.setHorizontalAlignment(JButton.CENTER);
         resume.setVerticalAlignment(JButton.CENTER);
-        resume.setBackground(bcgColor[i[0]]);
-        resume.setForeground(houseColor[i[0]]);
-        resume.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 2));
+        resume.setBackground(houseColor[i[0]]);
+        resume.setForeground(bcgColor[i[0]]);
         resume.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -259,15 +258,22 @@ public class Menu extends JDialog {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     currentButtonIndex[0] = (currentButtonIndex[0] - 1 + allButtons.length) % allButtons.length;
-                    allButtons[currentButtonIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 2));
-                    allButtons[(currentButtonIndex[0] + 1) % allButtons.length].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                    allButtons[currentButtonIndex[0]].setBackground(houseColor[i[0]]);
+                    allButtons[currentButtonIndex[0]].setForeground(bcgColor[i[0]]);
+                    allButtons[(currentButtonIndex[0] + 1) % allButtons.length].setForeground(houseColor[i[0]]);
+                    allButtons[(currentButtonIndex[0] + 1) % allButtons.length].setBackground(bcgColor[i[0]]);
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     currentButtonIndex[0] = (currentButtonIndex[0] + 1) % allButtons.length;
-                    allButtons[currentButtonIndex[0]].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 2));
-                    if(currentButtonIndex[0] == 0)
-                        allButtons[allButtons.length - 1].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
-                    else
-                        allButtons[(currentButtonIndex[0] - 1) % allButtons.length].setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                    allButtons[currentButtonIndex[0]].setBackground(houseColor[i[0]]);
+                    allButtons[currentButtonIndex[0]].setForeground(bcgColor[i[0]]);
+                    if(currentButtonIndex[0] == 0){
+                        allButtons[allButtons.length - 1].setForeground(houseColor[i[0]]);
+                        allButtons[allButtons.length - 1].setBackground(bcgColor[i[0]]);
+                    }
+                    else {
+                        allButtons[(currentButtonIndex[0] - 1) % allButtons.length].setForeground(houseColor[i[0]]);
+                        allButtons[(currentButtonIndex[0] - 1) % allButtons.length].setBackground(bcgColor[i[0]]);
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     allButtons[currentButtonIndex[0]].doClick();
                 }

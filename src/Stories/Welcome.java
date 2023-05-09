@@ -1,7 +1,6 @@
 package Stories;
 
-import GUI.Builder;
-import GUI.Stories;
+import GUI.StoryBuilder;
 import Game.Player;
 
 public class Welcome extends Story {
@@ -10,11 +9,11 @@ public class Welcome extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        Builder builder = new Builder();
-        builder.setPlayer(player);
-        builder.setSuper("Welcome to Hogwarts");
-        builder.setImagePath("img/welcome.jpg");
-        GUI = builder.build();
+        StoryBuilder storyBuilder = new StoryBuilder();
+        storyBuilder.setPlayer(player);
+        storyBuilder.setSuper("Welcome to Hogwarts");
+        storyBuilder.setImagePath("img/welcome.jpg");
+        GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

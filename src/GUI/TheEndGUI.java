@@ -98,13 +98,14 @@ public class TheEndGUI extends JFrame{
             }
         });
 
-
         JButton endButton = new JButton("Finish");
         endButton.setPreferredSize(new Dimension(90, 35));
         endButton.setHorizontalAlignment(JButton.CENTER);
         endButton.setVerticalAlignment(JButton.CENTER);
         endButton.setForeground(houseColor[i[0]]);
         endButton.setBackground(bcgColor[i[0]]);
+        endButton.setSelected(true);
+        endButton.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 3));
         endButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,7 +126,21 @@ public class TheEndGUI extends JFrame{
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    endButton.doClick();
+                    if (button.isSelected()) {
+                        button.doClick();
+                    } else if (endButton.isSelected()) {
+                        endButton.doClick();
+                    }
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    button.setSelected(true);
+                    button.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 3));
+                    endButton.setSelected(false);
+                    endButton.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    button.setSelected(false);
+                    button.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 0));
+                    endButton.setSelected(true);
+                    endButton.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 3));
                 }
             }
         });

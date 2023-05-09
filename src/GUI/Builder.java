@@ -1,7 +1,6 @@
 package GUI;
 
-import Game.*;
-import GUI.*;
+import Game.Player;
 
 
 public class Builder implements BuilderInterface {
@@ -23,9 +22,5 @@ public class Builder implements BuilderInterface {
     public Builder setImagePath(String path) {
         this.image_path = path;
         return this;
-    }
-
-    public Stories build() {
-        return new Stories(this);
     }
 }

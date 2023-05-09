@@ -217,6 +217,22 @@ public class PlayerSetup extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (nameField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter a name", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (!option1.isSelected() && !option2.isSelected() && !option3.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Please select a gender", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (!option4.isSelected() && !option5.isSelected() && !option6.isSelected() && !option7.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Please select a house", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (max[0] < 7) {
+                    JOptionPane.showMessageDialog(null, "Please select exactly 7 interests", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 player = new Player();
                 player.setName(nameField.getText());
                 if (option1.isSelected())

@@ -9,11 +9,11 @@ public class Divination extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        Builder builder = new Builder();
-        builder.setPlayer(player);
-        builder.setSuper("Welcome to the Divination Classroom");
-        builder.setImagePath("img/divination.jpg");
-        GUI = builder.build();
+        StoryBuilder storyBuilder = new StoryBuilder();
+        storyBuilder.setPlayer(player);
+        storyBuilder.setSuper("Welcome to the Divination Classroom");
+        storyBuilder.setImagePath("img/divination.jpg");
+        GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

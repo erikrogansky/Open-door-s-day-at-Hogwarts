@@ -1,7 +1,6 @@
 package Stories;
 
-import GUI.Builder;
-import GUI.Stories;
+import GUI.StoryBuilder;
 import Game.Player;
 
 public class Creatures extends Story {
@@ -10,11 +9,11 @@ public class Creatures extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        Builder builder = new Builder();
-        builder.setPlayer(player);
-        builder.setSuper("Welcome to the Magical Creature Forest");
-        builder.setImagePath("img/magicalforest.jpg");
-        GUI = builder.build();
+        StoryBuilder storyBuilder = new StoryBuilder();
+        storyBuilder.setPlayer(player);
+        storyBuilder.setSuper("Welcome to the Magical Creature Forest");
+        storyBuilder.setImagePath("img/magicalforest.jpg");
+        GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

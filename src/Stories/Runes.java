@@ -1,7 +1,6 @@
 package Stories;
 
-import GUI.Builder;
-import GUI.Stories;
+import GUI.StoryBuilder;
 import Game.Player;
 
 public class Runes extends Story {
@@ -9,11 +8,11 @@ public class Runes extends Story {
     public void playStory(Player player){
         this.player = player;
         string_builder = "";
-        Builder builder = new Builder();
-        builder.setPlayer(player);
-        builder.setSuper("Welcome to the Archaic Library");
-        builder.setImagePath("img/arlibrary.jpg");
-        GUI = builder.build();
+        StoryBuilder storyBuilder = new StoryBuilder();
+        storyBuilder.setPlayer(player);
+        storyBuilder.setSuper("Welcome to the Archaic Library");
+        storyBuilder.setImagePath("img/arlibrary.jpg");
+        GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override
             public void run() {

@@ -16,13 +16,13 @@ public final class Stories extends JFrame{
     private Boolean readTheWholeStory = false;
     private JLabel story = new JLabel();
     private boolean pause = false;
-    public Stories(Builder builder) {
-        super(builder.super_title);
+    public Stories(StoryBuilder storyBuilder) {
+        super(storyBuilder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(1000, 700);
 
-        this.player = builder.player;
+        this.player = storyBuilder.player;
 
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
@@ -40,7 +40,7 @@ public final class Stories extends JFrame{
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon(builder.image_path);
+                ImageIcon image = new ImageIcon(storyBuilder.image_path);
                 Image img = image.getImage();
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
@@ -100,7 +100,7 @@ public final class Stories extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel(builder.super_title+"!");
+        JLabel title = new JLabel(storyBuilder.super_title+"!");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setOpaque(true);
