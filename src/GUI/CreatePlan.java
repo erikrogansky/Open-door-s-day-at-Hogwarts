@@ -297,18 +297,24 @@ public class CreatePlan extends JFrame {
                 Thread changePlayerThreat = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        PlayerSetup playerSetup = new PlayerSetup();
-                        playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
-                        Player player = playerSetup.getPlayer();
-                        setPlayer(player, getPlayer().getLogin());
-                        CreatePlan plan = new CreatePlan(player);
-                        setPlayer(plan.getPlayer());
-                        new Waiter().wait(() -> player.changePlan().getStory(1));
+                        try {
+                            PlayerSetup playerSetup = new PlayerSetup();
+                            playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
+                            Player player = playerSetup.getPlayer();
+                            setPlayer(player, getPlayer().getLogin());
+                            CreatePlan plan = new CreatePlan(player);
+                            setPlayer(plan.getPlayer());
+                            new Waiter().wait(() -> player.changePlan().getStory(1));
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
+                        }
                         try {
                             new Game(getPlayer());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (InterruptedException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
@@ -452,7 +458,7 @@ public class CreatePlan extends JFrame {
 
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() throws InterruptedException {
         new Waiter().wait(() -> player);
         return player;
     }
@@ -463,7 +469,7 @@ public class CreatePlan extends JFrame {
         this.player.setLogin(login);
         this.player = player;
     }
-    public Boolean ifChanged(){
+    public Boolean ifChanged() throws InterruptedException {
         new Waiter().wait(() -> changed);
         changed = null;
         return true;

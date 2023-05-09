@@ -100,6 +100,8 @@ public class Plan implements Serializable {
      * @param story is a story that is supposed to be placed at the given index
      */
     public void reload(int i, Story story){
+        if (i==0)
+            welcome = new Welcome();
         if (i==1)
             story1 = story;
         if (i==2)
@@ -114,6 +116,10 @@ public class Plan implements Serializable {
             story6 = story;
         else
             story7 = story;
+    }
+    public void reload(int i){
+        if (i==0)
+            welcome = new Welcome();
     }
 
 }

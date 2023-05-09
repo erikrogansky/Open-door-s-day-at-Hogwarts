@@ -32,7 +32,7 @@ public class Game implements Serializable {
      * @param login is there to assign the login {@link String}.
      * @param newGame is there to check if a new game should be created, or it can be loaded.
      */
-    public Game(String login, Boolean newGame) throws IOException, ClassNotFoundException {
+    public Game(String login, Boolean newGame) throws IOException, ClassNotFoundException, InterruptedException {
         this.login = login;
         try{
             if (!newGame)
@@ -55,7 +55,7 @@ public class Game implements Serializable {
      * This constructor is simply used play the game with the {@link Player} object passed to it.
      * @param player is there just to assign the player, and it's login.
      */
-    public Game(Player player) throws IOException, ClassNotFoundException {
+    public Game(Player player) throws IOException, ClassNotFoundException, InterruptedException {
         this.login = player.getLogin();
         this.player = player;
         save();
@@ -68,7 +68,7 @@ public class Game implements Serializable {
      * If the {@link Plan#getCurrent()} is equal to 9, it creates {@link Stats} class which displays the statistics.
      * If the {@link Plan#getCurrent()} is equal to 10, it creates {@link TheEnd} class which displays 'The End' title.
      */
-    public void play() throws IOException {
+    public void play() throws IOException, InterruptedException {
         while (this.player.changePlan().getCurrent() < 11){
             if (this.player.changePlan().getCurrent() < 8) {
                 this.player.changePlan().getStory(this.player.changePlan().getCurrent()).playStory(this.player);
@@ -131,7 +131,7 @@ public class Game implements Serializable {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Startup start = new Startup();
         new Game(start.getLogin(), start.getBool());
     }

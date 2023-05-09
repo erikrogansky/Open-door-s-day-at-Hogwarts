@@ -156,7 +156,7 @@ public class TheEndGUI extends JFrame{
         setResizable(false);
 
     }
-    public Boolean ifDone() {
+    public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }

@@ -73,10 +73,14 @@ public final class Stories extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 pause = true;
                 Menu menu = new Menu(player, Stories.this);
-                if (menu.getExit() == true)
-                    dispose();
-                else
-                    pause = false;
+                try {
+                    if (menu.getExit() == true)
+                        dispose();
+                    else
+                        pause = false;
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -176,7 +180,7 @@ public final class Stories extends JFrame{
         setResizable(false);
 
     }
-    public Boolean ifDone() {
+    public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }

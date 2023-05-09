@@ -71,8 +71,12 @@ public class StatsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Menu menu = new Menu(player, StatsGUI.this);
-                if (menu.getExit() == true)
-                    dispose();
+                try {
+                    if (menu.getExit() == true)
+                        dispose();
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -322,7 +326,7 @@ public class StatsGUI extends JFrame{
         setResizable(false);
 
     }
-    public Boolean ifDone() {
+    public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }

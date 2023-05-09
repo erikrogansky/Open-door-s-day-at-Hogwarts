@@ -285,6 +285,8 @@ public class PlayerSetup extends JFrame {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
                             throw new RuntimeException(ex);
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
                         }
                     }
                 });
@@ -845,7 +847,7 @@ public class PlayerSetup extends JFrame {
         setResizable(false);
 
     }
-    public Player getPlayer() {
+    public Player getPlayer() throws InterruptedException {
         new Waiter().wait(() -> player);
         return player;
     }

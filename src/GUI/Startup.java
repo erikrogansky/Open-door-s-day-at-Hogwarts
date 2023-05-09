@@ -160,11 +160,11 @@ public class Startup extends JFrame {
         setResizable(false);
     }
 
-    public String getLogin() {
+    public String getLogin() throws InterruptedException {
         new Waiter().wait(() -> login);
         return login;
     }
-    public Boolean getBool() {
+    public Boolean getBool() throws InterruptedException {
         new Waiter().wait(() -> newGame);
         return newGame;
     }

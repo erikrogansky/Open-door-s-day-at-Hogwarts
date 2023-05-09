@@ -12,10 +12,10 @@ public abstract class Story implements Serializable {
     protected String string_builder = "";
     protected Stories GUI;
     protected int i = 0;
-    public void playStory(Player player){
+    public void playStory(Player player) throws InterruptedException {
         this.player = player;
     }
-    public Boolean ifDone() {
+    public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }

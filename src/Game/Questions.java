@@ -27,7 +27,7 @@ public class Questions {
      * it evaluates each answer and adds 5 points for each correct answer by calling {@link Player#addPoints(int)} method.
      * @param player the player
      */
-    public Questions(Player player) {
+    public Questions(Player player) throws InterruptedException {
         this.player = player;
         String[] plan = this.player.changePlan().getPlanArray();
         for (int i = 0; i < myQuestions.length; i++){
@@ -48,12 +48,12 @@ public class Questions {
                 myCorrectAnswers[7] = "Dumbledore";
             }
         }
-        QuestionsBuilder builder = new QuestionsBuilder();
-        builder.setPlayer(player);
-        builder.setSuper("Question time");
-        builder.setImagePath("img/welcome.jpg");
-        builder.addQuestionList(myQuestions);
-        builder.addOptionList(myOptions);
+        QuestionsBuilder builder = new QuestionsBuilder()
+        .setPlayer(player)
+        .setSuper("Question time")
+        .setImagePath("img/welcome.jpg")
+        .addQuestionList(myQuestions)
+        .addOptionList(myOptions);
         QuestionsGUI GUI = builder.build();
         GUI.ifDone();
         String[] myAnswers = GUI.getAnswers();
@@ -64,7 +64,11 @@ public class Questions {
         }
         this.done = true;
     }
-    public Boolean ifDone() {
+    /**
+     * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @return the boolean value of {@link #done}
+     */
+    public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }

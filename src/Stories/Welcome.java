@@ -5,7 +5,7 @@ import Game.Player;
 
 public class Welcome extends Story {
     @Override
-    public void playStory(Player player){
+    public void playStory(Player player) throws InterruptedException {
         this.player = player;
         string_builder = "";
         i = 0;

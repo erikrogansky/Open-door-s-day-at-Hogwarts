@@ -135,6 +135,8 @@ public class Menu extends JDialog {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
                             throw new RuntimeException(ex);
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
                         }
                     }
                 });
@@ -164,14 +166,16 @@ public class Menu extends JDialog {
                     @Override
                     public void run() {
                         PlayerSetup playerSetup = new PlayerSetup();
-                        playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
-                        Player player = playerSetup.getPlayer();
-                        setPlayer(player, getPlayer().getLogin(), getPlayer().changePlan(), getPlayer().getPoints());
                         try {
+                            playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
+                            Player player = playerSetup.getPlayer();
+                            setPlayer(player, getPlayer().getLogin(), getPlayer().changePlan(), getPlayer().getPoints());
                             player.changePlan().reload(player.changePlan().getCurrent(), player.changePlan().getStory(player.changePlan().getCurrent()).reload());
                         } catch (InstantiationException ex) {
                             throw new RuntimeException(ex);
                         } catch (IllegalAccessException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (InterruptedException ex) {
                             throw new RuntimeException(ex);
                         }
                         try {
@@ -179,6 +183,8 @@ public class Menu extends JDialog {
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (InterruptedException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
@@ -208,14 +214,21 @@ public class Menu extends JDialog {
                 Thread changePlanThreat = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        CreatePlan plan = new CreatePlan(player);
-                        new Waiter().wait(() -> plan.ifChanged());
-                        setPlayer(plan.getPlayer());
+                        try {
+                            CreatePlan plan = new CreatePlan(player);
+                            plan.ifChanged();
+                            setPlayer(plan.getPlayer());
+                            getPlayer().changePlan().reload(0);
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
+                        }
                         try {
                             new Game(getPlayer());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (InterruptedException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
@@ -295,7 +308,7 @@ public class Menu extends JDialog {
     public void setExit(){
         this.exit = true;
     }
-    public Boolean getExit(){
+    public Boolean getExit() throws InterruptedException {
         new Waiter().wait(() -> this.exit);
         return this.exit;
     }
@@ -308,7 +321,7 @@ public class Menu extends JDialog {
         this.player.changePlan(plan);
         this.player.setLogin(login);
     }
-    public Player getPlayer() {
+    public Player getPlayer() throws InterruptedException {
         new Waiter().wait(() -> this.player);
         return player;
     }

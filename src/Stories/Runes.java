@@ -5,7 +5,7 @@ import Game.Player;
 
 public class Runes extends Story {
     @Override
-    public void playStory(Player player){
+    public void playStory(Player player) throws InterruptedException {
         this.player = player;
         string_builder = "";
         StoryBuilder storyBuilder = new StoryBuilder();
