@@ -1,6 +1,6 @@
 package Stories;
 
-import GUI.*;
+import GUI.StoryBuilder;
 import Game.*;
 
 public class Transfiguration extends Story {

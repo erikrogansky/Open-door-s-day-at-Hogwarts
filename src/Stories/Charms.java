@@ -1,6 +1,6 @@
 package Stories;
 
-import GUI.*;
+import GUI.StoryBuilder;
 import Game.Player;
 
 public class Charms extends Story {

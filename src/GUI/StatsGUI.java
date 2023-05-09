@@ -9,19 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 public class StatsGUI extends JFrame{
     private Player player;
     private Boolean done;
     private String[] myAnswers = new String[8];
-    public StatsGUI(Player player, List<String[]> information) {
-        super("Quiz");
+    public StatsGUI(StatsBuilder builder) {
+        super(builder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(500, 550);
 
-        this.player = player;
+        this.player = builder.player;
 
         final int[] i = {4};
         final String[] bcg_dir = {"img/statsG.jpg", "img/statsR.jpg", "img/statsH.jpg", "img/statsS.jpg", "img/stats.jpg"};
@@ -97,7 +96,7 @@ public class StatsGUI extends JFrame{
         spacerPanel5.setPreferredSize(new Dimension(0, 23));
         spacerPanel5.setOpaque(false);
 
-        JLabel title = new JLabel("Your statistics:");
+        JLabel title = new JLabel(builder.super_title + ":");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setForeground(houseColor[i[0]]);
@@ -120,7 +119,7 @@ public class StatsGUI extends JFrame{
         label.setForeground(houseColor[i[0]]);
         statsPanel.add(label);
 
-        label = new JLabel(information.get(0)[0]);
+        label = new JLabel(builder.name);
         label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setForeground(houseColor[i[0]]);
@@ -132,7 +131,7 @@ public class StatsGUI extends JFrame{
         label.setForeground(houseColor[i[0]]);
         statsPanel.add(label);
 
-        label = new JLabel(information.get(1)[0]);
+        label = new JLabel(builder.gender);
         label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setForeground(houseColor[i[0]]);
@@ -144,7 +143,7 @@ public class StatsGUI extends JFrame{
         label.setForeground(houseColor[i[0]]);
         statsPanel.add(label);
 
-        label = new JLabel(information.get(2)[0]);
+        label = new JLabel(builder.house);
         label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setForeground(houseColor[i[0]]);
@@ -156,7 +155,7 @@ public class StatsGUI extends JFrame{
         label.setForeground(houseColor[i[0]]);
         statsPanel.add(label);
 
-        JLabel interestLabel = new JLabel(information.get(3)[0]);
+        JLabel interestLabel = new JLabel(builder.interests[0]);
         interestLabel.setHorizontalAlignment(JLabel.LEFT);
         interestLabel.setFont(new Font("Arial", Font.BOLD, 20));
         interestLabel.setForeground(houseColor[i[0]]);
@@ -167,9 +166,9 @@ public class StatsGUI extends JFrame{
             public void run() {
                 int j = 0;
                 while (true) {
-                    interestLabel.setText(information.get(3)[j]);
+                    interestLabel.setText(builder.interests[j]);
                     interestLabel.repaint();
-                    if (j == information.get(3).length - 1)
+                    if (j == builder.interests.length - 1)
                         j = 0;
                     else
                         j++;
@@ -189,7 +188,7 @@ public class StatsGUI extends JFrame{
         label.setForeground(houseColor[i[0]]);
         statsPanel.add(label);
 
-        label = new JLabel(information.get(4)[0] + "/48");
+        label = new JLabel(builder.points + "/48");
         label.setHorizontalAlignment(JLabel.LEFT);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setForeground(houseColor[i[0]]);
@@ -204,7 +203,7 @@ public class StatsGUI extends JFrame{
         label = new JLabel();
         statsPanel.add(label);
 
-        if (information.get(5)[0].equals("A house scarf")) {
+        if (builder.rewards[0].equals("A house scarf")) {
             label = new JLabel("A house scarf");
             label.setForeground(houseColor[i[0]]);
         }
@@ -216,7 +215,7 @@ public class StatsGUI extends JFrame{
         label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        if (information.get(5)[1].equals("A goblet")) {
+        if (builder.rewards[1].equals("A goblet")) {
             label = new JLabel("A goblet");
             label.setForeground(houseColor[i[0]]);
         }
@@ -228,7 +227,7 @@ public class StatsGUI extends JFrame{
         label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        if (information.get(5)[2].equals("An owl")) {
+        if (builder.rewards[2].equals("An owl")) {
             label = new JLabel("An owl");
             label.setForeground(houseColor[i[0]]);
         }
@@ -240,7 +239,7 @@ public class StatsGUI extends JFrame{
         label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        if (information.get(5)[3].equals("Felix Felicis")) {
+        if (builder.rewards[3].equals("Felix Felicis")) {
             label = new JLabel("Felix Felicis");
             label.setForeground(houseColor[i[0]]);
         }
@@ -252,7 +251,7 @@ public class StatsGUI extends JFrame{
         label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        if (information.get(5)[4].equals("A wand")) {
+        if (builder.rewards[4].equals("A wand")) {
             label = new JLabel("A wand");
             label.setForeground(houseColor[i[0]]);
         }
@@ -264,7 +263,7 @@ public class StatsGUI extends JFrame{
         label.setFont(new Font("Arial", Font.BOLD, 19));
         statsPanel.add(label);
 
-        if (information.get(5)[5].equals("Firebolt")) {
+        if (builder.rewards[5].equals("Firebolt")) {
             label = new JLabel("Firebolt");
             label.setForeground(houseColor[i[0]]);
         }

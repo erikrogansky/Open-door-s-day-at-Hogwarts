@@ -9,10 +9,10 @@ public class Alchemy extends Story {
         this.player = player;
         string_builder = "";
         i = 0;
-        StoryBuilder storyBuilder = new StoryBuilder();
-        storyBuilder.setPlayer(player);
-        storyBuilder.setSuper("Welcome to the Alchemy Classroom");
-        storyBuilder.setImagePath("img/alchemy.jpg");
+        StoryBuilder storyBuilder = new StoryBuilder()
+        .setPlayer(player)
+        .setSuper("Welcome to the Alchemy Classroom")
+        .setImagePath("img/alchemy.jpg");
         GUI = storyBuilder.build();
         Thread storyThread = new Thread(new Runnable() {
             @Override

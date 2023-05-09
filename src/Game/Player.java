@@ -2,6 +2,9 @@ package Game;
 
 import java.io.Serializable;
 
+/**
+ * This class stores the player's features, their plan, interests, points and rewards.
+ */
 public class Player implements Serializable {
     private String login;
     private String name;
@@ -12,12 +15,24 @@ public class Player implements Serializable {
     private int points = 0;
     private String[] rewards = null;
 
+    /**
+     * This method assigns the player's {@link #login}.
+     * @param login a string representing the player's login.
+     */
     public void setLogin(String login){
         this.login = login;
     }
+    /**
+     * This method assigns the player's {@link #name}.
+     * @param name a string representing the player's name.
+     */
     public void setName(String name){
         this.name = name;
     }
+    /**
+     * This method assigns the player's {@link #gender}, but it transforms it into a more in-game format.
+     * @param gender a string representing the player's gender.
+     */
     public void setGender(String gender){
         if (gender.equals("male"))
             this.gender = "Wizard";
@@ -26,33 +41,80 @@ public class Player implements Serializable {
         if (gender.equals("other"))
             this.gender = "Magician";
     }
+    /**
+     * This method assigns the player's {@link #preferred_house}.
+     * @param house string representing the player's house.
+     */
     public void setPreferred_house(String house){
         this.preferred_house = house;
     }
+
+    /**
+     * This method returns the player's {@link #personal_plan}, but it creates a new {@link Plan} object if it's null.
+     * @return it returns the player's plan, or the newly created one.
+     */
     public Plan changePlan(){
         if (this.personal_plan == null)
             this.personal_plan = new Plan();
         return personal_plan;
     }
+    /**
+     * This method assigns the player's {@link #personal_plan}.
+     * @param plan is a {@link Plan} object.
+     */
     public void changePlan(Plan plan){
         this.personal_plan = plan;
     }
+
+    /**
+     * It is sometimes necessary to get the player's login from the player, for example when the player wants to change some information,
+     * a new player is created in the {@link GUI.PlayerSetup} class and the login needs to be gotten from somewhere to assign it, and this is the place.
+     * @return the login
+     */
     public String getLogin(){
         return login;
     }
+
+    /**
+     * This method is used to get {@link #name}.
+     * @return a string representing the player's name.
+     */
     public String getName(){
         return name;
     }
+
+    /**
+     * This method assigns the player's {@link #interests}.
+     * @param array array of interests
+     */
     public void addInterests(String[] array){
         interests = array;
     }
+
+    /**
+     * This method increments the player's {@link #points}.
+     */
     public void addPoints(){
         points++;
     }
+
+    /**
+     * This method increments the player's {@link #points} by the given amount.
+     * @param add the amount of points to add
+     */
     public void addPoints(int add){
         points += add;
     }
+
+    /**
+     * This method is to get the player's {@link #points}.
+     * @return the player's points
+     */
     public int getPoints(){ return points; }
+
+    /**
+     * This method adds rewards to the player's {@link #rewards} according to the amount of {@link #points}.
+     */
     public void evaluateRewards(){
         if (rewards == null)
             rewards = new String[]{"", "", "", "", "", ""};
@@ -75,13 +137,30 @@ public class Player implements Serializable {
             rewards[0] = "A house scarf";
         }
     }
+
+    /**
+     * This method is to get the player's {@link #rewards}.
+     * @return the player's rewards array
+     */
     public String[] getRewards(){ return rewards; }
+    /**
+     * This method is to get the player's {@link #preferred_house}.
+     * @return the player's house
+     */
     public String getHouse(){
         return preferred_house;
     }
+    /**
+     * This method is to get the player's {@link #interests}.
+     * @return the player's interests array
+     */
     public String[] getInterests(){
         return interests;
     }
+    /**
+     * This method is to get the player's {@link #rewards}.
+     * @return the player's rewards array
+     */
     public String getGender(char c){
         if (gender.equals("Wizard"))
             return "wizard";
@@ -90,6 +169,10 @@ public class Player implements Serializable {
         else
             return "magician";
     }
+    /**
+     * This method is to get the player's {@link #gender}.
+     * @return the player's gender
+     */
     public String getGender(){
         return gender;
     }

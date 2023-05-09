@@ -10,9 +10,9 @@ import java.util.*;
 import java.util.List;
 
 public class QuestionsGUI extends JFrame{
-    private Player player;
-    private Boolean done;
-    private String[] myAnswers = new String[8];
+    Player player;
+    Boolean done;
+    String[] myAnswers = new String[8];
     public QuestionsGUI(QuestionsBuilder builder) {
         super(builder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,9 +1,11 @@
 package Game;
 
-import GUI.Builder;
-import GUI.StoryBuilder;
 import GUI.QuestionsBuilder;
 import GUI.QuestionsGUI;
+
+/**
+ * This class handles the quiz after the stories are finished.
+ */
 
 public class Questions {
     private Player player;
@@ -15,6 +17,16 @@ public class Questions {
     private String[] myQuestions = new String[8];
     private String[][] myOptions = new String[8][3];
     private String[] myCorrectAnswers = new String[8];
+
+    /**
+     * When this class is created, the right questions for the player, according to their plan are chosen and added to
+     * the {@link #myQuestions}. The corresponding list of possible answers and a correct answer are added to
+     * the {@link #myOptions} and {@link #myCorrectAnswers} Then, it then creates {@link QuestionsGUI} class which
+     * shows the quiz for the player to play. It uses a Builder design pattern in {@link QuestionsBuilder} class,
+     * which builds the GUI with the questions. Then after the player confirms their choices in the {@link QuestionsGUI} class,
+     * it evaluates each answer and adds 5 points for each correct answer by calling {@link Player#addPoints(int)} method.
+     * @param player the player
+     */
     public Questions(Player player) {
         this.player = player;
         String[] plan = this.player.changePlan().getPlanArray();

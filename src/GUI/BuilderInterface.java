@@ -5,7 +5,7 @@ import Game.Player;
 import java.io.Serializable;
 
 public interface BuilderInterface extends Serializable {
-    Builder setPlayer(Player player);
-    Builder setSuper(String spr);;
-    Builder setImagePath(String path);
+    BuilderInterface setPlayer(Player player);
+    BuilderInterface setSuper(String spr);
+    BuilderInterface setImagePath(String path);
 }

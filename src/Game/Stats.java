@@ -1,11 +1,14 @@
 package Game;
 
-import GUI.QuestionsGUI;
+import GUI.StatsBuilder;
 import GUI.StatsGUI;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class handles the stats of the game.
+ */
 public class Stats {
     private Player player;
     List<String[]> information = new ArrayList<>();
@@ -13,13 +16,14 @@ public class Stats {
     public Stats(Player player) {
         this.player = player;
         this.player.evaluateRewards();
-        information.add(new String[]{player.getName()});
-        information.add(new String[]{player.getGender()});
-        information.add(new String[]{player.getHouse()});
-        information.add(player.getInterests());
-        information.add(new String[]{String.valueOf(player.getPoints())});
-        information.add(player.getRewards());
-        StatsGUI GUI = new StatsGUI(player, information);
+        StatsBuilder builder = new StatsBuilder()
+        .setName(player.getName())
+        .setGender(player.getGender())
+        .setHouse(player.getHouse())
+        .setInterests(player.getInterests())
+        .setPoints(player.getPoints())
+        .setRewards(player.getRewards());
+        StatsGUI GUI = builder.build();
         GUI.ifDone();
         this.done = true;
     }
