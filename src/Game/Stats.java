@@ -14,6 +14,7 @@ public class Stats {
      * In this constructor, the {@link #player} is initialized, and the rewards are evaluated by calling {@link Player#evaluateRewards()} and added to the {@link #player}.
      * Then a new {@link StatsBuilder} is created and is used to build the {@link StatsGUI}.
      * @param player the player
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public Stats(Player player) throws InterruptedException {
         this.player = player;
@@ -31,6 +32,7 @@ public class Stats {
     }
     /**
      * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      * @return the boolean value of {@link #done}
      */
     public Boolean ifDone() throws InterruptedException {

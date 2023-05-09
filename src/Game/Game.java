@@ -101,7 +101,7 @@ public class Game implements Serializable {
 
     /**
      * This method from {@link Serializable} interface is used to save the game.
-     * @throws IOException
+     * @throws IOException is thrown if the file cannot be saved
      */
     public void save() throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("logins/" + login + ".out"));
@@ -111,8 +111,8 @@ public class Game implements Serializable {
 
     /**
      * This method from {@link Serializable} interface is used to load the game.
-     * @throws ClassNotFoundException
-     * @throws IOException
+     * @throws ClassNotFoundException is thrown if the file cannot be found
+     * @throws IOException is thrown if the file cannot be loaded
      */
     public void load() throws ClassNotFoundException, IOException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("logins/" + login + ".out"));
@@ -127,8 +127,9 @@ public class Game implements Serializable {
      * This static method is used to execute the whole program.
      * First a {@link Startup} object is created and then the new game is created, with the parameters from the {@link Startup} object.
      * @param args does nothing
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException is thrown if the file cannot be loaded
+     * @throws ClassNotFoundException is thrown if the file cannot be found
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Startup start = new Startup();

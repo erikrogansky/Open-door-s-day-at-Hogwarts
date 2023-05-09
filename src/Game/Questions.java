@@ -26,6 +26,7 @@ public class Questions {
      * which builds the GUI with the questions. Then after the player confirms their choices in the {@link QuestionsGUI} class,
      * it evaluates each answer and adds 5 points for each correct answer by calling {@link Player#addPoints(int)} method.
      * @param player the player
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public Questions(Player player) throws InterruptedException {
         this.player = player;
@@ -66,6 +67,7 @@ public class Questions {
     }
     /**
      * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      * @return the boolean value of {@link #done}
      */
     public Boolean ifDone() throws InterruptedException {

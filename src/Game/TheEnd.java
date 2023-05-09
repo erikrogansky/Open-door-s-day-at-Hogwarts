@@ -13,6 +13,7 @@ public class TheEnd {
     /**
      * In this constructor, the {@link #player} is initialized, and the {@link TheEndGUI} is created.
      * @param player the player
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public TheEnd(Player player) throws InterruptedException {
         this.player = player;
@@ -23,6 +24,7 @@ public class TheEnd {
     }
     /**
      * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      * @return the boolean value of {@link #done}
      */
     public Boolean ifDone() throws InterruptedException {
