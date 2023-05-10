@@ -48,7 +48,6 @@ public class QuestionsGUI extends JFrame {
             case "Ravenclaw" -> i[0] = 1;
             case "Hufflepuff" -> i[0] = 2;
             case "Slytherin" -> i[0] = 3;
-            default -> i[0] = 4;
         }
 
         JPanel panel = new JPanel() {
@@ -83,16 +82,13 @@ public class QuestionsGUI extends JFrame {
         menuButton.setPreferredSize(new Dimension(40, 40));
         menuButton.setHorizontalAlignment(JButton.CENTER);
         menuButton.setVerticalAlignment(JButton.CENTER);
-        menuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player, QuestionsGUI.this);
-                try {
-                    if (menu.getExit() == true)
-                        dispose();
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
+        menuButton.addActionListener(e -> {
+            Menu menu1 = new Menu(player, QuestionsGUI.this);
+            try {
+                if (menu1.getExit())
+                    dispose();
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
@@ -107,14 +103,6 @@ public class QuestionsGUI extends JFrame {
         JPanel spacerPanel3 = new JPanel();
         spacerPanel3.setPreferredSize(new Dimension(0, 35));
         spacerPanel3.setOpaque(false);
-
-        JPanel spacerPanel4 = new JPanel();
-        spacerPanel4.setPreferredSize(new Dimension(0, 20));
-        spacerPanel4.setOpaque(false);
-
-        JPanel spacerPanel5 = new JPanel();
-        spacerPanel5.setPreferredSize(new Dimension(0, 23));
-        spacerPanel5.setOpaque(false);
 
         JLabel title = new JLabel(builder.super_title + "!");
         title.setHorizontalAlignment(JLabel.CENTER);
@@ -223,19 +211,16 @@ public class QuestionsGUI extends JFrame {
         button.setVerticalAlignment(JButton.CENTER);
         button.setForeground(houseColor[i[0]]);
         button.setBackground(bcgColor[i[0]]);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                for (int j = 0; j < builder.myQuestions.length; j++) {
-                    try {
-                        myAnswers[j] = groups[j].getSelection().getActionCommand();
-                    } catch (NullPointerException ex) {
-                        myAnswers[j] = "$EMPTY$";
-                    }
+        button.addActionListener(e -> {
+            dispose();
+            for (int j = 0; j < builder.myQuestions.length; j++) {
+                try {
+                    myAnswers[j] = groups[j].getSelection().getActionCommand();
+                } catch (NullPointerException ex) {
+                    myAnswers[j] = "$EMPTY$";
                 }
-                done = true;
             }
+            done = true;
         });
 
         JPanel buttonPanel = new JPanel();

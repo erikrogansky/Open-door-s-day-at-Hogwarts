@@ -55,9 +55,9 @@ public class StartupGUI extends JFrame {
         spacerPanel2.setPreferredSize(new Dimension(0, 100));
         spacerPanel2.setOpaque(false);
 
-        JPanel spacerPanel5 = new JPanel();
-        spacerPanel5.setPreferredSize(new Dimension(0, 40));
-        spacerPanel5.setOpaque(false);
+        JPanel spacerPanel3 = new JPanel();
+        spacerPanel3.setPreferredSize(new Dimension(0, 40));
+        spacerPanel3.setOpaque(false);
 
         everythingPanel.add(spacerPanel1);
 
@@ -98,7 +98,7 @@ public class StartupGUI extends JFrame {
         textFieldPanel.add(textField);
         everythingPanel.add(textFieldPanel, BorderLayout.NORTH);
 
-        everythingPanel.add(spacerPanel5);
+        everythingPanel.add(spacerPanel3);
 
         ImageIcon buttonIcon = new ImageIcon("img/login.jpg");
         JButton button = new JButton(buttonIcon);
@@ -106,26 +106,20 @@ public class StartupGUI extends JFrame {
         button.setHorizontalAlignment(JButton.CENTER);
         button.setVerticalAlignment(JButton.CENTER);
         button.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                login = textField.getText();
-                newGame = false;
-                dispose();
-            }
+        button.addActionListener(e -> {
+            login = textField.getText();
+            newGame = false;
+            dispose();
         });
         buttonIcon = new ImageIcon("img/newgame.png");
         JButton button2 = new JButton(buttonIcon);
         button2.setPreferredSize(new Dimension(buttonIcon.getIconWidth(), buttonIcon.getIconHeight()));
         button2.setHorizontalAlignment(JButton.CENTER);
         button2.setVerticalAlignment(JButton.CENTER);
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                login = textField.getText();
-                newGame = true;
-                dispose();
-            }
+        button2.addActionListener(e -> {
+            login = textField.getText();
+            newGame = true;
+            dispose();
         });
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
         buttonPanel.setOpaque(false);
@@ -136,12 +130,7 @@ public class StartupGUI extends JFrame {
         panel.add(everythingPanel, BorderLayout.NORTH);
 
 
-        textField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                button.doClick();
-            }
-        });
+        textField.addActionListener(e -> button.doClick());
         textField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

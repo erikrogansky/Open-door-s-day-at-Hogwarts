@@ -66,7 +66,7 @@ public class Plan implements Serializable {
     }
 
     /**
-     * This method is used to get the story at the given index.
+     * This method is used to find and get the story at the given index.
      * @param index is used as an index of a story in the {@link Plan} object
      * @return the wanted story
      */

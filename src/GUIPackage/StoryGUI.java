@@ -56,7 +56,8 @@ public final class StoryGUI extends JFrame{
             case "Ravenclaw" -> i[0] = 1;
             case "Hufflepuff" -> i[0] = 2;
             case "Slytherin" -> i[0] = 3;
-            default -> i[0] = 4;
+            default -> {
+            }
         }
 
         JPanel panel = new JPanel() {
@@ -91,19 +92,16 @@ public final class StoryGUI extends JFrame{
         menuButton.setPreferredSize(new Dimension(40, 40));
         menuButton.setHorizontalAlignment(JButton.CENTER);
         menuButton.setVerticalAlignment(JButton.CENTER);
-        menuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pause = true;
-                Menu menu = new Menu(player, StoryGUI.this);
-                try {
-                    if (menu.getExit() == true)
-                        dispose();
-                    else
-                        pause = false;
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
+        menuButton.addActionListener(e -> {
+            pause = true;
+            Menu menu1 = new Menu(player, StoryGUI.this);
+            try {
+                if (menu1.getExit())
+                    dispose();
+                else
+                    pause = false;
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
@@ -139,10 +137,7 @@ public final class StoryGUI extends JFrame{
         titlePanel.add(title);
         everythingPanel.add(titlePanel);
 
-
         everythingPanel.add(spacerPanel2);
-
-
 
         story.setHorizontalAlignment(JLabel.CENTER);
         story.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -155,9 +150,6 @@ public final class StoryGUI extends JFrame{
         storyPanel.add(story);
         everythingPanel.add(storyPanel);
 
-
-
-
         everythingPanel.add(spacerPanel3);
 
         JButton button = new JButton("Continue");
@@ -166,12 +158,9 @@ public final class StoryGUI extends JFrame{
         button.setVerticalAlignment(JButton.CENTER);
         button.setForeground(houseColor[i[0]]);
         button.setBackground(bcgColor[i[0]]);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                done = true;
-            }
+        button.addActionListener(e -> {
+            dispose();
+            done = true;
         });
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);

@@ -7,10 +7,6 @@ import GUIPackage.TheEndGUI;
  */
 public class TheEnd {
     /**
-     * A variable to store the player
-     */
-    private Player player;
-    /**
      * A variable to store the Boolean value that represents if all the actions in this class are done
      */
     private Boolean done;
@@ -18,14 +14,12 @@ public class TheEnd {
      * A variable to store the Boolean value that represents if the game should end or the player wants to move back to stats
      */
     private boolean back_or_finish;
-
     /**
-     * In this constructor, the {@link #player} is initialized, and the {@link TheEndGUI} is created.
+     * In this constructor the {@link TheEndGUI} is created.
      * @param player the player
      * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public TheEnd(Player player) throws InterruptedException {
-        this.player = player;
         TheEndGUI GUI = new TheEndGUI(player);
         GUI.ifDone();
         back_or_finish = GUI.ifBack();

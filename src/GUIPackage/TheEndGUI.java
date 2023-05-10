@@ -5,8 +5,6 @@ import GamePackage.Waiter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -49,7 +47,8 @@ public class TheEndGUI extends JFrame{
             case "Ravenclaw" -> i[0] = 1;
             case "Hufflepuff" -> i[0] = 2;
             case "Slytherin" -> i[0] = 3;
-            default -> i[0] = 4;
+            default -> {
+            }
         }
 
         JPanel panel = new JPanel() {
@@ -107,13 +106,10 @@ public class TheEndGUI extends JFrame{
         button.setVerticalAlignment(JButton.CENTER);
         button.setForeground(houseColor[i[0]]);
         button.setBackground(bcgColor[i[0]]);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                back_or_finish = true;
-                done = true;
-            }
+        button.addActionListener(e -> {
+            dispose();
+            back_or_finish = true;
+            done = true;
         });
 
         JButton endButton = new JButton("Finish");
@@ -124,13 +120,10 @@ public class TheEndGUI extends JFrame{
         endButton.setBackground(bcgColor[i[0]]);
         endButton.setSelected(true);
         endButton.setBorder(BorderFactory.createLineBorder(houseColor[i[0]], 3));
-        endButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                back_or_finish = false;
-                done = true;
-            }
+        endButton.addActionListener(e -> {
+            dispose();
+            back_or_finish = false;
+            done = true;
         });
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 35, 0));
         buttonPanel.setOpaque(false);

@@ -229,76 +229,73 @@ public class CreatePlan extends JFrame {
         button.setVerticalAlignment(JButton.CENTER);
         button.setForeground(bcgColor[i[0][0]]);
         button.setBackground(houseColor[i[0][0]]);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                plan = player.changePlan();
-                int currentMinigame = plan.getCurrent();
-                int i = 0;
-                int[] indexArray = new int[]{-1, -1, -1, -1, -1, -1, -1};
-                Story[] array = new Story[7];
-                String[] array2 = new String[7];
-                for (JComboBox combobox : comboboxes){
-                    int index = combobox.getSelectedIndex();
-                    for (int number : indexArray) {
-                        if (number == index) {
-                            indexArray[i] = -1;
-                            JOptionPane.showMessageDialog(null, "An option was selected more than once!", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
+        button.addActionListener(e -> {
+            plan = player.changePlan();
+            int currentMinigame = plan.getCurrent();
+            int i1 = 0;
+            int[] indexArray = new int[]{-1, -1, -1, -1, -1, -1, -1};
+            Story[] array1 = new Story[7];
+            String[] array2 = new String[7];
+            for (JComboBox combobox : comboboxes){
+                int index = combobox.getSelectedIndex();
+                for (int number : indexArray) {
+                    if (number == index) {
+                        indexArray[i1] = -1;
+                        JOptionPane.showMessageDialog(null, "An option was selected more than once!", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
-                    indexArray[i] = index;
-                    if (index == 0) {
-                        array[i] = new Quidditch();
-                        array2[i] = stories[0];
-                    } else if (index == 1) {
-                        array[i] = new Transfiguration();
-                        array2[i] = stories[1];
-                    } else if (index == 2) {
-                        array[i] = new Charms();
-                        array2[i] = stories[2];
-                    } else if (index == 3) {
-                        array[i] = new Herbology();
-                        array2[i] = stories[3];
-                    } else if (index == 4) {
-                        array[i] = new Potions();
-                        array2[i] = stories[4];
-                    } else if (index == 5) {
-                        array[i] = new Defense();
-                        array2[i] = stories[5];
-                    } else if (index == 6) {
-                        array[i] = new Divination();
-                        array2[i] = stories[6];
-                    } else if (index == 7) {
-                        array[i] = new MuggleStudies();
-                        array2[i] = stories[7];
-                    } else if (index == 8) {
-                        array[i] = new Creatures();
-                        array2[i] = stories[8];
-                    } else if (index == 9) {
-                        array[i] = new History();
-                        array2[i] = stories[9];
-                    } else if (index == 10) {
-                        array[i] = new Runes();
-                        array2[i] = stories[10];
-                    } else if (index == 11) {
-                        array[i] = new Apparition();
-                        array2[i] = stories[11];
-                    } else if (index == 12) {
-                        array[i] = new Alchemy();
-                        array2[i] = stories[12];
-                    } else if (index == 13) {
-                        array[i] = new MagicalTheory();
-                        array2[i] = stories[13];
-                    }
-                    i++;
                 }
-                plan.createPlan(array, array2);
-                plan.setCurrent(currentMinigame);
-                player.changePlan(plan);
-                changed = true;
-                dispose();
+                indexArray[i1] = index;
+                if (index == 0) {
+                    array1[i1] = new Quidditch();
+                    array2[i1] = stories[0];
+                } else if (index == 1) {
+                    array1[i1] = new Transfiguration();
+                    array2[i1] = stories[1];
+                } else if (index == 2) {
+                    array1[i1] = new Charms();
+                    array2[i1] = stories[2];
+                } else if (index == 3) {
+                    array1[i1] = new Herbology();
+                    array2[i1] = stories[3];
+                } else if (index == 4) {
+                    array1[i1] = new Potions();
+                    array2[i1] = stories[4];
+                } else if (index == 5) {
+                    array1[i1] = new Defense();
+                    array2[i1] = stories[5];
+                } else if (index == 6) {
+                    array1[i1] = new Divination();
+                    array2[i1] = stories[6];
+                } else if (index == 7) {
+                    array1[i1] = new MuggleStudies();
+                    array2[i1] = stories[7];
+                } else if (index == 8) {
+                    array1[i1] = new Creatures();
+                    array2[i1] = stories[8];
+                } else if (index == 9) {
+                    array1[i1] = new History();
+                    array2[i1] = stories[9];
+                } else if (index == 10) {
+                    array1[i1] = new Runes();
+                    array2[i1] = stories[10];
+                } else if (index == 11) {
+                    array1[i1] = new Apparition();
+                    array2[i1] = stories[11];
+                } else if (index == 12) {
+                    array1[i1] = new Alchemy();
+                    array2[i1] = stories[12];
+                } else if (index == 13) {
+                    array1[i1] = new MagicalTheory();
+                    array2[i1] = stories[13];
+                }
+                i1++;
             }
+            plan.createPlan(array1, array2);
+            plan.setCurrent(currentMinigame);
+            player.changePlan(plan);
+            changed = true;
+            dispose();
         });
 
         JButton back = new JButton("Back");
@@ -307,37 +304,27 @@ public class CreatePlan extends JFrame {
         back.setVerticalAlignment(JButton.CENTER);
         back.setForeground(bcgColor[i[0][0]]);
         back.setBackground(houseColor[i[0][0]]);
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                Thread changePlayerThreat = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            PlayerSetup playerSetup = new PlayerSetup();
-                            playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
-                            Player player = playerSetup.getPlayer();
-                            setPlayer(player, getPlayer().getLogin());
-                            CreatePlan plan = new CreatePlan(player);
-                            setPlayer(plan.getPlayer());
-                            new Waiter().wait(() -> player.changePlan().getStory(1));
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        try {
-                            new Game(getPlayer());
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (ClassNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-                changePlayerThreat.start();
-            }
+        back.addActionListener(e -> {
+            dispose();
+            Thread changePlayerThreat = new Thread(() -> {
+                try {
+                    PlayerSetup playerSetup = new PlayerSetup();
+                    playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
+                    Player player1 = playerSetup.getPlayer();
+                    setPlayer(player1, getPlayer().getLogin());
+                    CreatePlan plan = new CreatePlan(player1);
+                    setPlayer(plan.getPlayer());
+                    new Waiter().wait(() -> player1.changePlan().getStory(1));
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    new Game(getPlayer());
+                } catch (IOException | ClassNotFoundException | InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            changePlayerThreat.start();
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));

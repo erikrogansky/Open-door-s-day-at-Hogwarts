@@ -23,15 +23,15 @@ public class Questions {
     /**
      * A variable to store all the questions
      */
-    private final String[] allQuestions = {"What is the name of the golden snitch's flight pattern?", "What is the most complex form of human Transfiguration?", "Which charm is used to mend broken objects?", "What is the most important ingredient in the Draught of Living Death?", "What potion is also known as the Draught of the Living Dead?", "What type of creature resides in the Forbidden Forest?", "What is the name of the divination method where the seer interprets the patterns of tea leaves?", "What is the name for a wizard who is born to non-magical parents?", "Which creature has a fatal attraction to shiny objects?", "What was the name of the first wizarding war against Voldemort?", "What is the name of the ancient runic alphabet used in the Wizarding World?", "What is the name for a wizard's ability to teleport themselves from one place to another?", "What is the ultimate goal of alchemy?", "What is the name for the study of the magical properties of objects?"};
+    private final String[] allQuestions = {"What is the name of the golden snitch's flight pattern?", "What spell is used to mend broken objects?", "Which charm generates light source?", "Name essential ingredient in the Draught of Living Death.", "What potion is used to shape-shift?", "What type of creature resides in the Forbidden Forest?", "Name a method of interpreting the patterns of tea leaves.", "How is a wizard born to non-magical parents called?", "Which creature has a fatal attraction to shiny objects?", "Who was the first wizard to be Minister of Magic?", "Name the Wizarding World's ancient runic alphabet.", "How is teleporting from one place to another called?", "What is the primary ingredient in the Philosopher's Stone?", "How is the study of magical properties of objects called?"};
     /**
      * A variable to store all the possible answers
      */
-    private final String[][] allOptions = {{"Zigzag", "Figure Eight", "W-Shaped"}, {"Vanishment", "Apparition", "Human Transfiguration"}, {"Reparo", "Wingardium Leviosa", "Accio"}, {"Flobberworm Mucus", "Wormwood", "Valerian Root"}, {"Amortentia", "Polyjuice Potion", "Draught of Living Death"}, {"Centaurs", "Merpeople", "Giants"}, {"Palmistry", "Tasseography", "Astrology"}, {"Squib", "Muggle-born", "Half-blood"}, {"Phoenix", "Hippogriff", "Niffler"}, {"The First Wizarding War", "The Battle of Hogwarts", "The War of the Roses"}, {"Elder Futhark", "Ogham", "Hieroglyphics"}, {"Disapparition", "Apparition", "Portkey"}, {"To transmute base metals into gold", "To create the philosopher's stone", "To achieve eternal life"}, {"Charms", "Transfiguration", "Enchantment"}};
+    private final String[][] allOptions = {{"Zigzag", "Figure Eight", "W-Shaped"}, {"Protego", "Avifors", "Reparo"}, {"Nox", "Lumos", "Accio"}, {"Flobberworm", "Wormwood", "Valerian Root"}, {"Amortentia", "Polyjuice", "Felix Felicis"}, {"Centaurs", "Merpeople", "Giants"}, {"Palmistry", "Tasseography", "Astrology"}, {"Squib", "Muggle-born", "Half-blood"}, {"Phoenix", "Hippogriff", "Niffler"}, {"Ulick Gamp", "Nobby Leach", "Heloise Flume"}, {"Elder Futhark", "Ogham", "Hieroglyphics"}, {"Disapparition", "Apparition", "Portkey"}, {"Unicorn Horn", "Elixir of Life", "Phoenix Blood"}, {"Charms", "Transfiguration", "Enchantment"}};
     /**
      * A variable to store the correct answers
      */
-    private final String[] allCorrectAnswers = {"Figure Eight", "Human Transfiguration", "Reparo", "Wormwood", "Draught of Living Death", "Centaurs", "Tasseography", "Muggle-born", "Niffler", "The First Wizarding War", "Elder Futhark", "Apparition", "To achieve eternal life", "Enchantment"};
+    private final String[] allCorrectAnswers = {"Figure Eight", "Reparo", "Lumos", "Wormwood", "Polyjuice", "Centaurs", "Tasseography", "Muggle-born", "Niffler", "Ulick Gamp", "Elder Futhark", "Apparition", "Elixir of Life", "Enchantment"};
     /**
      * A variable to store the players questions according to the plan
      */
@@ -76,13 +76,13 @@ public class Questions {
                 myCorrectAnswers[7] = "Dumbledore";
             }
         }
-        QuestionsBuilder builder = new QuestionsBuilder()
+        QuestionsGUI GUI = new QuestionsBuilder()
         .setPlayer(player)
         .setSuper("Question time")
         .setImagePath("img/welcome.jpg")
         .addQuestionList(myQuestions)
-        .addOptionList(myOptions);
-        QuestionsGUI GUI = builder.build();
+        .addOptionList(myOptions)
+        .build();
         GUI.ifDone();
         String[] myAnswers = GUI.getAnswers();
         for (int i = 0; i < myAnswers.length; i++){

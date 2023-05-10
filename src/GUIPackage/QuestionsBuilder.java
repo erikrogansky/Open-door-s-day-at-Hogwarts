@@ -20,7 +20,7 @@ public class QuestionsBuilder extends Builder implements BuilderInterface {
      * @param myQuestions the questions
      * @return the builder
      */
-    public QuestionsBuilder addQuestionList(String myQuestions[]) {
+    public QuestionsBuilder addQuestionList(String[] myQuestions) {
         this.myQuestions = myQuestions;
         return this;
     }
@@ -29,7 +29,7 @@ public class QuestionsBuilder extends Builder implements BuilderInterface {
      * @param myOptions the options
      * @return the builder
      */
-    public QuestionsBuilder addOptionList(String myOptions[][]) {
+    public QuestionsBuilder addOptionList(String[][] myOptions) {
         this.myOptions = myOptions;
         return this;
     }

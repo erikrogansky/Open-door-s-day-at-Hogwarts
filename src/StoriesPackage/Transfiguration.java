@@ -29,37 +29,34 @@ public class Transfiguration extends Story {
         .setSuper("Welcome to the Transfiguration classroom")
         .setImagePath("img/transfiguration.png")
         .build();
-        Thread storyThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                story = "<html><div style='text-align:center'>Welcome to the Transfiguration classroom, young " + player.getGender('s') + ". I am Professor McGonagall, <br> and I am the head of the Transfiguration department at Hogwarts.<br>" +
-                        "<br>" +
-                        "Transfiguration is a complex branch of magic that involves transforming one object into another. It requires precision, <br> skill, and a deep understanding of the laws of magic. And let me tell you, it is not a subject for the faint-hearted.<br>" +
-                        "<br>" +
-                        "Here in my classroom, we focus on developing your abilities to transform objects into <br> animals or even completely different objects. You will learn how to transfigure a teapot into a tortoise <br> or a rat into a snuffbox. But beware, this is not a subject for those who lack discipline or patience.<br>" +
-                        "<br>" +
-                        "Transfiguration requires hours of practice and rigorous attention to detail. Every movement of your wand and every <br> incantation you utter must be precise. One wrong word, one flick of the wrist, and the consequences could be disastrous.<br>" +
-                        "<br>" +
-                        "But don't let that intimidate you. With hard work and dedication, you too can master <br> the art of Transfiguration. And once you do, the possibilities are endless. You can turn a rock into a bird, <br> a table into a human, and even make objects disappear altogether.<br>" +
-                        "<br>" +
-                        "But remember, with great power comes great responsibility. Transfiguration is not to be taken <br> lightly. It is a powerful branch of magic that must be used wisely and with caution.<br>" +
-                        "<br>" +
-                        "So, if you're up for the challenge and are willing to put in the effort, then welcome to my classroom. But be warned, <br> I have high expectations for my students. I expect nothing less than the best from each and every one of you.</div></html>";
-                while (i < story.length() && done == null) {
-                    char character = story.charAt(i);
-                    if (!GUI.getPause()) {
-                        string_builder += character;
-                        GUI.printStory(string_builder);
-                        i++;
-                    }
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Thread storyThread = new Thread(() -> {
+            story = "<html><div style='text-align:center'>Welcome to the Transfiguration classroom, young " + player.getGender('s') + ". I am Professor McGonagall, <br> and I am the head of the Transfiguration department at Hogwarts.<br>" +
+                    "<br>" +
+                    "Transfiguration is a complex branch of magic that involves transforming one object into another. It requires precision, <br> skill, and a deep understanding of the laws of magic. And let me tell you, it is not a subject for the faint-hearted.<br>" +
+                    "<br>" +
+                    "Here in my classroom, we focus on developing your abilities to transform objects into <br> animals or even completely different objects. You will learn how to transfigure a teapot into a tortoise <br> or a rat into a snuffbox. But beware, this is not a subject for those who lack discipline or patience.<br>" +
+                    "<br>" +
+                    "Transfiguration requires hours of practice and rigorous attention to detail. Every movement of your wand and every <br> incantation you utter must be precise. One wrong word, one flick of the wrist, and the consequences could be disastrous.<br>" +
+                    "<br>" +
+                    "But don't let that intimidate you. With hard work and dedication, you too can master <br> the art of Transfiguration. And once you do, the possibilities are endless. You can turn a rock into a bird, <br> a table into a human, and even make objects disappear altogether.<br>" +
+                    "<br>" +
+                    "But remember, with great power comes great responsibility. Transfiguration is not to be taken <br> lightly. It is a powerful branch of magic that must be used wisely and with caution.<br>" +
+                    "<br>" +
+                    "So, if you're up for the challenge and are willing to put in the effort, then welcome to my classroom. But be warned, <br> I have high expectations for my students. I expect nothing less than the best from each and every one of you.</div></html>";
+            while (i < story.length() && done == null) {
+                char character = story.charAt(i);
+                if (!GUI.getPause()) {
+                    string_builder += character;
+                    GUI.printStory(string_builder);
+                    i++;
                 }
-                GUI.setReadWhole();
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            GUI.setReadWhole();
         });
         storyThread.start();
         GUI.ifDone();

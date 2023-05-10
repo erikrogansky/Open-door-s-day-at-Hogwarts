@@ -31,7 +31,7 @@ public class Game implements Serializable {
     private Player player;
 
     /**
-     * This constructor is used to load or create a new game. To decide which one it is, it uses {@param newGame} parameter.
+     * This constructor is used to load or create a new game. To decide which one it is, it uses newGame parameter.
      * It uses a try-catch and if-condition to test if the new game should be created or an old one can be loaded.
      * If a new game should be created {@exception NewGameException} is thrown to execute the code in the catch part which catches {@exception FileNotFoundException}, {@exception InvalidClassException} and {@exception NewGameException}.
      * Then a new game is set and automatically saved by calling {@link #save()}. After all that {@link #play()} method is executed.
@@ -60,7 +60,7 @@ public class Game implements Serializable {
         play();
     }
     /**
-     * This constructor is simply used play the game with the {@link Player} object passed to it.
+     * This constructor is simply used to play the game with the {@link Player} object passed to it.
      * @param player is there just to assign the player, and it's login.
      * @throws IOException is thrown if the file cannot be loaded
      * @throws ClassNotFoundException is thrown if the file cannot be found
@@ -73,7 +73,7 @@ public class Game implements Serializable {
         play();
     }
     /**
-     * This method is used to manage the actual "playing" the game. It uses autosave principle as it calls {@link #save()} method each time when the current step is finished.
+     * This method is used to manage the actual "playing" the game. It uses auto-save principle as it calls {@link #save()} method each time when the current step is finished.
      * If the {@link Plan#getCurrent()} is less than 8, it calls {@link Story#playStory(Player)} method which executes the {@link Story} at that index.
      * If the {@link Plan#getCurrent()} is equal to 8, it creates {@link Questions} class which creates the quiz.
      * If the {@link Plan#getCurrent()} is equal to 9, it creates {@link Stats} class which displays the statistics.
@@ -112,7 +112,6 @@ public class Game implements Serializable {
             }
         }
     }
-
     /**
      * This method from {@link Serializable} interface is used to save the game.
      * @throws IOException is thrown if the file cannot be saved
@@ -125,6 +124,7 @@ public class Game implements Serializable {
 
     /**
      * This method from {@link Serializable} interface is used to load the game.
+     * After loading {@link #player} and {@link #login} are assigned.
      * @throws ClassNotFoundException is thrown if the file cannot be found
      * @throws IOException is thrown if the file cannot be loaded
      */

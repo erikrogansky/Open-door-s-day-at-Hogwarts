@@ -37,7 +37,6 @@ public class Menu extends JDialog {
 
         this.player = player;
 
-        final String[] bcg_dir = {"img/setupG.jpg", "img/setupR.jpg", "img/setupH.jpg", "img/setupS.jpg", "img/setup.jpg"};
         final int[] i = {4};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), Color.BLACK};
@@ -47,7 +46,6 @@ public class Menu extends JDialog {
             case "Ravenclaw" -> i[0] = 1;
             case "Hufflepuff" -> i[0] = 2;
             case "Slytherin" -> i[0] = 3;
-            default -> i[0] = 4;
         }
 
         JPanel panel = new JPanel() {
@@ -56,8 +54,6 @@ public class Menu extends JDialog {
                 super.paintComponent(g);
                 ImageIcon image = new ImageIcon("img/menuimg.jpg");
                 Image img = image.getImage();
-//                int imgWidth = img.getWidth(null);
-//                int imgHeight = img.getHeight(null);
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
         };
@@ -115,12 +111,7 @@ public class Menu extends JDialog {
         resume.setVerticalAlignment(JButton.CENTER);
         resume.setBackground(houseColor[i[0]]);
         resume.setForeground(bcgColor[i[0]]);
-        resume.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        resume.addActionListener(e -> dispose());
         JPanel resumePanel = new JPanel();
         resumePanel.setOpaque(false);
         resumePanel.add(resume);
@@ -135,29 +126,19 @@ public class Menu extends JDialog {
         newGame.setVerticalAlignment(JButton.CENTER);
         newGame.setBackground(bcgColor[i[0]]);
         newGame.setForeground(houseColor[i[0]]);
-        newGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                setExit();
-                Thread newGameThread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        StartupGUI start = new StartupGUI();
-                        try {
-                            new Game(start.getLogin(), start.getBool());
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (ClassNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-                // Start the thread
-                newGameThread.start();
-            }
+        newGame.addActionListener(e -> {
+            dispose();
+            setExit();
+            Thread newGameThread = new Thread(() -> {
+                StartupGUI start = new StartupGUI();
+                try {
+                    new Game(start.getLogin(), start.getBool());
+                } catch (IOException | ClassNotFoundException | InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            // Start the thread
+            newGameThread.start();
         });
         JPanel newGamePanel = new JPanel();
         newGamePanel.setOpaque(false);
@@ -172,41 +153,27 @@ public class Menu extends JDialog {
         changePlayer.setVerticalAlignment(JButton.CENTER);
         changePlayer.setBackground(bcgColor[i[0]]);
         changePlayer.setForeground(houseColor[i[0]]);
-        changePlayer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                setExit();
-                Thread changePlayerThreat = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        PlayerSetup playerSetup = new PlayerSetup();
-                        try {
-                            playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
-                            Player player = playerSetup.getPlayer();
-                            setPlayer(player, getPlayer().getLogin(), getPlayer().changePlan(), getPlayer().getPoints());
-                            player.changePlan().reload(player.changePlan().getCurrent(), player.changePlan().getStory(player.changePlan().getCurrent()).reload());
-                        } catch (InstantiationException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (IllegalAccessException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        try {
-                            new Game(getPlayer());
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (ClassNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-                // Start the thread
-                changePlayerThreat.start();
-            }
+        changePlayer.addActionListener(e -> {
+            dispose();
+            setExit();
+            Thread changePlayerThreat = new Thread(() -> {
+                PlayerSetup playerSetup = new PlayerSetup();
+                try {
+                    playerSetup.set(getPlayer().getName(), getPlayer().getGender(), getPlayer().getHouse(), getPlayer().getInterests());
+                    Player player1 = playerSetup.getPlayer();
+                    setPlayer(player1, getPlayer().getLogin(), getPlayer().changePlan(), getPlayer().getPoints());
+                    player1.changePlan().reload(player1.changePlan().getCurrent(), player1.changePlan().getStory(player1.changePlan().getCurrent()).reload());
+                } catch (InstantiationException | IllegalAccessException | InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    new Game(getPlayer());
+                } catch (IOException | ClassNotFoundException | InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            // Start the thread
+            changePlayerThreat.start();
         });
         JPanel changePlayerPanel = new JPanel();
         changePlayerPanel.setOpaque(false);
@@ -221,36 +188,26 @@ public class Menu extends JDialog {
         changePlan.setVerticalAlignment(JButton.CENTER);
         changePlan.setBackground(bcgColor[i[0]]);
         changePlan.setForeground(houseColor[i[0]]);
-        changePlan.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                setExit();
-                Thread changePlanThreat = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            CreatePlan plan = new CreatePlan(player);
-                            plan.ifChanged();
-                            setPlayer(plan.getPlayer());
-                            getPlayer().changePlan().reload(0, null);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        try {
-                            new Game(getPlayer());
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (ClassNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-                // Start the thread
-                changePlanThreat.start();
-            }
+        changePlan.addActionListener(e -> {
+            dispose();
+            setExit();
+            Thread changePlanThreat = new Thread(() -> {
+                try {
+                    CreatePlan plan = new CreatePlan(player);
+                    plan.ifChanged();
+                    setPlayer(plan.getPlayer());
+                    getPlayer().changePlan().reload(0, null);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    new Game(getPlayer());
+                } catch (IOException | ClassNotFoundException | InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            // Start the thread
+            changePlanThreat.start();
         });
         JPanel changePlanPanel = new JPanel();
         changePlanPanel.setOpaque(false);
@@ -265,13 +222,10 @@ public class Menu extends JDialog {
         exit.setVerticalAlignment(JButton.CENTER);
         exit.setBackground(bcgColor[i[0]]);
         exit.setForeground(houseColor[i[0]]);
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                setExit();
-                System.exit(0);
-            }
+        exit.addActionListener(e -> {
+            dispose();
+            setExit();
+            System.exit(0);
         });
         JPanel exitPanel = new JPanel();
         exitPanel.setOpaque(false);

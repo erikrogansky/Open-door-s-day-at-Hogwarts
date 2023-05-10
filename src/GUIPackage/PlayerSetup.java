@@ -62,8 +62,6 @@ public class PlayerSetup extends JFrame {
                 super.paintComponent(g);
                 ImageIcon image = new ImageIcon(bcg_dir[i[0]]);
                 Image img = image.getImage();
-//                int imgWidth = img.getWidth(null);
-//                int imgHeight = img.getHeight(null);
                 g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
             }
         };
@@ -241,85 +239,72 @@ public class PlayerSetup extends JFrame {
         button.setPreferredSize(new Dimension(90, 35));
         button.setHorizontalAlignment(JButton.CENTER);
         button.setVerticalAlignment(JButton.CENTER);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (nameField.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Please enter a name", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (!option1.isSelected() && !option2.isSelected() && !option3.isSelected()) {
-                    JOptionPane.showMessageDialog(null, "Please select a gender", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (!option4.isSelected() && !option5.isSelected() && !option6.isSelected() && !option7.isSelected()) {
-                    JOptionPane.showMessageDialog(null, "Please select a house", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (max[0] < 7) {
-                    JOptionPane.showMessageDialog(null, "Please select exactly 7 interests", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                player = new Player();
-                player.setName(nameField.getText());
-                if (option1.isSelected())
-                    player.setGender("male");
-                else if (option2.isSelected())
-                    player.setGender("female");
-                else if (option3.isSelected())
-                    player.setGender("other");
-                if (option4.isSelected())
-                    player.setPreferred_house("Gryffindor");
-                else if (option5.isSelected())
-                    player.setPreferred_house("Ravenclaw");
-                else if (option6.isSelected())
-                    player.setPreferred_house("Hufflepuff");
-                else if (option7.isSelected())
-                    player.setPreferred_house("Slytherin");
-                String[] array = new String[7];
-                int help = 0;
-                for (JCheckBox checkbox : checkboxes) {
-                    if (checkbox.isSelected()) {
-                        array[help] = checkbox.getText();
-                        help++;
-                    }
-                }
-                if (help != 6){
-                    String[] temp = new String[help];
-                    System.arraycopy(array, 0, temp, 0, help);
-                    array = temp;
-                }
-                player.addInterests(array);
-                dispose();
+        button.addActionListener(e -> {
+            if (nameField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter a name", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+            if (!option1.isSelected() && !option2.isSelected() && !option3.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Please select a gender", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (!option4.isSelected() && !option5.isSelected() && !option6.isSelected() && !option7.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Please select a house", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (max[0] < 7) {
+                JOptionPane.showMessageDialog(null, "Please select exactly 7 interests", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            player = new Player();
+            player.setName(nameField.getText());
+            if (option1.isSelected())
+                player.setGender("male");
+            else if (option2.isSelected())
+                player.setGender("female");
+            else if (option3.isSelected())
+                player.setGender("other");
+            if (option4.isSelected())
+                player.setPreferred_house("Gryffindor");
+            else if (option5.isSelected())
+                player.setPreferred_house("Ravenclaw");
+            else if (option6.isSelected())
+                player.setPreferred_house("Hufflepuff");
+            else if (option7.isSelected())
+                player.setPreferred_house("Slytherin");
+            String[] array = new String[7];
+            int help = 0;
+            for (JCheckBox checkbox : checkboxes) {
+                if (checkbox.isSelected()) {
+                    array[help] = checkbox.getText();
+                    help++;
+                }
+            }
+            if (help != 6){
+                String[] temp = new String[help];
+                System.arraycopy(array, 0, temp, 0, help);
+                array = temp;
+            }
+            player.addInterests(array);
+            dispose();
         });
 
         JButton back = new JButton("Back");
         back.setPreferredSize(new Dimension(90, 35));
         back.setHorizontalAlignment(JButton.CENTER);
         back.setVerticalAlignment(JButton.CENTER);
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                Thread newGameThread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        StartupGUI start = new StartupGUI();
-                        try {
-                            new Game(start.getLogin(), start.getBool());
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (ClassNotFoundException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-                // Start the thread
-                newGameThread.start();
-            }
+        back.addActionListener(e -> {
+            dispose();
+            Thread newGameThread = new Thread(() -> {
+                StartupGUI start = new StartupGUI();
+                try {
+                    new Game(start.getLogin(), start.getBool());
+                } catch (IOException | InterruptedException | ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            // Start the thread
+            newGameThread.start();
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
@@ -331,123 +316,115 @@ public class PlayerSetup extends JFrame {
         panel.add(everythingPanel, BorderLayout.NORTH);
 
 
-        option4.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    i[0] = 0;
-                    title.setForeground(houseColor[i[0]]);
-                    nameTitle.setForeground(houseColor[i[0]]);
-                    genderTitle.setForeground(houseColor[i[0]]);
-                    houseTitle.setForeground(houseColor[i[0]]);
-                    interestTitle.setForeground(houseColor[i[0]]);
-                    for (JCheckBox checkbox : checkboxes) {
-                        checkbox.setForeground(houseColor[i[0]]);
-                    }
-                    option1.setForeground(houseColor[i[0]]);
-                    option2.setForeground(houseColor[i[0]]);
-                    option3.setForeground(houseColor[i[0]]);
-                    option4.setForeground(houseColor[i[0]]);
-                    option5.setForeground(houseColor[i[0]]);
-                    option6.setForeground(houseColor[i[0]]);
-                    option7.setForeground(houseColor[i[0]]);
-                    button.setForeground(bcgColor[i[0]]);
-                    button.setBackground(houseColor[i[0]]);
-                    back.setForeground(bcgColor[i[0]]);
-                    back.setBackground(houseColor[i[0]]);
-                    nameField.setForeground(bcgColor[i[0]]);
-                    nameField.setBackground(houseColor[i[0]]);
-                    repaint();
+        option4.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                i[0] = 0;
+                title.setForeground(houseColor[i[0]]);
+                nameTitle.setForeground(houseColor[i[0]]);
+                genderTitle.setForeground(houseColor[i[0]]);
+                houseTitle.setForeground(houseColor[i[0]]);
+                interestTitle.setForeground(houseColor[i[0]]);
+                for (JCheckBox checkbox : checkboxes) {
+                    checkbox.setForeground(houseColor[i[0]]);
                 }
+                option1.setForeground(houseColor[i[0]]);
+                option2.setForeground(houseColor[i[0]]);
+                option3.setForeground(houseColor[i[0]]);
+                option4.setForeground(houseColor[i[0]]);
+                option5.setForeground(houseColor[i[0]]);
+                option6.setForeground(houseColor[i[0]]);
+                option7.setForeground(houseColor[i[0]]);
+                button.setForeground(bcgColor[i[0]]);
+                button.setBackground(houseColor[i[0]]);
+                back.setForeground(bcgColor[i[0]]);
+                back.setBackground(houseColor[i[0]]);
+                nameField.setForeground(bcgColor[i[0]]);
+                nameField.setBackground(houseColor[i[0]]);
+                repaint();
             }
         });
 
-        option5.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    i[0] = 1;
-                    title.setForeground(houseColor[i[0]]);
-                    nameTitle.setForeground(houseColor[i[0]]);
-                    genderTitle.setForeground(houseColor[i[0]]);
-                    houseTitle.setForeground(houseColor[i[0]]);
-                    interestTitle.setForeground(houseColor[i[0]]);
-                    for (JCheckBox checkbox : checkboxes) {
-                        checkbox.setForeground(houseColor[i[0]]);
-                    }
-                    option1.setForeground(houseColor[i[0]]);
-                    option2.setForeground(houseColor[i[0]]);
-                    option3.setForeground(houseColor[i[0]]);
-                    option4.setForeground(houseColor[i[0]]);
-                    option5.setForeground(houseColor[i[0]]);
-                    option6.setForeground(houseColor[i[0]]);
-                    option7.setForeground(houseColor[i[0]]);
-                    button.setForeground(bcgColor[i[0]]);
-                    button.setBackground(houseColor[i[0]]);
-                    back.setForeground(bcgColor[i[0]]);
-                    back.setBackground(houseColor[i[0]]);
-                    nameField.setForeground(bcgColor[i[0]]);
-                    nameField.setBackground(houseColor[i[0]]);
-                    repaint();
+        option5.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                i[0] = 1;
+                title.setForeground(houseColor[i[0]]);
+                nameTitle.setForeground(houseColor[i[0]]);
+                genderTitle.setForeground(houseColor[i[0]]);
+                houseTitle.setForeground(houseColor[i[0]]);
+                interestTitle.setForeground(houseColor[i[0]]);
+                for (JCheckBox checkbox : checkboxes) {
+                    checkbox.setForeground(houseColor[i[0]]);
                 }
+                option1.setForeground(houseColor[i[0]]);
+                option2.setForeground(houseColor[i[0]]);
+                option3.setForeground(houseColor[i[0]]);
+                option4.setForeground(houseColor[i[0]]);
+                option5.setForeground(houseColor[i[0]]);
+                option6.setForeground(houseColor[i[0]]);
+                option7.setForeground(houseColor[i[0]]);
+                button.setForeground(bcgColor[i[0]]);
+                button.setBackground(houseColor[i[0]]);
+                back.setForeground(bcgColor[i[0]]);
+                back.setBackground(houseColor[i[0]]);
+                nameField.setForeground(bcgColor[i[0]]);
+                nameField.setBackground(houseColor[i[0]]);
+                repaint();
             }
         });
 
-        option6.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    i[0] = 2;
-                    title.setForeground(houseColor[i[0]]);
-                    nameTitle.setForeground(houseColor[i[0]]);
-                    genderTitle.setForeground(houseColor[i[0]]);
-                    houseTitle.setForeground(houseColor[i[0]]);
-                    interestTitle.setForeground(houseColor[i[0]]);
-                    for (JCheckBox checkbox : checkboxes) {
-                        checkbox.setForeground(houseColor[i[0]]);
-                    }
-                    option1.setForeground(houseColor[i[0]]);
-                    option2.setForeground(houseColor[i[0]]);
-                    option3.setForeground(houseColor[i[0]]);
-                    option4.setForeground(houseColor[i[0]]);
-                    option5.setForeground(houseColor[i[0]]);
-                    option6.setForeground(houseColor[i[0]]);
-                    option7.setForeground(houseColor[i[0]]);
-                    button.setForeground(bcgColor[i[0]]);
-                    button.setBackground(houseColor[i[0]]);
-                    back.setForeground(bcgColor[i[0]]);
-                    back.setBackground(houseColor[i[0]]);
-                    nameField.setForeground(bcgColor[i[0]]);
-                    nameField.setBackground(houseColor[i[0]]);
-                    repaint();
+        option6.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                i[0] = 2;
+                title.setForeground(houseColor[i[0]]);
+                nameTitle.setForeground(houseColor[i[0]]);
+                genderTitle.setForeground(houseColor[i[0]]);
+                houseTitle.setForeground(houseColor[i[0]]);
+                interestTitle.setForeground(houseColor[i[0]]);
+                for (JCheckBox checkbox : checkboxes) {
+                    checkbox.setForeground(houseColor[i[0]]);
                 }
+                option1.setForeground(houseColor[i[0]]);
+                option2.setForeground(houseColor[i[0]]);
+                option3.setForeground(houseColor[i[0]]);
+                option4.setForeground(houseColor[i[0]]);
+                option5.setForeground(houseColor[i[0]]);
+                option6.setForeground(houseColor[i[0]]);
+                option7.setForeground(houseColor[i[0]]);
+                button.setForeground(bcgColor[i[0]]);
+                button.setBackground(houseColor[i[0]]);
+                back.setForeground(bcgColor[i[0]]);
+                back.setBackground(houseColor[i[0]]);
+                nameField.setForeground(bcgColor[i[0]]);
+                nameField.setBackground(houseColor[i[0]]);
+                repaint();
             }
         });
 
-        option7.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    i[0] = 3;
-                    title.setForeground(houseColor[i[0]]);
-                    nameTitle.setForeground(houseColor[i[0]]);
-                    genderTitle.setForeground(houseColor[i[0]]);
-                    houseTitle.setForeground(houseColor[i[0]]);
-                    interestTitle.setForeground(houseColor[i[0]]);
-                    for (JCheckBox checkbox : checkboxes) {
-                        checkbox.setForeground(houseColor[i[0]]);
-                    }
-                    option1.setForeground(houseColor[i[0]]);
-                    option2.setForeground(houseColor[i[0]]);
-                    option3.setForeground(houseColor[i[0]]);
-                    option4.setForeground(houseColor[i[0]]);
-                    option5.setForeground(houseColor[i[0]]);
-                    option6.setForeground(houseColor[i[0]]);
-                    option7.setForeground(houseColor[i[0]]);
-                    button.setForeground(bcgColor[i[0]]);
-                    button.setBackground(houseColor[i[0]]);
-                    back.setForeground(bcgColor[i[0]]);
-                    back.setBackground(houseColor[i[0]]);
-                    nameField.setForeground(bcgColor[i[0]]);
-                    nameField.setBackground(houseColor[i[0]]);
-                    repaint();
+        option7.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                i[0] = 3;
+                title.setForeground(houseColor[i[0]]);
+                nameTitle.setForeground(houseColor[i[0]]);
+                genderTitle.setForeground(houseColor[i[0]]);
+                houseTitle.setForeground(houseColor[i[0]]);
+                interestTitle.setForeground(houseColor[i[0]]);
+                for (JCheckBox checkbox : checkboxes) {
+                    checkbox.setForeground(houseColor[i[0]]);
                 }
+                option1.setForeground(houseColor[i[0]]);
+                option2.setForeground(houseColor[i[0]]);
+                option3.setForeground(houseColor[i[0]]);
+                option4.setForeground(houseColor[i[0]]);
+                option5.setForeground(houseColor[i[0]]);
+                option6.setForeground(houseColor[i[0]]);
+                option7.setForeground(houseColor[i[0]]);
+                button.setForeground(bcgColor[i[0]]);
+                button.setBackground(houseColor[i[0]]);
+                back.setForeground(bcgColor[i[0]]);
+                back.setBackground(houseColor[i[0]]);
+                nameField.setForeground(bcgColor[i[0]]);
+                nameField.setBackground(houseColor[i[0]]);
+                repaint();
             }
         });
 
@@ -461,96 +438,87 @@ public class PlayerSetup extends JFrame {
         JCheckBox[] interestOptions = {checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14};
         final int[] interestIndex = {0};
         for (JCheckBox checkbox : interestOptions) {
-            checkbox.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    genderOptions[genderIndex[0]].setOpaque(false);
-                    genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
-                    genderOptions[genderIndex[0]].repaint();
-                    houseOptions[houseIndex[0]].setOpaque(false);
-                    houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
-                    houseOptions[houseIndex[0]].repaint();
-                    nameField.setFocusable(false);
-                    interestOptions[interestIndex[0]].setOpaque(false);
-                    interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
-                    interestOptions[interestIndex[0]].repaint();
-                    interestPanel.requestFocus();
-                    for (int i = 0; i<13; i++) {
-                        if (checkbox == interestOptions[i]) {
-                            interestIndex[0] = i;
-                            break;
-                        }
+            checkbox.addActionListener(e -> {
+                genderOptions[genderIndex[0]].setOpaque(false);
+                genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                genderOptions[genderIndex[0]].repaint();
+                houseOptions[houseIndex[0]].setOpaque(false);
+                houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                houseOptions[houseIndex[0]].repaint();
+                nameField.setFocusable(false);
+                interestOptions[interestIndex[0]].setOpaque(false);
+                interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                interestOptions[interestIndex[0]].repaint();
+                interestPanel.requestFocus();
+                for (int i1 = 0; i1 <13; i1++) {
+                    if (checkbox == interestOptions[i1]) {
+                        interestIndex[0] = i1;
+                        break;
                     }
-                    interestOptions[interestIndex[0]].setOpaque(true);
-                    interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
-                    interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
-                    interestOptions[interestIndex[0]].repaint();
-                    if (checkbox.isSelected()) {
-                        max[0]++;
-                        if (max[0] > 7){
-                            checkbox.setSelected(false);
-                            max[0]--;
-                        }
-                    } else
-                        max[0]--;
-                    interestTitle.setText("Pick your interests " + max[0] +"/7:");
                 }
+                interestOptions[interestIndex[0]].setOpaque(true);
+                interestOptions[interestIndex[0]].setForeground(bcgColor[i[0]]);
+                interestOptions[interestIndex[0]].setBackground(houseColor[i[0]]);
+                interestOptions[interestIndex[0]].repaint();
+                if (checkbox.isSelected()) {
+                    max[0]++;
+                    if (max[0] > 7){
+                        checkbox.setSelected(false);
+                        max[0]--;
+                    }
+                } else
+                    max[0]--;
+                interestTitle.setText("Pick your interests " + max[0] +"/7:");
             });
         }
         for (JRadioButton btn: houseOptions) {
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    genderOptions[genderIndex[0]].setOpaque(false);
-                    genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
-                    genderOptions[genderIndex[0]].repaint();
-                    houseOptions[houseIndex[0]].setOpaque(false);
-                    houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
-                    houseOptions[houseIndex[0]].repaint();
-                    nameField.setFocusable(false);
-                    interestOptions[interestIndex[0]].setOpaque(false);
-                    interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
-                    interestOptions[interestIndex[0]].repaint();
-                    housePanel.requestFocus();
-                    for (int i = 0; i<13; i++) {
-                        if (btn == houseOptions[i]) {
-                            houseIndex[0] = i;
-                            break;
-                        }
+            btn.addActionListener(e -> {
+                genderOptions[genderIndex[0]].setOpaque(false);
+                genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                genderOptions[genderIndex[0]].repaint();
+                houseOptions[houseIndex[0]].setOpaque(false);
+                houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                houseOptions[houseIndex[0]].repaint();
+                nameField.setFocusable(false);
+                interestOptions[interestIndex[0]].setOpaque(false);
+                interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                interestOptions[interestIndex[0]].repaint();
+                housePanel.requestFocus();
+                for (int i12 = 0; i12 <13; i12++) {
+                    if (btn == houseOptions[i12]) {
+                        houseIndex[0] = i12;
+                        break;
                     }
-                    houseOptions[houseIndex[0]].setOpaque(true);
-                    houseOptions[houseIndex[0]].setForeground(bcgColor[i[0]]);
-                    houseOptions[houseIndex[0]].setBackground(houseColor[i[0]]);
-                    houseOptions[houseIndex[0]].repaint();
                 }
+                houseOptions[houseIndex[0]].setOpaque(true);
+                houseOptions[houseIndex[0]].setForeground(bcgColor[i[0]]);
+                houseOptions[houseIndex[0]].setBackground(houseColor[i[0]]);
+                houseOptions[houseIndex[0]].repaint();
             });
         }
         for (JRadioButton btn: genderOptions) {
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    genderOptions[genderIndex[0]].setOpaque(false);
-                    genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
-                    genderOptions[genderIndex[0]].repaint();
-                    houseOptions[houseIndex[0]].setOpaque(false);
-                    houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
-                    houseOptions[houseIndex[0]].repaint();
-                    nameField.setFocusable(false);
-                    interestOptions[interestIndex[0]].setOpaque(false);
-                    interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
-                    interestOptions[interestIndex[0]].repaint();
-                    genderPanel.requestFocus();
-                    for (int i = 0; i<13; i++) {
-                        if (btn == genderOptions[i]) {
-                            genderIndex[0] = i;
-                            break;
-                        }
+            btn.addActionListener(e -> {
+                genderOptions[genderIndex[0]].setOpaque(false);
+                genderOptions[genderIndex[0]].setForeground(houseColor[i[0]]);
+                genderOptions[genderIndex[0]].repaint();
+                houseOptions[houseIndex[0]].setOpaque(false);
+                houseOptions[houseIndex[0]].setForeground(houseColor[i[0]]);
+                houseOptions[houseIndex[0]].repaint();
+                nameField.setFocusable(false);
+                interestOptions[interestIndex[0]].setOpaque(false);
+                interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
+                interestOptions[interestIndex[0]].repaint();
+                genderPanel.requestFocus();
+                for (int i13 = 0; i13 <13; i13++) {
+                    if (btn == genderOptions[i13]) {
+                        genderIndex[0] = i13;
+                        break;
                     }
-                    genderOptions[genderIndex[0]].setOpaque(true);
-                    genderOptions[genderIndex[0]].setForeground(bcgColor[i[0]]);
-                    genderOptions[genderIndex[0]].setBackground(houseColor[i[0]]);
-                    genderOptions[genderIndex[0]].repaint();
                 }
+                genderOptions[genderIndex[0]].setOpaque(true);
+                genderOptions[genderIndex[0]].setForeground(bcgColor[i[0]]);
+                genderOptions[genderIndex[0]].setBackground(houseColor[i[0]]);
+                genderOptions[genderIndex[0]].repaint();
             });
         }
         interestPanel.setFocusable(true);
@@ -894,21 +862,16 @@ public class PlayerSetup extends JFrame {
      */
     public void set(String name, String gender, String house, String[] interests) {
         this.nameField.setText(name);
-        if (gender.equals("Wizard")) {
-            option1.setSelected(true);
-        } else if (gender.equals("Witch")) {
-            option2.setSelected(true);
-        } else {
-            option3.setSelected(true);
+        switch (gender) {
+            case "Wizard" -> option1.setSelected(true);
+            case "Witch" -> option2.setSelected(true);
+            default -> option3.setSelected(true);
         }
-        if (house.equals("Gryffindor")) {
-            option4.setSelected(true);
-        } else if (house.equals("Ravenclaw")) {
-            option5.setSelected(true);
-        } else if (house.equals("Hufflepuff")) {
-            option6.setSelected(true);
-        } else {
-            option7.setSelected(true);
+        switch (house) {
+            case "Gryffindor" -> option4.setSelected(true);
+            case "Ravenclaw" -> option5.setSelected(true);
+            case "Hufflepuff" -> option6.setSelected(true);
+            default -> option7.setSelected(true);
         }
 
         for (JCheckBox checkbox : checkboxes) {

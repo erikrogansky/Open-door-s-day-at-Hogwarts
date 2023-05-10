@@ -25,7 +25,7 @@ public class Stats {
     public Stats(Player player) throws InterruptedException {
         this.player = player;
         this.player.evaluateRewards();
-        StatsBuilder builder = new StatsBuilder()
+        StatsGUI GUI = new StatsBuilder()
         .setSuper("Statistics")
         .setPlayer(player)
         .setName(player.getName())
@@ -33,8 +33,8 @@ public class Stats {
         .setHouse(player.getHouse())
         .setInterests(player.getInterests())
         .setPoints(player.getPoints())
-        .setRewards(player.getRewards());
-        StatsGUI GUI = builder.build();
+        .setRewards(player.getRewards())
+        .build();
         GUI.ifDone();
         this.done = true;
     }

@@ -5,8 +5,6 @@ import GamePackage.Waiter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -45,7 +43,8 @@ public class StatsGUI extends JFrame{
             case "Ravenclaw" -> i[0] = 1;
             case "Hufflepuff" -> i[0] = 2;
             case "Slytherin" -> i[0] = 3;
-            default -> i[0] = 4;
+            default -> {
+            }
         }
 
         JPanel panel = new JPanel() {
@@ -80,16 +79,13 @@ public class StatsGUI extends JFrame{
         menuButton.setPreferredSize(new Dimension(40, 40));
         menuButton.setHorizontalAlignment(JButton.CENTER);
         menuButton.setVerticalAlignment(JButton.CENTER);
-        menuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(player, StatsGUI.this);
-                try {
-                    if (menu.getExit() == true)
-                        dispose();
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
+        menuButton.addActionListener(e -> {
+            Menu menu1 = new Menu(player, StatsGUI.this);
+            try {
+                if (menu1.getExit())
+                    dispose();
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
@@ -170,22 +166,19 @@ public class StatsGUI extends JFrame{
         interestLabel.setForeground(houseColor[i[0]]);
         statsPanel.add(interestLabel);
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int j = 0;
-                while (true) {
-                    interestLabel.setText(builder.interests[j]);
-                    interestLabel.repaint();
-                    if (j == builder.interests.length - 1)
-                        j = 0;
-                    else
-                        j++;
-                    try {
-                        Thread.sleep(750);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+        Thread thread = new Thread(() -> {
+            int j = 0;
+            while (true) {
+                interestLabel.setText(builder.interests[j]);
+                interestLabel.repaint();
+                if (j == builder.interests.length - 1)
+                    j = 0;
+                else
+                    j++;
+                try {
+                    Thread.sleep(750);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -294,12 +287,9 @@ public class StatsGUI extends JFrame{
         button.setVerticalAlignment(JButton.CENTER);
         button.setForeground(bcgColor[i[0]]);
         button.setBackground(houseColor[i[0]]);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                done = true;
-            }
+        button.addActionListener(e -> {
+            dispose();
+            done = true;
         });
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);

@@ -183,7 +183,7 @@ public class Player implements Serializable {
     }
     /**
      * This method is to get the player's {@link #rewards}.
-     * @param c random object, which is not used, but is needed to differentiate between the {@link #getGender()} and {@link #getGender(Object)}.
+     * @param c random object, which is not used, but is needed to differentiate between this method and {@link #getGender()}.
      * @return the player's rewards array
      */
     public String getGender(Object c){
