@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2023-05-10">
-<meta name="description" content="declaration: package: Game, class: Stats">
+<meta name="description" content="declaration: package: GamePackage, class: Stats">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">Game</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">GamePackage</a></div>
 <h1 title="Class Stats" class="title">Class Stats</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">Game.Stats</div>
+<div class="inheritance">GamePackage.Stats</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -104,7 +104,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(Game.Player)" class="member-name-link">Stats</a><wbr>(<a href="Player.html" title="class in Game">Player</a>&nbsp;player)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(Game.Player)" class="member-name-link">Stats</a><wbr>(<a href="Player.html" title="class in GamePackage">Player</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color">
 <div class="block">In this constructor, the <code>player</code> is initialized, and the rewards are evaluated by calling <a href="Player.html#evaluateRewards()"><code>Player.evaluateRewards()</code></a> and added to the <code>player</code>.</div>
 </div>
@@ -125,7 +125,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ifDone()" class="member-name-link">ifDone</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This is a method that uses <a href="Waiter.html" title="class in Game"><code>Waiter</code></a> class to wait until everything in this class is done.</div>
+<div class="block">This is a method that uses <a href="Waiter.html" title="class in GamePackage"><code>Waiter</code></a> class to wait until everything in this class is done.</div>
 </div>
 </div>
 </div>
@@ -147,15 +147,15 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(Game.Player)">
 <h3>Stats</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Stats</span><wbr><span class="parameters">(<a href="Player.html" title="class in Game">Player</a>&nbsp;player)</span>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Stats</span><wbr><span class="parameters">(<a href="Player.html" title="class in GamePackage">Player</a>&nbsp;player)</span>
       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">In this constructor, the <code>player</code> is initialized, and the rewards are evaluated by calling <a href="Player.html#evaluateRewards()"><code>Player.evaluateRewards()</code></a> and added to the <code>player</code>.
- Then a new <a href="../GUI/StatsBuilder.html" title="class in GUI"><code>StatsBuilder</code></a> is created and is used to build the <a href="../GUI/StatsGUI.html" title="class in GUI"><code>StatsGUI</code></a>.</div>
+ Then a new <a href="../GUI/StatsBuilder.html" title="class in GUIPackage"><code>StatsBuilder</code></a> is created and is used to build the <a href="../GUI/StatsGUI.html" title="class in GUIPackage"><code>StatsGUI</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - the player</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - is thrown if there is a problem in <a href="Waiter.html" title="class in Game"><code>Waiter</code></a> class</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - is thrown if there is a problem in <a href="Waiter.html" title="class in GamePackage"><code>Waiter</code></a> class</dd>
 </dl>
 </section>
 </li>
@@ -172,12 +172,12 @@ loadScripts(document, 'script');</script>
 <h3>ifDone</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">ifDone</span>()
                throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">This is a method that uses <a href="Waiter.html" title="class in Game"><code>Waiter</code></a> class to wait until everything in this class is done.</div>
+<div class="block">This is a method that uses <a href="Waiter.html" title="class in GamePackage"><code>Waiter</code></a> class to wait until everything in this class is done.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the boolean value of <code>done</code></dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - is thrown if there is a problem in <a href="Waiter.html" title="class in Game"><code>Waiter</code></a> class</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - is thrown if there is a problem in <a href="Waiter.html" title="class in GamePackage"><code>Waiter</code></a> class</dd>
 </dl>
 </section>
 </li>
