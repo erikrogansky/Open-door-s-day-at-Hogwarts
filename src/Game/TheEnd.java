@@ -6,8 +6,17 @@ import GUI.TheEndGUI;
  * This class handles the ending GUI.
  */
 public class TheEnd {
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
     private Boolean done;
+    /**
+     * A variable to store the Boolean value that represents if the game should end or the player wants to move back to stats
+     */
     private boolean back_or_finish;
 
     /**

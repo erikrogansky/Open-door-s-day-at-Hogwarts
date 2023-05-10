@@ -8,15 +8,45 @@ import java.io.Serializable;
  * This class is used to work with a plan of a trip around Hogwarts.
  */
 public class Plan implements Serializable {
+    /**
+     * A variable to store welcome story
+     */
     private Story welcome = new Welcome();
+    /**
+     * A variable to store the first story of the plan
+     */
     private Story story1;
+    /**
+     * A variable to store the second story of the plan
+     */
     private Story story2;
+    /**
+     * A variable to store the third story of the plan
+     */
     private Story story3;
+    /**
+     * A variable to store the fourth story of the plan
+     */
     private Story story4;
+    /**
+     * A variable to store the fifth story of the plan
+     */
     private Story story5;
+    /**
+     * A variable to store the sixth story of the plan
+     */
     private Story story6;
+    /**
+     * A variable to store the seventh story of the plan
+     */
     private Story story7;
+    /**
+     * A variable to store the array of names of stories
+     */
     private String[] array;
+    /**
+     * A variable to store the current index of the story
+     */
     private int currentMinigame = 0;
 
     /**

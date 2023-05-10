@@ -21,7 +21,13 @@ import java.io.*;
 
 
 public class Game implements Serializable {
+    /**
+     * A variable to store the login info
+     */
     private String login;
+    /**
+     * A variable to store the player
+     */
     private Player player;
 
     /**
@@ -31,6 +37,9 @@ public class Game implements Serializable {
      * Then a new game is set and automatically saved by calling {@link #save()}. After all that {@link #play()} method is executed.
      * @param login is there to assign the login {@link String}.
      * @param newGame is there to check if a new game should be created, or it can be loaded.
+     * @throws IOException is thrown if the file cannot be loaded
+     * @throws ClassNotFoundException is thrown if the file cannot be found
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public Game(String login, Boolean newGame) throws IOException, ClassNotFoundException, InterruptedException {
         this.login = login;

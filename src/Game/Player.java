@@ -6,13 +6,37 @@ import java.io.Serializable;
  * This class stores the player's features, their plan, interests, points and rewards.
  */
 public class Player implements Serializable {
+    /**
+     * A variable to store the player's login
+     */
     private String login;
+    /**
+     * A variable to store the player's name
+     */
     private String name;
+    /**
+     * A variable to store the player's gender
+     */
     private String gender;
+    /**
+     * A variable to store the player's house
+     */
     private String preferred_house;
+    /**
+     * A variable to store the player's interests
+     */
     private String[] interests;
+    /**
+     * A variable to store the player's plan
+     */
     private Plan personal_plan;
+    /**
+     * A variable to store the player's points
+     */
     private int points = 0;
+    /**
+     * A variable to store the player's rewards
+     */
     private String[] rewards = null;
 
     /**

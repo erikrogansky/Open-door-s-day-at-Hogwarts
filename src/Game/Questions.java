@@ -8,14 +8,41 @@ import GUI.QuestionsGUI;
  */
 
 public class Questions {
+    /**
+     * A variable to store the player
+     */
     private Player player;
-    Boolean done;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
+    private Boolean done;
+    /**
+     * A variable to store all the story names
+     */
     private final String[] stories = {"Quidditch stadium - Rolanda Hooch","Transfiguration Classroom - Minerva McGonagall","Charms Classroom - Filius Flitwick","Hogwarts' Greenhouses - Pomona Sprout","Potions Classroom - Severus Snape","The Dark Forest - Remus Lupin","The Divination Classroom - Sybill Trelawney","Muggle Storage - Alecto Carrow","The Magical Creatures Forest - Rubeus Hagrid","The History Classroom - Cuthbert Binns", "Archaic Library - Bathsheda Babbling", "The Ghostly Hallways - Nearly Headless Nick", "The Alchemy Classroom - Albus Dumbledore", "The Library - Eleazar Fig"};
+    /**
+     * A variable to store all the questions
+     */
     private final String[] allQuestions = {"What is the name of the golden snitch's flight pattern?", "What is the most complex form of human Transfiguration?", "Which charm is used to mend broken objects?", "What is the most important ingredient in the Draught of Living Death?", "What potion is also known as the Draught of the Living Dead?", "What type of creature resides in the Forbidden Forest?", "What is the name of the divination method where the seer interprets the patterns of tea leaves?", "What is the name for a wizard who is born to non-magical parents?", "Which creature has a fatal attraction to shiny objects?", "What was the name of the first wizarding war against Voldemort?", "What is the name of the ancient runic alphabet used in the Wizarding World?", "What is the name for a wizard's ability to teleport themselves from one place to another?", "What is the ultimate goal of alchemy?", "What is the name for the study of the magical properties of objects?"};
+    /**
+     * A variable to store all the possible answers
+     */
     private final String[][] allOptions = {{"Zigzag", "Figure Eight", "W-Shaped"}, {"Vanishment", "Apparition", "Human Transfiguration"}, {"Reparo", "Wingardium Leviosa", "Accio"}, {"Flobberworm Mucus", "Wormwood", "Valerian Root"}, {"Amortentia", "Polyjuice Potion", "Draught of Living Death"}, {"Centaurs", "Merpeople", "Giants"}, {"Palmistry", "Tasseography", "Astrology"}, {"Squib", "Muggle-born", "Half-blood"}, {"Phoenix", "Hippogriff", "Niffler"}, {"The First Wizarding War", "The Battle of Hogwarts", "The War of the Roses"}, {"Elder Futhark", "Ogham", "Hieroglyphics"}, {"Disapparition", "Apparition", "Portkey"}, {"To transmute base metals into gold", "To create the philosopher's stone", "To achieve eternal life"}, {"Charms", "Transfiguration", "Enchantment"}};
+    /**
+     * A variable to store the correct answers
+     */
     private final String[] allCorrectAnswers = {"Figure Eight", "Human Transfiguration", "Reparo", "Wormwood", "Draught of Living Death", "Centaurs", "Tasseography", "Muggle-born", "Niffler", "The First Wizarding War", "Elder Futhark", "Apparition", "To achieve eternal life", "Enchantment"};
+    /**
+     * A variable to store the players questions according to the plan
+     */
     private String[] myQuestions = new String[8];
+    /**
+     * A variable to store the corresponding options
+     */
     private String[][] myOptions = new String[8][3];
+    /**
+     * A variable to store the corresponding correct answers
+     */
     private String[] myCorrectAnswers = new String[8];
 
     /**

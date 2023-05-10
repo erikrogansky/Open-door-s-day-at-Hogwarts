@@ -7,7 +7,13 @@ import GUI.StatsGUI;
  * This class handles the stats of the game.
  */
 public class Stats {
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
     private Boolean done;
 
     /**
