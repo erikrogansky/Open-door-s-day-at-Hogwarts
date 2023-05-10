@@ -14,8 +14,17 @@ import java.awt.event.KeyEvent;
  * In this class where a GUI with "the end" title is created.
  */
 public class TheEndGUI extends JFrame{
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
     private Boolean done;
+    /**
+     * A variable to store the Boolean value that represents if the player wants to end the game or go back to the stats
+     */
     private boolean back_or_finish;
 
     /**

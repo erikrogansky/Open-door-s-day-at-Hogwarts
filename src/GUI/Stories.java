@@ -14,10 +14,25 @@ import java.awt.event.KeyEvent;
  * In this class where a GUI with a story is created.
  */
 public final class Stories extends JFrame{
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
     private Boolean done;
+    /**
+     * A variable to store the Boolean value that represents if the whole story is read
+     */
     private Boolean readTheWholeStory = false;
+    /**
+     * A variable to store the story, and it's global, because it's necessary to change it from outside the constructor
+     */
     private JLabel story = new JLabel();
+    /**
+     * A variable to store the boolean value that represents if the story is paused
+     */
     private boolean pause = false;
 
     /**

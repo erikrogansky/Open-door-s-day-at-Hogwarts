@@ -12,7 +12,13 @@ import java.io.IOException;
  * In this class representing a GUI of a menu.
  */
 public class Menu extends JDialog {
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean to check if the parent window should be closed
+     */
     private Boolean exit;
 
     /**

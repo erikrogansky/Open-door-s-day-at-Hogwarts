@@ -14,12 +14,33 @@ import java.util.List;
  * In this class where a GUI is created where the user can customize their information.
  */
 public class PlayerSetup extends JFrame {
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the name field, so it can be filled from outside the constructor
+     */
     private JTextField nameField;
+    /**
+     * Variables to store the options, so that they can be marked from outside the constructor
+     */
     private JRadioButton option1, option2, option3, option4, option5, option6, option7;
+    /**
+     * Variables to store the checkboxes, so that they can be marked from outside the constructor
+     */
     private JCheckBox checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14;
+    /**
+     * Variables to store all the checkboxes in an array
+     */
     private JCheckBox[] checkboxes;
+    /**
+     * Variables to store the interest title. This is because it's changed from the outside the constructor when checkboxes are marked externally
+     */
     private JLabel interestTitle;
+    /**
+     * A variable to store the number of the checked checkboxes
+     */
     private final int[] max = {0};
 
     /**

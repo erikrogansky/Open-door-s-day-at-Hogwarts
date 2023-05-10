@@ -6,11 +6,29 @@ import Game.Player;
  * A builder class that is used to build a {@link StatsGUI} class
  */
 public class StatsBuilder extends Builder implements BuilderInterface {
+    /**
+     * A variable to store the player's name
+     */
     protected String name;
+    /**
+     * A variable to store the player's gender
+     */
     protected String gender;
+    /**
+     * A variable to store the player's house
+     */
     protected String house;
+    /**
+     * A variable to store the player's interests
+     */
     protected String[] interests;
+    /**
+     * A variable to store the player's points
+     */
     protected int points;
+    /**
+     * A variable to store the player's rewards
+     */
     protected String[] rewards;
     /**
      * A method to set the player

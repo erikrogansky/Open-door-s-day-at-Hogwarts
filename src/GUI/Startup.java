@@ -10,7 +10,13 @@ import java.awt.event.*;
  * In this class a login GUI is created.
  */
 public class Startup extends JFrame {
+    /**
+     * A variable to store the login
+     */
     private String login;
+    /**
+     * A variable to store the Boolean value that represents if the new game should be created
+     */
     private Boolean newGame;
 
     /**

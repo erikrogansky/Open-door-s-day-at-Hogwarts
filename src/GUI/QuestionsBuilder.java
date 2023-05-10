@@ -6,7 +6,13 @@ import Game.Player;
  * A builder class that is used to build a {@link QuestionsGUI} class
  */
 public class QuestionsBuilder extends Builder implements BuilderInterface {
+    /**
+     * A variable to store the chosen questions
+     */
     protected String[] myQuestions;
+    /**
+     * A variable to store the chosen options
+     */
     protected String[][] myOptions;
 
     /**

@@ -13,8 +13,17 @@ import java.util.List;
  * In this class where a quiz GUI is created.
  */
 public class QuestionsGUI extends JFrame {
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
     private Boolean done;
+    /**
+     * A variable to store the answers selected by the player
+     */
     private String[] myAnswers = new String[8];
 
     /**

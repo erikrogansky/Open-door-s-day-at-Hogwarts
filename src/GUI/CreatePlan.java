@@ -15,8 +15,17 @@ import java.util.Arrays;
  * In this class where a GUI is created where the user can create a plan for their trip around Hogwarts.
  */
 public class CreatePlan extends JFrame {
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the plan
+     */
     private Plan plan;
+    /**
+     * A variable to store the Boolean to check if some changes were made
+     */
     private Boolean changed;
 
     /**

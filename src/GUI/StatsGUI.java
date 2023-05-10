@@ -14,9 +14,14 @@ import java.awt.event.KeyEvent;
  * In this class where a GUI with statistics is created.
  */
 public class StatsGUI extends JFrame{
+    /**
+     * A variable to store the player
+     */
     private Player player;
+    /**
+     * A variable to store the Boolean value that represents if all the actions in this class are done
+     */
     private Boolean done;
-    private String[] myAnswers = new String[8];
 
     /**
      * This constructor creates a GUI that displays the players statistics.
