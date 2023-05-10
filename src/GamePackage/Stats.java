@@ -26,6 +26,8 @@ public class Stats {
         this.player = player;
         this.player.evaluateRewards();
         StatsBuilder builder = new StatsBuilder()
+        .setSuper("Statistics")
+        .setPlayer(player)
         .setName(player.getName())
         .setGender(player.getGender())
         .setHouse(player.getHouse())
