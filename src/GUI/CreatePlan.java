@@ -18,15 +18,22 @@ public class CreatePlan extends JFrame {
     private Player player;
     private Plan plan;
     private Boolean changed;
+
+    /**
+     * This constructor actually creates the GUI with the JComboBoxes for the player to choose the plan.
+     * After submitting, 2 arrays are created. One is filled with String names of the stories, and the other is filled with the
+     * actual created {@link Story} objects. The player can use a keyboard or a mouse to work with this GUI.
+     * @param player the player
+     */
     public CreatePlan(Player player) {
-        super("Let's create a plan for your trip around Hogwarts");
+        super("Let's create a plan");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700); //750x525
 
         this.player = player;
 
-        final String[] bcg_dir = {"img/setupG.jpg", "img/setupR.jpg", "img/setupH.jpg", "img/setupS.jpg", "img/setup.jpg"};
         final int[][] i = {{4}};
+        final String[] bcg_dir = {"img/setupG.jpg", "img/setupR.jpg", "img/setupH.jpg", "img/setupS.jpg", "img/setup.jpg"};
         final Color[] houseColor = {new Color(238, 186, 48), new Color(148, 107, 45), new Color(125, 107, 93), new Color(170, 170, 170), Color.BLACK};
         final Color[] bcgColor = {new Color(116, 0, 1), new Color(15, 29, 74), new Color(238, 186, 53), new Color(26, 71, 42), Color.BLACK};
 
@@ -49,7 +56,6 @@ public class CreatePlan extends JFrame {
         };
 
         panel.setLayout(new BorderLayout());
-        Font sub_title = new Font("Arial", Font.BOLD, 20);
 
         JPanel everythingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, panel.getWidth() + 10, 100 + panel.getHeight()));
         everythingPanel.setOpaque(false);
@@ -61,9 +67,9 @@ public class CreatePlan extends JFrame {
         spacerPanel1.setOpaque(false);
         everythingPanel.add(spacerPanel1);
 
-        JPanel spacerPanel5 = new JPanel();
-        spacerPanel5.setPreferredSize(new Dimension(0, 17));
-        spacerPanel5.setOpaque(false);
+        JPanel spacerPanel2 = new JPanel();
+        spacerPanel2.setPreferredSize(new Dimension(0, 17));
+        spacerPanel2.setOpaque(false);
 
         JLabel title = new JLabel("Customize your plan:");
         title.setFont(new Font("Arial", Font.BOLD, 40));
@@ -79,7 +85,7 @@ public class CreatePlan extends JFrame {
 
 
         JLabel interestTitle = new JLabel("Pick your interest:");
-        interestTitle.setFont(sub_title);
+        interestTitle.setFont(new Font("Arial", Font.BOLD, 20));
         interestTitle.setForeground(houseColor[i[0][0]]);
 
         String[] allInterests = {"Quidditch", "Transfiguration", "Charms", "Herbology", "Potions", "Defense Against the Dark Arts", "Divination", "Muggle Studies", "Care of Magical Creatures", "History of Magic", "Ancient Runes", "Apparition", "Alchemy", "Magical Theory"};
@@ -206,7 +212,7 @@ public class CreatePlan extends JFrame {
 
         everythingPanel.add(interestPanel);
 
-        everythingPanel.add(spacerPanel5);
+        everythingPanel.add(spacerPanel2);
 
         JButton button = new JButton("Start Game");
         button.setPreferredSize(new Dimension(110, 40));
@@ -321,7 +327,6 @@ public class CreatePlan extends JFrame {
                         }
                     }
                 });
-                // Start the thread
                 changePlayerThreat.start();
             }
         });
@@ -460,17 +465,39 @@ public class CreatePlan extends JFrame {
 
     }
 
+    /**
+     * A method to get a player with the assigned plan from the GUI.
+     * @return the player
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     */
     public Player getPlayer() throws InterruptedException {
         new Waiter().wait(() -> player);
         return player;
     }
+
+    /**
+     * This method sets the player
+     * @param player the player
+     */
     public void setPlayer(Player player){
         this.player = player;
     }
+
+    /**
+     * This method sets the player with the login if needed
+     * @param player the player
+     * @param login the login
+     */
     public void setPlayer(Player player, String login){
         this.player.setLogin(login);
         this.player = player;
     }
+
+    /**
+     * This method checks if the player has changed using Boolean value, if so, it can change the value back to null, so it can be checked again.
+     * @return true since the player changed
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     */
     public Boolean ifChanged() throws InterruptedException {
         new Waiter().wait(() -> changed);
         changed = null;

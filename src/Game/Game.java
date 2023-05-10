@@ -53,6 +53,9 @@ public class Game implements Serializable {
     /**
      * This constructor is simply used play the game with the {@link Player} object passed to it.
      * @param player is there just to assign the player, and it's login.
+     * @throws IOException is thrown if the file cannot be loaded
+     * @throws ClassNotFoundException is thrown if the file cannot be found
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
      */
     public Game(Player player) throws IOException, ClassNotFoundException, InterruptedException {
         this.login = player.getLogin();

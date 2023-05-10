@@ -17,6 +17,11 @@ public class StatsGUI extends JFrame{
     private Player player;
     private Boolean done;
     private String[] myAnswers = new String[8];
+
+    /**
+     * This constructor creates a GUI that displays the players statistics.
+     * @param builder the builder of the stats
+     */
     public StatsGUI(StatsBuilder builder) {
         super(builder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,14 +99,6 @@ public class StatsGUI extends JFrame{
         JPanel spacerPanel3 = new JPanel();
         spacerPanel3.setPreferredSize(new Dimension(0, 25));
         spacerPanel3.setOpaque(false);
-
-        JPanel spacerPanel4 = new JPanel();
-        spacerPanel4.setPreferredSize(new Dimension(0, 20));
-        spacerPanel4.setOpaque(false);
-
-        JPanel spacerPanel5 = new JPanel();
-        spacerPanel5.setPreferredSize(new Dimension(0, 23));
-        spacerPanel5.setOpaque(false);
 
         JLabel title = new JLabel(builder.super_title + ":");
         title.setHorizontalAlignment(JLabel.CENTER);
@@ -329,6 +326,12 @@ public class StatsGUI extends JFrame{
         setResizable(false);
 
     }
+
+    /**
+     * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the boolean value of {@link #done}
+     */
     public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;

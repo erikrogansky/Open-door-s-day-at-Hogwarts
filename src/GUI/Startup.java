@@ -12,6 +12,11 @@ import java.awt.event.*;
 public class Startup extends JFrame {
     private String login;
     private Boolean newGame;
+
+    /**
+     * This constructor creates a GUI with login JTextBox, and buttons for 'New game' or 'Login'. After clicking either button, the login
+     * String is extracted, the {@link #newGame} is evaluated and the GUI is closed.
+     */
     public Startup() {
         super("Welcome to Hogwarts");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -163,10 +168,20 @@ public class Startup extends JFrame {
         setResizable(false);
     }
 
+    /**
+     * This is a method that uses {@link Waiter} class to wait until login is not null.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the boolean value of {@link #login}
+     */
     public String getLogin() throws InterruptedException {
         new Waiter().wait(() -> login);
         return login;
     }
+    /**
+     * This is a method that uses {@link Waiter} class to wait until newGame variable is initialized.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the boolean value of {@link #newGame}
+     */
     public Boolean getBool() throws InterruptedException {
         new Waiter().wait(() -> newGame);
         return newGame;

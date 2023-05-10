@@ -12,10 +12,16 @@ import java.util.List;
 /**
  * In this class where a quiz GUI is created.
  */
-public class QuestionsGUI extends JFrame{
-    Player player;
-    Boolean done;
-    String[] myAnswers = new String[8];
+public class QuestionsGUI extends JFrame {
+    private Player player;
+    private Boolean done;
+    private String[] myAnswers = new String[8];
+
+    /**
+     * This constructor creates a GUI with questions. Player is supposed to choose the right answer. After submitting, the answers are collected.
+     * The player can use a keyboard or a mouse to work with this GUI.
+     * @param builder a builder that builds the GUI
+     */
     public QuestionsGUI(QuestionsBuilder builder) {
         super(builder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,8 +197,7 @@ public class QuestionsGUI extends JFrame{
                 questionsPanel1.add(answersPanel);
                 if (j < 3)
                     questionsPanel1.add(new JLabel());
-            }
-            else {
+            } else {
                 questionsPanel2.add(answersPanel);
                 if (j < 7)
                     questionsPanel2.add(new JLabel());
@@ -250,6 +255,7 @@ public class QuestionsGUI extends JFrame{
                 allButtons[buttonGroupIndex[0]][buttonIndex[0]].setBackground(bcgColor[i[0]]);
                 allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(houseColor[i[0]]);
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 button.setBackground(bcgColor[i[0]]);
@@ -274,6 +280,7 @@ public class QuestionsGUI extends JFrame{
                         allButtons[buttonGroupIndex[0]][buttonIndex[0]].setForeground(bcgColor[i[0]]);
                         everythingPanel.requestFocus();
                     }
+
                     @Override
                     public void mouseEntered(MouseEvent e) {
                         button.setBackground(bcgColor[i[0]]);
@@ -400,19 +407,26 @@ public class QuestionsGUI extends JFrame{
 
         getContentPane().add(panel);
 
-
-
-
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
 
     }
+
+    /**
+     * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @return the boolean value of {@link #done}
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     */
     public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }
 
+    /**
+     * A method to get the player answers from this class, so they can be evaluated.
+     * @return the answers array
+     */
     public String[] getAnswers() {
         return myAnswers;
     }

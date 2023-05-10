@@ -19,6 +19,11 @@ public final class Stories extends JFrame{
     private Boolean readTheWholeStory = false;
     private JLabel story = new JLabel();
     private boolean pause = false;
+
+    /**
+     * This constructor creates a new GUI which will be displaying the story.
+     * @param storyBuilder the builder of the story
+     */
     public Stories(StoryBuilder storyBuilder) {
         super(storyBuilder.super_title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -183,21 +188,45 @@ public final class Stories extends JFrame{
         setResizable(false);
 
     }
+
+    /**
+     * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the boolean value of {@link #done}
+     */
     public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }
+
+    /**
+     * This method is to get the value of {@link #readTheWholeStory}.
+     * @return the value of {@link #readTheWholeStory}
+     */
     public Boolean getRead() {
         return readTheWholeStory;
     }
 
+    /**
+     * This method is to set the value of {@link #readTheWholeStory} to true, to indicate that the whole story was read.
+     */
     public void setReadWhole(){
         readTheWholeStory = true;
     }
+
+    /**
+     * This method is printing the string passed to it to the screen
+     * @param str_builder is the string to be printed
+     */
     public void printStory(String str_builder) {
         story.setText(str_builder);
         story.repaint();
     }
+
+    /**
+     * This method is to get the value of {@link #pause}.
+     * @return the value of {@link #pause}
+     */
     public Boolean getPause() {
         return pause;
     }

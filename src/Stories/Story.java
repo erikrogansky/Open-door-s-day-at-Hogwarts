@@ -52,6 +52,7 @@ public abstract class Story implements Serializable {
     }
     /**
      * This is a method to get the new instance of a class derived from {@link Story} it is called from.
+     * Which class it is, must be found using RTTI.
      * @throws InstantiationException is thrown if the new instance cannot be created
      * @throws IllegalAccessException is thrown if the class does not have access to the details of the instance
      * @return the new instance

@@ -19,8 +19,14 @@ public class PlayerSetup extends JFrame {
     private JRadioButton option1, option2, option3, option4, option5, option6, option7;
     private JCheckBox checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7, checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14;
     private JCheckBox[] checkboxes;
-    JLabel interestTitle;
+    private JLabel interestTitle;
     private final int[] max = {0};
+
+    /**
+     * This constructor actually creates the GUI with JRadioButtons, JCheckBoxes, and a JTextField for the player to customize their in-game
+     * information. After submitting, a new {@link Player} is created and is assigned the information from the GUI. A player can interact with
+     * the GUI using a keyboard or a mouse.
+     */
     public PlayerSetup() {
         super("Welcome to Hogwarts");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -850,11 +856,24 @@ public class PlayerSetup extends JFrame {
         setResizable(false);
 
     }
+    /**
+     * A method to get a player with the assigned plan from the GUI.
+     * @return the player
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     */
     public Player getPlayer() throws InterruptedException {
         new Waiter().wait(() -> player);
         return player;
     }
 
+    /**
+     * This method displays the player's information in the GUI, in case a player is already created and just need to be changed.
+     * It would be inefficient to write all the information again each time.
+     * @param name the player's name
+     * @param gender the player's gender
+     * @param house the player's house
+     * @param interests the player's interests
+     */
     public void set(String name, String gender, String house, String[] interests) {
         this.nameField.setText(name);
         if (gender.equals("Wizard")) {

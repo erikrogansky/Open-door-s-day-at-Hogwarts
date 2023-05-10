@@ -15,6 +15,12 @@ public class Menu extends JDialog {
     private Player player;
     private Boolean exit;
 
+    /**
+     * This constructor creates the GUI of the menu with multiple buttons. There are buttons, for resuming, for getting back to login,
+     * for changing the player info and their plan, and for exiting the game.
+     * @param player the player
+     * @param parent since it is a JDialog, it needs a parent JFrame
+     */
     public Menu(Player player, JFrame parent) {
         super(parent, "Menu", true);
         this.player = player;
@@ -309,22 +315,51 @@ public class Menu extends JDialog {
         setResizable(false);
 
     }
+
+    /**
+     * This method sets the exit boolean, which indicates that the window menu is opened from should be closed
+     */
     public void setExit(){
         this.exit = true;
     }
+
+     /**
+     * This is a method that uses {@link Waiter} class to wait until the exit variable is set
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the boolean value of {@link #exit}
+     */
     public Boolean getExit() throws InterruptedException {
         new Waiter().wait(() -> this.exit);
         return this.exit;
     }
+
+    /**
+     * This method simply assigns the player to the class
+     * @param player is the player
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    /**
+     * This method assigns the player to the class and sets its login, plan and points.
+     * This method is used when the player information are changed.
+     * @param player is a variable for the player
+     * @param login is a variable for the login
+     * @param plan is a variable for the plan
+     * @param points is a variable for the points
+     */
     public void setPlayer(Player player, String login, Plan plan, int points) {
         this.player = player;
         this.player.addPoints(points);
         this.player.changePlan(plan);
         this.player.setLogin(login);
     }
+    /**
+     * This is a method that uses {@link Waiter} class to wait until the player is ready for extracting
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the {@link Player}
+     */
     public Player getPlayer() throws InterruptedException {
         new Waiter().wait(() -> this.player);
         return player;

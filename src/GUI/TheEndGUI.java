@@ -17,6 +17,12 @@ public class TheEndGUI extends JFrame{
     private Player player;
     private Boolean done;
     private boolean back_or_finish;
+
+    /**
+     * This constructor creates a GUI with a simple text "The End" and two buttons. One for ending the game and the other for returning to the stats window.
+     * Player can navigate using a keyboard or mouse.
+     * @param player the player
+     */
     public TheEndGUI(Player player) {
         super("The End");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -159,10 +165,22 @@ public class TheEndGUI extends JFrame{
         setResizable(false);
 
     }
+
+    /**
+     * This is a method that uses {@link Waiter} class to wait until everything in this class is done.
+     * @throws InterruptedException is thrown if there is a problem in {@link Waiter} class
+     * @return the boolean value of {@link #done}
+     */
     public Boolean ifDone() throws InterruptedException {
         new Waiter().wait(() -> done);
         return done;
     }
+
+    /**
+     * This method is to get the value of {@link #back_or_finish} which indicates if the game should end or the player
+     * wants to go back to {@link StatsGUI} window.
+     * @return the value of {@link #back_or_finish}
+     */
     public boolean ifBack() {
         return back_or_finish;
     }
