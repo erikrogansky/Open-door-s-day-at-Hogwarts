@@ -450,7 +450,7 @@ public class PlayerSetup extends JFrame {
                 interestOptions[interestIndex[0]].setForeground(houseColor[i[0]]);
                 interestOptions[interestIndex[0]].repaint();
                 interestPanel.requestFocus();
-                for (int i1 = 0; i1 <13; i1++) {
+                for (int i1 = 0; i1 < 14; i1++) {
                     if (checkbox == interestOptions[i1]) {
                         interestIndex[0] = i1;
                         break;

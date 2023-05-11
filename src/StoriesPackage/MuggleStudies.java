@@ -31,7 +31,7 @@ public class MuggleStudies extends Story {
         .setImagePath("img/muggle.jpg")
         .build();
         Thread storyThread = new Thread(() -> {
-            story = "<html><div style='text-align:center'>Welcome to the Muggle Storage, my dear students. I am Professor Alecto Carrow, <br> and I'll be your guide on this journey through the world of Muggles.<br>" +
+            story = "<html><div style='text-align:center'>Welcome to the Muggle Storage, my dear " + player.getGender('s') + ". I am Professor Alecto Carrow, <br> and I'll be your guide on this journey through the world of Muggles.<br>" +
                     "<br>" +
                     "In my class, you'll learn about the many fascinating aspects of Muggle life, from their <br> technology and social structures to their customs and beliefs. You'll gain a deep understanding <br> of the ways in which Muggles see the world, and the ways in which their worldview differs from our own.<br>" +
                     "<br>" +

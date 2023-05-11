@@ -30,7 +30,7 @@ public class MagicalTheory extends Story {
         .setImagePath("img/lib.jpg")
         .build();
         Thread storyThread = new Thread(() -> {
-            story = "<html><div style='text-align:center'>Welcome to the Library, my dear students. I am Professor Eleazar Fig, and <br> I'll be your guide on this journey through the fascinating world of Magical Theory.<br>" +
+            story = "<html><div style='text-align:center'>Welcome to the Library, my dear " + player.getGender('s') + ". I am Professor Eleazar Fig, and <br> I'll be your guide on this journey through the fascinating world of Magical Theory.<br>" +
                     "<br>" +
                     "In my class, you'll learn about the many theoretical principles that underpin <br> the practice of magic. From the mechanics of spellcasting to the metaphysics of the <br> magical world, you'll gain a deep understanding of the fundamental laws that govern our craft.<br>" +
                     "<br>" +
