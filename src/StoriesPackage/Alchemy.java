@@ -31,19 +31,19 @@ public class Alchemy extends Story {
         .setImagePath("img/alchemy.jpg")
         .build();
         Thread storyThread = new Thread(() -> {
-            story = "<html><div style='text-align:center'><br>" +
+            story = "<html><div style='text-align:center'>Welcome to the Alchemy Classroom, my dear " + player.getGender('s') + ". I am the <br> headmaster Albus Dumbledore, and I'll be your guide on this journey into the secrets of the universe.<br>" +
                     "<br>" +
+                    "Alchemy is an ancient art that seeks to understand the mysteries of creation and transformation. It is a discipline <br> that requires a keen intellect, a deep understanding of the natural world, and a willingness to explore the unknown.<br>" +
                     "<br>" +
+                    "In my class, you'll learn about the history and philosophy of alchemy, and you'll explore <br> the many ways in which this discipline has influenced the course of human history. You'll gain a deep <br> appreciation for the power of transmutation, and you'll learn to wield this power with skill and precision.<br>" +
                     "<br>" +
+                    "But be warned, alchemy is not a simple or easy discipline. It requires long hours of study <br> and contemplation, and it demands a level of focus and dedication that few are willing to give.<br>" +
                     "<br>" +
+                    "In my class, you'll be working with a variety of materials and substances, exploring their properties and learning <br> to manipulate them in new and exciting ways. You'll be challenged to push the limits of what is possible, and <br> you'll be rewarded with a deep understanding of the fundamental forces that shape our world.<br>" +
                     "<br>" +
+                    "But beyond the practical skills of alchemy lies a deeper truth - a truth that is at the heart of all magical and mystical <br> traditions. Alchemy is a path to self-discovery and enlightenment, a way of understanding the world and our place within it.<br>" +
                     "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "</div></html>";
+                    "So, if you're ready to embark on a journey of discovery through the mysteries of alchemy, then welcome to my <br> class. Together, we'll explore the secrets of the universe, and unlock the power of transformation and creation.</div></html>";
             while (i < story.length()) {
                 char character = story.charAt(i);
                 if (!GUI.getPause()) {

@@ -27,23 +27,21 @@ public class MuggleStudies extends Story {
         i = 0;
         GUI = new StoryBuilder()
         .setPlayer(player)
-        .setSuper("Welcome to the Ghostly Hallways")
-        .setImagePath("img/ghostly.jpg")
+        .setSuper("Welcome to the Muggle Storage")
+        .setImagePath("img/muggle.jpg")
         .build();
         Thread storyThread = new Thread(() -> {
-            story = "<html><div style='text-align:center'><br>" +
+            story = "<html><div style='text-align:center'>Welcome to the Muggle Storage, my dear students. I am Professor Alecto Carrow, <br> and I'll be your guide on this journey through the world of Muggles.<br>" +
                     "<br>" +
+                    "In my class, you'll learn about the many fascinating aspects of Muggle life, from their <br> technology and social structures to their customs and beliefs. You'll gain a deep understanding <br> of the ways in which Muggles see the world, and the ways in which their worldview differs from our own.<br>" +
                     "<br>" +
+                    "But be warned, the study of Muggle culture is not for the faint of heart. You'll need to be willing to confront your <br> own biases and preconceptions, and to question the assumptions that you've been taught since childhood. <br> You'll need to be willing to step outside of your comfort zone, and to engage with the unfamiliar.<br>" +
                     "<br>" +
+                    "In my class, you'll explore the many ways in which Muggles have influenced <br> our world, and the ways in which we have influenced theirs. You'll gain a deep appreciation <br> for the complexity of human culture, and for the ways in which we can learn from one another.<br>" +
                     "<br>" +
+                    "But beyond the practical lessons of Muggle Studies lies a deeper truth - a truth that is at <br> the heart of all human experience. The study of Muggle culture is a path to empathy, a way <br> of seeing the world through the eyes of others. Through the study of Muggle Studies, we come to understand <br>  the many ways in which we are all connected, and the ways in which we can learn from one another.<br>" +
                     "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "</div></html>";
+                    "So, if you're ready to embark on a journey through the world of Muggles, then welcome to my class. <br> Together, we'll explore the many facets of Muggle life, and gain a deeper understanding of the world around us.</div></html>";
             while (i < story.length()) {
                 char character = story.charAt(i);
                 if (!GUI.getPause()) {

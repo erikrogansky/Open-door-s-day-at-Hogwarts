@@ -27,23 +27,21 @@ public class History extends Story {
         i = 0;
         GUI = new StoryBuilder()
         .setPlayer(player)
-        .setSuper("Welcome to the Magical Creature Forest")
-        .setImagePath("img/magicalforest.jpg")
+        .setSuper("Welcome to the History classroom")
+        .setImagePath("img/history.jpg")
         .build();
         Thread storyThread = new Thread(() -> {
-            story = "<html><div style='text-align:center'><br>" +
+            story = "<html><div style='text-align:center'>Welcome to the History Classroom, my dear " + player.getGender('s') + ". I am Professor Cuthbert Binns, <br> and I'll be your guide on this journey through the rich tapestry of human history.<br>" +
                     "<br>" +
+                    "In my class, you'll learn about the many fascinating events and personalities that have <br> the course of human civilization. From the rise and fall of great empires to the struggles of everyday <br> people, you'll gain a deep understanding of the complexities of the human experience.<br>" +
                     "<br>" +
+                    "But be warned, the study of history is not a simple or straightforward endeavor. <br> It requires a great deal of patience, perseverance, and attention to detail. You'll need to be <br> willing to dive deep into the archives, to pour over dusty tomes and ancient manuscripts,<br> to unravel the mysteries of the past and bring them to light.<br>" +
                     "<br>" +
+                    "In my class, you'll explore the many ways in which the past has influenced the present, and you'll gain a deep <br> appreciation for the ways in which our world has been shaped by those who came before us.<br>" +
                     "<br>" +
+                    "But beyond the practical lessons of history lies a deeper truth - a truth that is at <br> the heart of all human experience. History is a path to understanding, a way of seeing ourselves and <br> our place in the world with new eyes. Through the study of history, we come <br> to understand the human condition in all its beauty and complexity.<br>" +
                     "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "</div></html>";
+                    "So, if you're ready to embark on a journey through the annals of time, then welcome to my class. <br> Together, we'll explore the rich tapestry of human history, and gain a deeper understanding of the world around us.</div></html>";
             while (i < story.length()) {
                 char character = story.charAt(i);
                 if (!GUI.getPause()) {

@@ -132,17 +132,17 @@ public class Plan implements Serializable {
     public void reload(int i, Story story){
         if (i==0)
             welcome = new Welcome();
-        if (i==1)
+        else if (i==1)
             story1 = story;
-        if (i==2)
+        else if (i==2)
             story2 = story;
-        if (i==3)
+        else if (i==3)
             story3 = story;
-        if (i==4)
+        else if (i==4)
             story4 = story;
-        if (i==5)
+        else if (i==5)
             story5 = story;
-        if (i==6)
+        else if (i==6)
             story6 = story;
         else
             story7 = story;

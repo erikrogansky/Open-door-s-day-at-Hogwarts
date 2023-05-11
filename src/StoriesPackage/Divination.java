@@ -31,19 +31,19 @@ public class Divination extends Story {
         .setImagePath("img/divination.jpg")
         .build();
         Thread storyThread = new Thread(() -> {
-            story = "<html><div style='text-align:center'><br>" +
+            story = "<html><div style='text-align:center'>Welcome to the Divination Classroom, my dear " + player.getGender('s') + ". I am Professor <br> Sybill Trelawney, and I'll be your guide on this journey of self-discovery.<br>" +
                     "<br>" +
+                    "In my class, you'll learn about the ancient art of Divination - the ability to see beyond the veil of reality and peer into the <br> mysteries of the future. It's a skill that requires a great deal of intuition, imagination, and sensitivity to the world around us.<br>" +
                     "<br>" +
+                    "But be warned, Divination is not for the faint of heart. The ability to see into <br> the future is a rare and powerful gift, and it comes with its own unique set of challenges and dangers.<br>" +
                     "<br>" +
+                    "In my class, you'll spend countless hours pouring over crystal balls, tarot cards, and other mystical <br> tools, seeking insights into the mysteries of fate and destiny. You'll learn to interpret signs and <br> omens, and you'll gain a deeper understanding of the interconnectedness of all things.<br>" +
                     "<br>" +
+                    "But let me tell you, the path of the diviner is not an easy one. You'll face skepticism and disbelief from those who doubt <br> the existence of the mystical realm, and you'll need to have the courage to stand by your beliefs and convictions.<br>" +
                     "<br>" +
+                    "But if you're willing to take on the challenge, the rewards of studying Divination are <br> immeasurable. You'll gain a deep understanding of yourself and the world around you, <br> and you'll learn to see the hidden patterns and connections that exist beneath the surface of reality.<br>" +
                     "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "<br>" +
-                    "</div></html>";
+                    "So, if you're ready to embark on a journey of self-discovery through the mysteries of Divination, then welcome <br> to my class. Together, we'll explore the secrets of fate and destiny, and unlock the power of the mystical arts.</div></html>";
             while (i < story.length()) {
                 char character = story.charAt(i);
                 if (!GUI.getPause()) {
